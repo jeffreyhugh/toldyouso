@@ -9,14 +9,20 @@ import (
 	"time"
 
 	"github.com/gorilla/mux"
+	"github.com/joho/godotenv"
 	"github.com/qbxt/gologger"
 	"github.com/sirupsen/logrus"
+
 	"queue.bot/toldyouso-backend/db"
 	"queue.bot/toldyouso-backend/handlers"
 	"queue.bot/toldyouso-backend/middleware"
 )
 
 func main() {
+	if err := godotenv.Load("backend.env"); err != nil {
+		gologger.Fatal("could not load env", err, nil)
+	}
+
 	if !db.Init() {
 		gologger.Fatal("could not init db", nil, nil)
 	}
