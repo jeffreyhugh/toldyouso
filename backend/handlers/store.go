@@ -8,6 +8,8 @@ import (
 
 	"queue.bot/toldyouso-backend/db"
 
+	"github.com/qbxt/gologger"
+	"github.com/sirupsen/logrus"
 	"github.com/speps/go-hashids"
 )
 
@@ -48,6 +50,10 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
 		Location:    location,
 		AvailableAt: incomingJson.AvailableAt,
 	}
+
+	gologger.Info("stored a message", logrus.Fields{
+		"requester": r.RemoteAddr,
+	})
 
 	_ = json.NewEncoder(w).Encode(ret_)
 }

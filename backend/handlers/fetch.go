@@ -6,6 +6,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/qbxt/gologger"
+	"github.com/sirupsen/logrus"
 	"github.com/speps/go-hashids"
 
 	"queue.bot/toldyouso-backend/db"
@@ -13,6 +15,7 @@ import (
 
 type fetchReturn struct {
 	AvailableAt time.Time `json:"availableAt"`
+	SubmittedAt time.Time `json:"submittedAt"`
 	Encrypted   bool      `json:"encrypted"`
 	Message     string    `json:"message"`
 }
@@ -44,6 +47,7 @@ func HandleFetch(w http.ResponseWriter, r *http.Request) {
 
 	ret_ := &fetchReturn{
 		AvailableAt: data.AvailableAt,
+		SubmittedAt: data.SubmittedAt,
 		Encrypted:   data.Encrypted,
 		Message:     "",
 	}
@@ -51,6 +55,11 @@ func HandleFetch(w http.ResponseWriter, r *http.Request) {
 	if time.Now().After(data.AvailableAt) {
 		ret_.Message = data.Message
 	}
+
+	gologger.Info("fetched a message", logrus.Fields{
+		"id":        data.ID,
+		"requester": r.RemoteAddr,
+	})
 
 	_ = json.NewEncoder(w).Encode(ret_)
 }

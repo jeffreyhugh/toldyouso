@@ -46,7 +46,7 @@ const Index = () => {
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"email"}>Email (r)</label>
                 <div className={'relative'}>
                     <input
-                        className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
+                        className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
                         id={"email"} type={"text"} placeholder={"my-name@jeff.com"} required disabled={buttonStatus} />
                     <i className={"cursor-pointer fa fa-info-circle"} aria-hidden={true}
                         style={{
@@ -66,13 +66,13 @@ const Index = () => {
                 <div className={"mt-4"} />
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"message"}>Prediction (r)</label>
                 <textarea
-                    className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
+                    className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
                     id={"message"} placeholder={"I predict... (max 2000)"} maxLength={2000} rows={5} required disabled={buttonStatus} />
                 <div className={"mt-3"} />
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Password to encrypt my prediction</label>
                 <div className={'relative'}>
                     <input
-                        className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
+                        className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
                         id={"password"} type={"password"} placeholder={"secure-PASSWORD-1"} disabled={buttonStatus} />
                     <i className={"cursor-pointer fa fa-info-circle"} aria-hidden={true}
                         style={{

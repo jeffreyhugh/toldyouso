@@ -107,6 +107,9 @@ const ID = () => {
                             }
                         </>
                 }
+                <div id={"submittedAt"} className={"w-full dark:text-white text-xl lowercase select-none text-center"}>
+                    Submitted {DateTime.fromISO(data.submittedAt).toLocal().toRelative()}
+                </div>
             </Layout>
         )
     }
