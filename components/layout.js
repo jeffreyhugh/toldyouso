@@ -51,6 +51,12 @@ const Layout = ({children}) => {
                                     </a>
                                 </Link>
                                 <div className={"hidden md:block px-2"}>&middot;</div>
+                                <Link href={"https://github.com/qbxt/toldyouso"}>
+                                    <a>
+                                        github
+                                    </a>
+                                </Link>
+                                <div className={"hidden md:block px-2"}>&middot;</div>
                                 <Link href={"https://patreon.com/queuebot"}>
                                     <a>
                                         Donate
