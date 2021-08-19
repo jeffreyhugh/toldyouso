@@ -17,6 +17,7 @@ func Init() bool {
 	for i := 0; i < 10; i++ {
 		db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 		if err == nil {
+			gologger.Info("connected to db", nil)
 			DB = db
 			return true
 		}
