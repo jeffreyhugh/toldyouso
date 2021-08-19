@@ -22,6 +22,7 @@ func Init() bool {
 		}
 		gologger.Error("could not connect to DB", err, logrus.Fields{
 			"attempts": i,
+			"dsn":      dsn,
 		})
 		time.Sleep(3 * time.Second)
 	}
