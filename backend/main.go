@@ -19,6 +19,8 @@ import (
 )
 
 func main() {
+	gologger.Init(logrus.InfoLevel)
+
 	if err := godotenv.Load("backend.env"); err != nil {
 		gologger.Fatal("could not load env", err, nil)
 	}
