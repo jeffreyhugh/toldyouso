@@ -27,6 +27,7 @@ const Index = () => {
                                 event.target.message.value,
                     encrypted: event.target.password.value !== "",
                     availableAt: DateTime.fromISO(event.target.availableAt.value).toUTC().toISO(),
+                    submittedAt: DateTime.now().toUTC().toISO(),
                 })
             })
     
@@ -46,7 +47,7 @@ const Index = () => {
                 <div className={'relative'}>
                     <input
                         className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
-                        id={"email"} type={"text"} placeholder={"my-name@jeff.com"} required />
+                        id={"email"} type={"text"} placeholder={"my-name@jeff.com"} required disabled={buttonStatus} />
                     <i className={"cursor-pointer fa fa-info-circle"} aria-hidden={true}
                         style={{
                             position: 'absolute',
@@ -66,13 +67,13 @@ const Index = () => {
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"message"}>Prediction (r)</label>
                 <textarea
                     className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
-                    id={"message"} placeholder={"I predict... (max 2000)"} maxLength={2000} rows={5} required />
+                    id={"message"} placeholder={"I predict... (max 2000)"} maxLength={2000} rows={5} required disabled={buttonStatus} />
                 <div className={"mt-3"} />
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Password to encrypt my prediction</label>
                 <div className={'relative'}>
                     <input
                         className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
-                        id={"password"} type={"password"} placeholder={"secure-PASSWORD-1"} />
+                        id={"password"} type={"password"} placeholder={"secure-PASSWORD-1"} disabled={buttonStatus} />
                     <i className={"cursor-pointer fa fa-info-circle"} aria-hidden={true}
                         style={{
                             position: 'absolute',
@@ -90,7 +91,7 @@ const Index = () => {
                 </div>
                 <div className={"mt-4"} />
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"availableAt"}>make my prediction available at (r)</label>
-                <input className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"} id={"availableAt"} defaultValue={DateTime.now().toLocal().plus({ hours: 24 }).startOf("minute").toISO({ includeOffset: false })} min={DateTime.now().toLocal().startOf("minute").toISO({ includeOffset: false })} type={"datetime-local"} required />
+                <input className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"} id={"availableAt"} defaultValue={DateTime.now().toLocal().plus({ hours: 24 }).startOf("minute").toISO({ includeOffset: false })} type={"datetime-local"} required />
                 <div className={"mt-4"} />
                 <button className={"w-full px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} disabled={buttonStatus} type={"submit"} id={"sb"}>
                     {buttonStatus ? <i className={"fa fa-circle-o-notch fa-spin"} aria-hidden={true} /> : "✏️ Store my prediction"}

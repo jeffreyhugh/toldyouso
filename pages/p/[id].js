@@ -79,7 +79,7 @@ const ID = () => {
         return (
             <Layout>
                 {
-                    aA.diffNow('seconds').as('seconds') < 0 ?
+                    aA.diffNow('seconds').as('seconds') > 0 ?
                         <div className={"w-full dark:text-white text-4xl lowercase select-none text-center"}>
                             <div id={"countdown"}>
                                 <Countdown date={aA.toJSDate()} renderer={renderer} />
