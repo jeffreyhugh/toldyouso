@@ -2,6 +2,7 @@ import 'tailwindcss/tailwind.css'
 import Layout from "../components/layout";
 import React, { useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
+import Head from 'next/head';
 const { DateTime } = require("luxon")
 const aes256 = require("aes256")
 
@@ -22,25 +23,25 @@ const Index = () => {
                 method: 'POST',
                 body: JSON.stringify({
                     email: event.target.email.value,
-                    message: event.target.password.value ? 
-                                aes256.encrypt(event.target.password.value, event.target.message.value) :
-                                event.target.message.value,
+                    message: event.target.password.value ?
+                        aes256.encrypt(event.target.password.value, event.target.message.value) :
+                        event.target.message.value,
                     encrypted: event.target.password.value !== "",
                     availableAt: DateTime.fromISO(event.target.availableAt.value).toUTC().toISO(),
                     submittedAt: DateTime.now().toUTC().toISO(),
                 })
             })
-    
+
             const j = await res.json()
-    
+
             if (res.status === 200) {
                 router.push(`/p/${j.location}`)
                 return
             }
 
-            setButtonStatus(_s => !_s)            
+            setButtonStatus(_s => !_s)
         }
- 
+
         return (
             <form id={"storeForm"} className={"max-w-lg"} onSubmit={storeMessage}>
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"email"}>Email (r)</label>
@@ -102,6 +103,13 @@ const Index = () => {
 
     return (
         <Layout>
+            <Head>
+                <meta name="og:title" content={"told-you.so"} />
+                <meta name="og:description" content={"a time capsule for predictions 🔮"} />
+                <meta name="og:type" content={"website"} />
+                <meta name="og:url" content={"https://told-you.so"} />
+                <meta name="theme-color" content={"#7c3aed"} />
+            </Head>
             {messageForm()}
         </Layout>
     )

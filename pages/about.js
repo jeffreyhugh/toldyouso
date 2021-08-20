@@ -1,8 +1,16 @@
+import Head from "next/head"
 import Layout from "../components/layout"
 
 const About = () => {
     return (
         <Layout>
+            <Head>
+                <meta name="og:title" content={"told-you.so"} />
+                <meta name="og:description" content={"a time capsule for predictions 🔮"} />
+                <meta name="og:type" content={"website"} />
+                <meta name="og:url" content={"https://told-you.so"} />
+                <meta name="theme-color" content={"#7c3aed"} />
+            </Head>
             <div className={"w-full dark:text-white text-lg"}>
                 told-you.so was a quick project to learn TailwindCSS and Next.js/Vercel serverless functions.
                 Unfortunately, the serverless functions didn't make it into the final build because I couldn't figure out how to reuse existing DB connections.

@@ -13,12 +13,6 @@ const Layout = ({children}) => {
                 <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/crystal-ball_1f52e.png" />
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
                   integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossOrigin="anonymous"/>
-
-                <meta name="og:title" content={"told-you.so"}/>
-                <meta name="og:description" content={"a time capsule for predictions 🔮"}/>
-                <meta name="og:type" content={"website"}/>
-                <meta name="og:url" content={"https://told-you.so"}/>
-                <meta name="theme-color" content={"#7c3aed"}/>
             </Head>
             <div id="darkSelector" className={isDark ? "dark" : ""}>
                 <div className={"min-h-screen min-w-screen bg-white dark:bg-black"}>

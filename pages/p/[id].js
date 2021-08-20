@@ -4,6 +4,7 @@ import Layout from "../../components/layout"
 import useSWR from "swr"
 import { useState } from "react"
 import aes256 from "aes256"
+import Head from "next/head"
 
 const { DateTime } = require("luxon")
 
@@ -78,6 +79,13 @@ const ID = () => {
 
         return (
             <Layout>
+                <Head>
+                    <meta name="og:title" content={"told-you.so"} />
+                    <meta name="og:description" content={DateTime.fromISO(data.submittedAt).diffNow('seconds').as('seconds') > 0 ? `view this prediction in ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮` : `this prediction was stored ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮`} />
+                    <meta name="og:type" content={"website"} />
+                    <meta name="og:url" content={`https://told-you.so/p/${id}`} />
+                    <meta name="theme-color" content={"#7c3aed"} />
+                </Head>
                 {
                     aA.diffNow('seconds').as('seconds') > 0 ?
                         <div className={"w-full dark:text-white text-4xl lowercase select-none text-center"}>
