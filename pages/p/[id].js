@@ -98,7 +98,6 @@ const ID = () => {
                             <div id={"prediction"} className={"w-full dark:text-white text-2xl lowercase select-none text-center"}>
                                 {data.message}
                             </div>
-                            <div className={"mt-8"} />
                             {
                                 data.encrypted ?
                                     <form onSubmit={decryptMessage}>
@@ -115,6 +114,7 @@ const ID = () => {
                             }
                         </>
                 }
+                <div className={"mt-8"} />
                 <div id={"submittedAt"} className={"w-full dark:text-white text-xl lowercase select-none text-center"}>
                     Submitted {DateTime.fromISO(data.submittedAt).toLocal().toRelative()}
                 </div>
