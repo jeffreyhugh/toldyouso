@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"math"
+	"math/rand"
 	"net/http"
 	"os"
 	"time"
@@ -77,7 +78,7 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
 	_ = json.NewEncoder(w).Encode(ret_)
 
 	unsubRow := &db.UnsubscribeRow{
-		Email: incomingJson.email,
+		Email: incomingJson.Email,
 		Token: randSeq(64),
 		Valid: true,
 	}
