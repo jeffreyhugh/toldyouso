@@ -22,7 +22,15 @@ type storeReturn struct {
 	AvailableAt time.Time `json:"availableAt"`
 }
 
-const letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_"
+const letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_")
+
+func randSeq(n int) string {
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letters[rand.Intn(len(letters))]
+	}
+	return string(b)
+}
 
 func HandleStore(w http.ResponseWriter, r *http.Request) {
 	incomingJson := &db.Row{}
@@ -68,7 +76,16 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
 
 	_ = json.NewEncoder(w).Encode(ret_)
 
-	unsubscribeToken := ""
+	unsubRow := &db.UnsubscribeRow{
+		Email: incomingJson.email,
+		Token: randSeq(64),
+		Valid: true,
+	}
+
+	if err := db.DB.Table("unsubscribe_tokens").Create(unsubRow).Error; err != nil {
+		gologger.Warn("could not write unsub token to db", err, nil)
+		return
+	}
 
 	mg := mailgun.NewMailgun(os.Getenv("TOLDYOUSO_SENDING_DOMAIN"), os.Getenv("TOLDYOUSO_MAILGUN_PRIVKEY"))
 
@@ -125,7 +142,7 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
         </div>
     </body>
 </html>
-`, timeUntilRelease, location, location)
+`, timeUntilRelease, location, location, unsubRow.Token)
 	message.SetHtml(body)
 
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
