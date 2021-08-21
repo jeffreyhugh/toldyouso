@@ -22,7 +22,7 @@ type storeReturn struct {
 	AvailableAt time.Time `json:"availableAt"`
 }
 
-const letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_")
+var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_")
 
 func randSeq(n int) string {
 	b := make([]rune, n)
