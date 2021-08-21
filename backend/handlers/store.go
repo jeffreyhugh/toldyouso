@@ -30,6 +30,11 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	incomingJson.SubmittedAt = time.Now().UTC()
+	if len(incomingJson.Message) > 2000 {
+		incomingJson.Message = incomingJson.Message[:2000]
+	}
+
 	if err := db.DB.Table("toldyouso").Create(incomingJson).Error; err != nil {
 		w.WriteHeader(http.StatusInternalServerError)
 		_ = json.NewEncoder(w).Encode(map[string]interface{}{
