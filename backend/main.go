@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"math/rand"
 	"net/http"
 	"os"
 	"os/signal"
@@ -28,6 +29,8 @@ func main() {
 	if !db.Init() {
 		gologger.Fatal("could not init db", nil, nil)
 	}
+
+	rand.Seed(time.Now().UnixNano())
 
 	r := mux.NewRouter()
 

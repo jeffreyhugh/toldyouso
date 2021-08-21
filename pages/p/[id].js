@@ -54,7 +54,7 @@ const ID = () => {
                 <>
                     <div>Available in {' '}</div>
                     <div className={"font-bold text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600"}>
-                        {days}d {hours}h {minutes}m {seconds}s
+                        {days > 0 ? `${days}d` : ""} {hours > 0 ? `${hours}h` : ""} {minutes > 0 ? `${minutes}m` : ""} {seconds > 0 ? `${seconds}s` : ""}
                     </div>
                 </>
 
@@ -100,16 +100,19 @@ const ID = () => {
                             </div>
                             {
                                 data.encrypted ?
-                                    <form onSubmit={decryptMessage}>
-                                        <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Prediction password</label>
-                                        <input
-                                            className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
-                                            id={"password"} type={"password"} placeholder={"secure-PASSWORD-1"} />
-                                        <div className={"mt-4"} />
-                                        <button className={"w-full px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} type={"submit"} id={"sb"}>
-                                            🗝️ Decrypt
-                                        </button>
-                                    </form> :
+                                    <>
+                                        <div className={"mt-8"} />
+                                        <form onSubmit={decryptMessage}>
+                                            <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Prediction password</label>
+                                            <input
+                                                className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
+                                                id={"password"} type={"password"} placeholder={"secure-PASSWORD-1"} />
+                                            <div className={"mt-4"} />
+                                            <button className={"w-full px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} type={"submit"} id={"sb"}>
+                                                🗝️ Decrypt
+                                            </button>
+                                        </form>
+                                    </> :
                                     <></>
                             }
                         </>
