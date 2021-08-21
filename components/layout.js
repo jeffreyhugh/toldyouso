@@ -66,7 +66,7 @@ const Layout = ({children}) => {
 
                             <div className={"mt-10 mb-10"}/>
 
-                            <div className={"w-full"}>
+                            <div className={"w-auto m-8"}>
                                 {children}
                             </div>
 
