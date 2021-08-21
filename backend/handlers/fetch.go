@@ -52,7 +52,7 @@ func HandleFetch(w http.ResponseWriter, r *http.Request) {
 		Message:     "",
 	}
 
-	if time.Now().After(data.AvailableAt) {
+	if time.Now().UTC().After(data.AvailableAt) {
 		ret_.Message = data.Message
 	}
 
