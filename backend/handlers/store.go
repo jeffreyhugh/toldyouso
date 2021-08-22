@@ -98,13 +98,25 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
 	timeUntilRelease := ""
 	timeUntilAsDuration := time.Until(incomingJson.AvailableAt)
 	if timeUntilAsDuration.Hours() > 24 {
-		timeUntilRelease = fmt.Sprintf("In %f days", math.Ceil(timeUntilAsDuration.Hours()/24))
+		timeUntilRelease = fmt.Sprintf("In %d day", int(math.Ceil(timeUntilAsDuration.Hours()/24)))
+		if math.Ceil(timeUntilAsDuration.Hours()/24) > 1 {
+			timeUntilRelease += "s"
+		}
 	} else if timeUntilAsDuration.Hours() > 0 {
-		timeUntilRelease = fmt.Sprintf("In %f hours", math.Ceil(timeUntilAsDuration.Hours()))
+		timeUntilRelease = fmt.Sprintf("In %d hour", int(math.Ceil(timeUntilAsDuration.Hours())))
+		if math.Ceil(timeUntilAsDuration.Hours()) > 1 {
+			timeUntilRelease += "s"
+		}
 	} else if timeUntilAsDuration.Minutes() > 0 {
-		timeUntilRelease = fmt.Sprintf("In %f minutes", math.Ceil(timeUntilAsDuration.Minutes()))
+		timeUntilRelease = fmt.Sprintf("In %d minute", int(math.Ceil(timeUntilAsDuration.Minutes())))
+		if math.Ceil(timeUntilAsDuration.Minutes()) > 1 {
+			timeUntilRelease += "s"
+		}
 	} else if timeUntilAsDuration.Seconds() > 0 {
-		timeUntilRelease = fmt.Sprintf("In %f seconds", math.Ceil(timeUntilAsDuration.Seconds()))
+		timeUntilRelease = fmt.Sprintf("In %d second", int(math.Ceil(timeUntilAsDuration.Seconds())))
+		if math.Ceil(timeUntilAsDuration.Seconds()) > 1 {
+			timeUntilRelease += "s"
+		}
 	} else {
 		timeUntilRelease = "As of right now"
 	}

@@ -62,7 +62,7 @@ const Index = () => {
                         onClick={() => setShowEmailInfo(show => !show)} />
                 </div>
                 <div className={"w-full pl-2 pr-2 dark:text-white dark:bg-black lowercase select-none"} id={"emailInfo"}>
-                    {showEmailInfo ? "We'll send you an email with a link to your prediction so you don't lose it (WIP)" : ""}
+                    {showEmailInfo ? "We'll send you an email with a link to your prediction so you don't lose it" : ""}
                 </div>
                 <div className={"mt-4"} />
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"message"}>Prediction (r)</label>
