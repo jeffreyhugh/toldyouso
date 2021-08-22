@@ -91,7 +91,7 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
 	mg := mailgun.NewMailgun(os.Getenv("TOLDYOUSO_SENDING_DOMAIN"), os.Getenv("TOLDYOUSO_MAILGUN_PRIVKEY"))
 
 	sender := "i@told-you.so"
-	subject := "Your told-you.so prediction"
+	subject := fmt.Sprintf("told-you.so prediction %s", location)
 
 	message := mg.NewMessage(sender, subject, "", incomingJson.Email)
 
