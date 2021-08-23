@@ -94,8 +94,8 @@ const ID = () => {
                             </div>
                         </div>
                         :
-                        <>
-                            <div id={"prediction"} className={"w-full dark:text-white text-2xl lowercase select-none text-center"}>
+                        <div className={"w-96 ml-auto mr-auto"}>
+                            <div id={"prediction"} className={"w-auto break-words dark:text-white text-2xl lowercase select-none text-left"}>
                                 {data.message}
                             </div>
                             {
@@ -115,7 +115,7 @@ const ID = () => {
                                     </> :
                                     <></>
                             }
-                        </>
+                        </div>
                 }
                 <div className={"mt-8"} />
                 <div id={"submittedAt"} className={"w-full dark:text-white text-xl lowercase select-none text-center"}>
