@@ -9,7 +9,7 @@ const Layout = ({children}) => {
     return (
         <>
             <Head>
-                <title>told-you.so - a prediction time capsule</title>
+                <title>told-you.so - a message time capsule</title>
                 <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/crystal-ball_1f52e.png" />
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
                   integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossOrigin="anonymous"/>
@@ -34,14 +34,14 @@ const Layout = ({children}) => {
                                 </Link>
                             </div>
                             <div className={"text-center text-2xl dark:text-white lowercase select-none"}>
-                                A prediction time capsule 🔮
+                                A message time capsule 🔮
                             </div>
 
                             <div className={"m-2"}/>
                             <div className={"flex flex-col md:flex-row items-center justify-center text-lg dark:text-white lowercase italic whitespace-nowrap overflow-y-scroll md:overflow-y-hidden select-none"}>
                                 <Link href={"/"}>
                                     <a>
-                                        Store a prediction
+                                        Store a message
                                     </a>
                                 </Link>
                                 <div className={"hidden md:block px-2"}>&middot;</div>
@@ -53,7 +53,7 @@ const Layout = ({children}) => {
                                 <div className={"hidden md:block px-2"}>&middot;</div>
                                 <Link href={"https://github.com/qbxt/toldyouso"}>
                                     <a>
-                                        github
+                                        GitHub
                                     </a>
                                 </Link>
                                 <div className={"hidden md:block px-2"}>&middot;</div>

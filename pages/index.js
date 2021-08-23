@@ -62,15 +62,15 @@ const Index = () => {
                         onClick={() => setShowEmailInfo(show => !show)} />
                 </div>
                 <div className={"w-full pl-2 pr-2 dark:text-white dark:bg-black lowercase select-none"} id={"emailInfo"}>
-                    {showEmailInfo ? "We'll send you an email with a link to your prediction so you don't lose it" : ""}
+                    {showEmailInfo ? "We'll send you an email with a link to your message so you don't lose it" : ""}
                 </div>
                 <div className={"mt-4"} />
-                <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"message"}>Prediction (r)</label>
+                <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"message"}>Message (r)</label>
                 <textarea
                     className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
                     id={"message"} placeholder={"I predict... (max 2000)"} maxLength={2000} rows={5} required disabled={buttonStatus} />
                 <div className={"mt-3"} />
-                <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Password to encrypt my prediction</label>
+                <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Password to encrypt my message</label>
                 <div className={'relative'}>
                     <input
                         className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
@@ -91,11 +91,11 @@ const Index = () => {
                     {showPasswordInfo ? "If you set a password, your message will be encrypted client-side with AES256" : ""}
                 </div>
                 <div className={"mt-4"} />
-                <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"availableAt"}>make my prediction available at (r)</label>
+                <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"availableAt"}>make my message available at (r)</label>
                 <input className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"} id={"availableAt"} defaultValue={DateTime.now().toLocal().plus({ hours: 24 }).startOf("minute").toISO({ includeOffset: false })} type={"datetime-local"} required />
                 <div className={"mt-4"} />
                 <button className={"w-full px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} disabled={buttonStatus} type={"submit"} id={"sb"}>
-                    {buttonStatus ? <i className={"fa fa-circle-o-notch fa-spin"} aria-hidden={true} /> : "✏️ Store my prediction"}
+                    {buttonStatus ? <i className={"fa fa-circle-o-notch fa-spin"} aria-hidden={true} /> : "✏️ Store my message"}
                 </button>
             </form>
         )
@@ -105,7 +105,7 @@ const Index = () => {
         <Layout>
             <Head>
                 <meta name="og:title" content={"told-you.so"} />
-                <meta name="og:description" content={"a time capsule for predictions 🔮"} />
+                <meta name="og:description" content={"a time capsule for messages 🔮"} />
                 <meta name="og:type" content={"website"} />
                 <meta name="og:url" content={"https://told-you.so"} />
                 <meta name="theme-color" content={"#7c3aed"} />

@@ -91,30 +91,30 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
 	mg := mailgun.NewMailgun(os.Getenv("TOLDYOUSO_SENDING_DOMAIN"), os.Getenv("TOLDYOUSO_MAILGUN_PRIVKEY"))
 
 	sender := "i@told-you.so"
-	subject := fmt.Sprintf("told-you.so prediction %s", location)
+	subject := fmt.Sprintf("told-you.so message %s", location)
 
 	message := mg.NewMessage(sender, subject, "", incomingJson.Email)
 
 	timeUntilRelease := ""
 	timeUntilAsDuration := time.Until(incomingJson.AvailableAt)
-	if timeUntilAsDuration.Hours() > 24 {
+	if math.Round(timeUntilAsDuration.Hours()) > 24 {
 		timeUntilRelease = fmt.Sprintf("In %d day", int(math.Round(timeUntilAsDuration.Hours()/24)))
-		if math.Round(timeUntilAsDuration.Hours()/24) > 1 {
+		if math.Round(timeUntilAsDuration.Hours()/24) != 1 {
 			timeUntilRelease += "s"
 		}
-	} else if timeUntilAsDuration.Hours() > 0 {
+	} else if math.Round(timeUntilAsDuration.Hours()) > 0 {
 		timeUntilRelease = fmt.Sprintf("In %d hour", int(math.Round(timeUntilAsDuration.Hours())))
-		if math.Round(timeUntilAsDuration.Hours()) > 1 {
+		if math.Round(timeUntilAsDuration.Hours()) != 1 {
 			timeUntilRelease += "s"
 		}
-	} else if timeUntilAsDuration.Minutes() > 0 {
+	} else if math.Round(timeUntilAsDuration.Minutes()) > 0 {
 		timeUntilRelease = fmt.Sprintf("In %d minute", int(math.Round(timeUntilAsDuration.Minutes())))
-		if math.Round(timeUntilAsDuration.Minutes()) > 1 {
+		if math.Round(timeUntilAsDuration.Minutes()) != 1 {
 			timeUntilRelease += "s"
 		}
-	} else if timeUntilAsDuration.Seconds() > 0 {
+	} else if math.Round(timeUntilAsDuration.Seconds()) > 0 {
 		timeUntilRelease = fmt.Sprintf("In %d second", int(math.Round(timeUntilAsDuration.Seconds())))
-		if math.Round(timeUntilAsDuration.Seconds()) > 1 {
+		if math.Round(timeUntilAsDuration.Seconds()) != 1 {
 			timeUntilRelease += "s"
 		}
 	} else {
@@ -134,16 +134,16 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
     <body style="margin: 0; padding: 0">
         <div style="background-color: rgba(0,0,0,1); min-height: 100vh; min-width: 100vh; padding: 2rem;">
             <div style="font-weight: 700; color: #7c3aed; font-size: 3.75rem; text-align: center">
-                Your prediction has been stored!
+                Your message has been stored!
             </div>
             <div style="color: rgba(255,255,255,1); text-align: center; font-size: 1.5rem; line-height: 2rem; margin-top: 0.5rem;">
                 %s, everyone can see it at <a href="https://told-you.so/p/%s" style="text-decoration: underline; color: inherit">told-you.so/p/%s</a> 🔮
             </div>
             <div style="color: rgba(255,255,255,1); text-align: center; font-size: 1.25rem; line-height: 1.75rem; margin-top: 0.5rem;">
-                A live countdown is available at your prediction's URL right now
+                A live countdown is available at your message's URL right now
             </div>
             <div style="margin-top: 3rem;"></div>
-            <div style="width: 32rem; margin-left: auto; margin-right: auto;">
+            <div style="width: 24rem; margin-left: auto; margin-right: auto;">
                 <div style="color: rgba(156,163,175,1); text-align: justify;">
                     If you want to stop receiving emails from us forever, <a href="https://told-you.so/unsubscribe?token=%s" style="text-decoration: underline; color: inherit">click here to unsubscribe</a> and be added to the email blacklist.
                     To resubscribe, send an email to <a href="mailto:toldyouso@queue.bot" style="text-decoration: underline; color: inherit">toldyouso@queue.bot</a>

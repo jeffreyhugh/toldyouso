@@ -81,7 +81,7 @@ const ID = () => {
             <Layout>
                 <Head>
                     <meta name="og:title" content={"told-you.so"} />
-                    <meta name="og:description" content={DateTime.fromISO(data.submittedAt).diffNow('seconds').as('seconds') > 0 ? `view this prediction in ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮` : `this prediction was stored ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮`} />
+                    <meta name="og:description" content={DateTime.fromISO(data.submittedAt).diffNow('seconds').as('seconds') > 0 ? `view this message in ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮` : `this message was stored ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮`} />
                     <meta name="og:type" content={"website"} />
                     <meta name="og:url" content={`https://told-you.so/p/${id}`} />
                     <meta name="theme-color" content={"#7c3aed"} />
@@ -103,7 +103,7 @@ const ID = () => {
                                     <>
                                         <div className={"mt-8"} />
                                         <form onSubmit={decryptMessage}>
-                                            <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Prediction password</label>
+                                            <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Message password</label>
                                             <input
                                                 className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"}
                                                 id={"password"} type={"password"} placeholder={"secure-PASSWORD-1"} />
