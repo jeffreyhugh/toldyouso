@@ -143,7 +143,7 @@ func HandleStore(w http.ResponseWriter, r *http.Request) {
                 A live countdown is available at your message's URL right now
             </div>
             <div style="margin-top: 3rem;"></div>
-            <div style="width: 24rem; margin-left: auto; margin-right: auto;">
+            <div style="width: 18rem; margin-left: auto; margin-right: auto;">
                 <div style="color: rgba(156,163,175,1); text-align: justify;">
                     If you want to stop receiving emails from us forever, <a href="https://told-you.so/unsubscribe?token=%s" style="text-decoration: underline; color: inherit">click here to unsubscribe</a> and be added to the email blacklist.
                     To resubscribe, send an email to <a href="mailto:toldyouso@queue.bot" style="text-decoration: underline; color: inherit">toldyouso@queue.bot</a>
