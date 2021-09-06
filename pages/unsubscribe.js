@@ -21,4 +21,5 @@
 //     )
 // }
 
-// export default Unsubscribe
+const Unsubscribe = () => null
+export default Unsubscribe
