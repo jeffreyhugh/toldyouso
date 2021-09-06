@@ -26,7 +26,7 @@ const ID = () => {
     const { id } = router.query
 
     const fetcher = (...args) => fetch(...args).then(res => res.json())
-    const { data, error } = useSWR(`https://api.told-you.so/v1/fetch?id=${id}`, fetcher, {
+    const { data, error } = useSWR(`https://api.told-you.so/toldyouso/v1/fetch?id=${id}`, fetcher, {
         revalidateOnFocus: false,
         revalidateOnReconnect: false,
         shouldRetryOnError: false,
@@ -95,7 +95,7 @@ const ID = () => {
                         </div>
                         :
                         <div className={"w-11/12 max-w-sm md:w-96 ml-auto mr-auto"}>
-                            <div id={"prediction"} className={"w-auto break-words dark:text-white text-2xl lowercase select-none text-left"}>
+                            <div id={"prediction"} className={"w-auto break-words dark:text-white text-2xl lowercase text-left"}>
                                 {data.message}
                             </div>
                             {

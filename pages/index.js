@@ -19,7 +19,7 @@ const Index = () => {
 
             setButtonStatus(_s => !_s)
 
-            const res = await fetch("https://api.told-you.so/v1/store", {
+            const res = await fetch("https://api.told-you.so/toldyouso/v1/store", {
                 method: 'POST',
                 body: JSON.stringify({
                     email: event.target.email.value,

@@ -35,8 +35,8 @@ func main() {
 	r := mux.NewRouter()
 
 	r.Use(middleware.CorsMiddleware)
-	r.HandleFunc("/v1/fetch", handlers.HandleFetch)
-	r.HandleFunc("/v1/store", handlers.HandleStore)
+	r.HandleFunc("/toldyouso/v1/fetch", handlers.HandleFetch)
+	r.HandleFunc("/toldyouso/v1/store", handlers.HandleStore)
 
 	ip := "0.0.0.0"
 	port := 443
