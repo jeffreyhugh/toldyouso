@@ -68,7 +68,7 @@ const Index = () => {
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"message"}>Message (r)</label>
                 <textarea
                     className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
-                    id={"message"} placeholder={"I predict... (max 2000)"} maxLength={2000} rows={5} required disabled={buttonStatus} />
+                    id={"message"} placeholder={"Mark my words... (max 2000)"} maxLength={2000} rows={5} required disabled={buttonStatus} />
                 <div className={"mt-3"} />
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"password"}>Password to encrypt my message</label>
                 <div className={'relative'}>
@@ -102,7 +102,7 @@ const Index = () => {
     }
 
     return (
-        <Layout>
+        <>
             <Head>
                 <meta name="og:title" content={"told-you.so"} />
                 <meta name="og:description" content={"a time capsule for messages 🔮"} />
@@ -111,7 +111,7 @@ const Index = () => {
                 <meta name="theme-color" content={"#7c3aed"} />
             </Head>
             {messageForm()}
-        </Layout>
+        </>
     )
 }
 

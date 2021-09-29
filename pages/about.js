@@ -3,7 +3,7 @@ import Layout from "../components/layout"
 
 const About = () => {
     return (
-        <Layout>
+        <>
             <Head>
                 <meta name="og:title" content={"told-you.so"} />
                 <meta name="og:description" content={"a time capsule for messages 🔮"} />
@@ -26,7 +26,7 @@ const About = () => {
                 The code is available on GitHub (link under the tagline).
                 Please submit a pull request if you think there's something missing.
             </div>
-        </Layout>
+        </>
     )
 }
 

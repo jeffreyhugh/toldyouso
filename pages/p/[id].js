@@ -64,21 +64,21 @@ const ID = () => {
 
     if (error) {
         return (
-            <Layout>
+            <>
                 <div className={"w-full dark:text-white text-4xl lowercase select-none text-center"}>error 😥</div>
-            </Layout>
+            </>
         )
     } else if (!data) {
         return (
-            <Layout>
+            <>
                 <div className={"w-full dark:text-white text-4xl lowercase select-none text-center"}>loading <i className={"fa fa-circle-o-notch fa-spin"} aria-hidden={true} /></div>
-            </Layout>
+            </>
         )
     } else {
         const aA = DateTime.fromISO(data.availableAt).toLocal()
 
         return (
-            <Layout>
+            <>
                 <Head>
                     <meta name="og:title" content={"told-you.so"} />
                     <meta name="og:description" content={DateTime.fromISO(data.submittedAt).diffNow('seconds').as('seconds') > 0 ? `view this message in ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮` : `this message was stored ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮`} />
@@ -121,7 +121,7 @@ const ID = () => {
                 <div id={"submittedAt"} className={"w-full dark:text-white text-xl lowercase select-none text-center"}>
                     Submitted {DateTime.fromISO(data.submittedAt).toLocal().toRelative()}
                 </div>
-            </Layout>
+            </>
         )
     }
 }

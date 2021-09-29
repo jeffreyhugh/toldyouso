@@ -1,9 +1,9 @@
 # [told-you.so](https://told-you.so)
-a prediction time capsule 🔮
+a message time capsule 🔮
 
 ---
 
-## [visit](https://told-you.so) · [about](https://told-you.so/about) · [donate](https://patreon.com/queuebot)
+## [visit](https://told-you.so) · [about](https://told-you.so/about)
 
 If you want to spin up your own instance, it's easiest to use [Vercel](https://vercel.com) to get the frontend going. 
 

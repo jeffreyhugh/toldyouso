@@ -3,9 +3,7 @@ import React, {useState} from 'react'
 import Link from "next/link";
 import Head from "next/head";
 
-const Layout = ({children}) => {
-    const [isDark, setDark] = useState(true)
-
+const Layout = ({children, isDark, setDark}) => {
     return (
         <>
             <Head>
@@ -54,12 +52,6 @@ const Layout = ({children}) => {
                                 <Link href={"https://github.com/qbxt/toldyouso"}>
                                     <a>
                                         GitHub
-                                    </a>
-                                </Link>
-                                <div className={"hidden md:block px-2"}>&middot;</div>
-                                <Link href={"https://patreon.com/queuebot"}>
-                                    <a>
-                                        Donate
                                     </a>
                                 </Link>
                             </div>
