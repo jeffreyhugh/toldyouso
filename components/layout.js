@@ -48,6 +48,11 @@ const Layout = ({children, isDark, setDark}) => {
                                         About
                                     </a>
                                 </Link>
+                                <div className={"hidden md:block px-2"}>&middot;</div><Link href={"/privacy"}>
+                                    <a>
+                                        Privacy
+                                    </a>
+                                </Link>
                                 <div className={"hidden md:block px-2"}>&middot;</div>
                                 <Link href={"https://github.com/qbxt/toldyouso"}>
                                     <a>

@@ -2,6 +2,7 @@ import 'tailwindcss/tailwind.css'
 import Layout from "../components/layout";
 import React, { useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
+import Link from 'next/dist/client/link';
 import Head from 'next/head';
 const { DateTime } = require("luxon")
 const aes256 = require("aes256")
@@ -93,6 +94,13 @@ const Index = () => {
                 <div className={"mt-4"} />
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"availableAt"}>make my message available at (r)</label>
                 <input className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"} id={"availableAt"} defaultValue={DateTime.now().toLocal().plus({ hours: 0 }).startOf("minute").toISO({ includeOffset: false })} type={"datetime-local"} required />
+                <div className={"mt-4"} />
+                <div className={"w-full pl-2 pr-2 font-bold dark:text-white dark:bg-black lowercase select-none"}>
+                    By storing a message, you agree that you are at least 18 years of age, have read and agree to the{' '}
+                    <Link href={"https://toldyouso.com/privacy"}>
+                        <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} >Privacy Policy</a>
+                    </Link>, and the recipient of the message is either yourself or an individual who consents to receiving an email on your behalf.
+                </div>
                 <div className={"mt-4"} />
                 <button className={"w-full px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} disabled={buttonStatus} type={"submit"} id={"sb"}>
                     {buttonStatus ? <i className={"fa fa-circle-o-notch fa-spin"} aria-hidden={true} /> : "✏️ Store my message"}
