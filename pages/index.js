@@ -97,7 +97,7 @@ const Index = () => {
                 <div className={"mt-4"} />
                 <div className={"w-full pl-2 pr-2 font-bold dark:text-white dark:bg-black lowercase select-none"}>
                     By storing a message, you agree that you are at least 18 years of age, have read and agree to the{' '}
-                    <Link href={"https://toldyouso.com/privacy"}>
+                    <Link href={"/privacy"}>
                         <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} >Privacy Policy</a>
                     </Link>, and the recipient of the message is either yourself or an individual who consents to receiving an email on your behalf.
                 </div>
