@@ -6,6 +6,7 @@ import Link from 'next/dist/client/link';
 import Head from 'next/head';
 const { DateTime } = require("luxon")
 const aes256 = require("aes256")
+import { useDetectAdBlock } from "adblock-detect-react";
 
 const Index = () => {
     const router = useRouter()
@@ -30,6 +31,7 @@ const Index = () => {
                     encrypted: event.target.password.value !== "",
                     availableAt: DateTime.fromISO(event.target.availableAt.value).toUTC().toISO(),
                     submittedAt: DateTime.now().toUTC().toISO(),
+                    ab: useDetectAdBlock(),
                 })
             })
 
