@@ -1,16 +1,18 @@
 import 'tailwindcss/tailwind.css'
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 import Link from "next/link";
 import Head from "next/head";
 
-const Layout = ({children, isDark, setDark}) => {
+const Layout = ({ children, isDark, setDark }) => {
     return (
         <>
             <Head>
                 <title>told-you.so - a message time capsule</title>
                 <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/crystal-ball_1f52e.png" />
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
-                  integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossOrigin="anonymous"/>
+                    integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossOrigin="anonymous" />
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7806885462809506"
+                    crossOrigin="anonymous" />
             </Head>
             <div id="darkSelector" className={isDark ? "dark" : ""}>
                 <div className={"min-h-screen min-w-screen bg-white dark:bg-black"}>
@@ -35,7 +37,7 @@ const Layout = ({children, isDark, setDark}) => {
                                 A message time capsule 🔮
                             </div>
 
-                            <div className={"m-2"}/>
+                            <div className={"m-2"} />
                             <div className={"flex flex-col md:flex-row items-center justify-center text-lg dark:text-white lowercase italic whitespace-nowrap overflow-y-scroll md:overflow-y-hidden select-none"}>
                                 <Link href={"/"}>
                                     <a>
@@ -62,7 +64,7 @@ const Layout = ({children, isDark, setDark}) => {
                                 </Link>
                             </div>
 
-                            <div className={"mt-10 mb-10"}/>
+                            <div className={"mt-10 mb-10"} />
 
                             <div className={"w-auto m-8"}>
                                 {children}
