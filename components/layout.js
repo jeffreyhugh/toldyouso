@@ -51,9 +51,9 @@ const Layout = ({ children, isDark, setDark }) => {
                                     </a>
                                 </Link>
                                 <div className={"hidden md:block px-2"}>&middot;</div>
-                                <Link href={"/privacy"}>
+                                <Link href={"/legal"}>
                                     <a>
-                                        Privacy
+                                        Legal
                                     </a>
                                 </Link>
                                 <div className={"hidden md:block px-2"}>&middot;</div>
