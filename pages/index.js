@@ -31,7 +31,7 @@ const Index = () => {
                     encrypted: event.target.password.value !== "",
                     availableAt: DateTime.fromISO(event.target.availableAt.value).toUTC().toISO(),
                     submittedAt: DateTime.now().toUTC().toISO(),
-                    ab: useDetectAdBlock(),
+                    ab: typeof(window) !== undefined ? useDetectAdBlock() : false,
                 })
             })
 
