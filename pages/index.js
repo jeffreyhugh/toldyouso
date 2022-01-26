@@ -16,6 +16,8 @@ const Index = () => {
         const [showPasswordInfo, setShowPasswordInfo] = useState(false)
         const [buttonStatus, setButtonStatus] = useState(false)
 
+        const ab = useDetectAdBlock()
+
         const storeMessage = async event => {
             event.preventDefault()
 
@@ -31,7 +33,7 @@ const Index = () => {
                     encrypted: event.target.password.value !== "",
                     availableAt: DateTime.fromISO(event.target.availableAt.value).toUTC().toISO(),
                     submittedAt: DateTime.now().toUTC().toISO(),
-                    ab: typeof(window) !== undefined ? useDetectAdBlock() : false,
+                    ab: ab,
                 })
             })
 
