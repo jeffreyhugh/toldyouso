@@ -22,7 +22,6 @@ const Index = () => {
             event.preventDefault()
 
             setButtonStatus(_s => !_s)
-
             const res = await fetch("https://api.queue.bot/toldyouso/v1/store", {
                 method: 'POST',
                 body: JSON.stringify({
