@@ -101,7 +101,7 @@ const Index = () => {
                 <div className={"w-full pl-2 pr-2 font-bold dark:text-white dark:bg-black lowercase select-none"}>
                     By storing a message, you affirm that you are at least 18 years of age, have read and agree to the{' '}
                     <Link href={"/legal"}>
-                        <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} >Privacy Policy</a>
+                        <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} >Privacy Policy and ToS</a>
                     </Link>, and the recipient of the message is either yourself or an individual who consents to receiving an email on your behalf.
                 </div>
                 <div className={"mt-4"} />
