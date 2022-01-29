@@ -1,6 +1,4 @@
 import { useRouter } from "next/router";
-import Layout from "../components/layout";
-import Head from "next/head";
 const { DateTime } = require("luxon")
 import { useState } from 'react';
 

@@ -1,5 +1,4 @@
 import Head from "next/head"
-import Layout from "../components/layout"
 import AdSense from "react-adsense"
 
 const About = () => {
@@ -27,7 +26,7 @@ const About = () => {
                 The code is available on GitHub (link under the tagline).
                 Please submit a pull request if you think there's something missing.
             </div>
-            <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} ariaHidden >
+            <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
                 <AdSense.Google
                     client={"ca-pub-7806885462809506"}
                     slot={"1008878077"}

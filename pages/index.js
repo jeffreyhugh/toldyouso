@@ -1,5 +1,4 @@
 import 'tailwindcss/tailwind.css'
-import Layout from "../components/layout";
 import React, { useState } from 'react';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/dist/client/link';
@@ -109,7 +108,7 @@ const Index = () => {
                 <div className={"w-full pl-2 pr-2 font-bold text-gray-700 dark:text-gray-500 dark:bg-black lowercase select-none"}>
                     (Submit button below this advertisement)
                 </div>
-                <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} ariaHidden >
+                <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
                     <AdSense.Google
                         client={"ca-pub-7806885462809506"}
                         slot={"5905981536"}

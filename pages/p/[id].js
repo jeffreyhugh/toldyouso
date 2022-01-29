@@ -1,8 +1,6 @@
 import { useRouter } from "next/dist/client/router"
 import Countdown from "react-countdown"
-import Layout from "../../components/layout"
 import useSWR from "swr"
-import { useState } from "react"
 import aes256 from "aes256"
 import Head from "next/head"
 import AdSense from "react-adsense"
@@ -122,7 +120,7 @@ const ID = () => {
                 <div id={"submittedAt"} className={"w-full dark:text-white text-xl lowercase select-none text-center"}>
                     Submitted {DateTime.fromISO(data.submittedAt).toLocal().toRelative()}
                 </div>
-                <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} ariaHidden >
+                <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
                     <AdSense.Google
                         client={"ca-pub-7806885462809506"}
                         slot={"2733023289"}
