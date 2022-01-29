@@ -5,6 +5,7 @@ import useSWR from "swr"
 import { useState } from "react"
 import aes256 from "aes256"
 import Head from "next/head"
+import AdSense from "react-adsense"
 
 const { DateTime } = require("luxon")
 
@@ -120,6 +121,14 @@ const ID = () => {
                 <div className={"mt-8"} />
                 <div id={"submittedAt"} className={"w-full dark:text-white text-xl lowercase select-none text-center"}>
                     Submitted {DateTime.fromISO(data.submittedAt).toLocal().toRelative()}
+                </div>
+                <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} ariaHidden >
+                    <AdSense.Google
+                        client={"ca-pub-7806885462809506"}
+                        slot={"2733023289"}
+                        style={{ width: 350, height: 200 }}
+                        format=''
+                    />
                 </div>
             </>
         )

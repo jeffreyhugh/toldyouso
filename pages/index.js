@@ -7,6 +7,7 @@ import Head from 'next/head';
 const { DateTime } = require("luxon")
 const aes256 = require("aes256")
 import { useDetectAdBlock } from "adblock-detect-react";
+import AdSense from 'react-adsense';
 
 const Index = () => {
     const router = useRouter()
@@ -105,6 +106,19 @@ const Index = () => {
                     </Link>, and the recipient of the message is either yourself or an individual who consents to receiving an email on your behalf.
                 </div>
                 <div className={"mt-4"} />
+                <div className={"w-full pl-2 pr-2 font-bold text-gray-700 dark:text-gray-500 dark:bg-black lowercase select-none"}>
+                    (Submit button below this advertisement)
+                </div>
+                <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} ariaHidden >
+                    <AdSense.Google
+                        client={"ca-pub-7806885462809506"}
+                        slot={"5905981536"}
+                        style={{ width: 350, height: 200 }}
+                        format=''
+                    />
+                </div>
+                <div className={"mt-4"} />
+                <button type={"submit"} disabled className={"display-none"} />
                 <button className={"w-full px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} disabled={buttonStatus} type={"submit"} id={"sb"}>
                     {buttonStatus ? <i className={"fa fa-circle-o-notch fa-spin"} aria-hidden={true} /> : "✏️ Store my message"}
                 </button>
