@@ -7,6 +7,7 @@ const { DateTime } = require("luxon")
 const aes256 = require("aes256")
 import { useDetectAdBlock } from "adblock-detect-react";
 import AdSense from 'react-adsense';
+import Script from 'next/script';
 
 const Index = () => {
     const router = useRouter()
@@ -109,12 +110,7 @@ const Index = () => {
                     (Submit button below this advertisement)
                 </div>
                 <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
-                    <AdSense.Google
-                        client={"ca-pub-7806885462809506"}
-                        slot={"5905981536"}
-                        style={{ width: 350, height: 200 }}
-                        format=''
-                    />
+                    
                 </div>
                 <div className={"mt-4"} />
                 <button type={"submit"} disabled className={"display-none"} />
