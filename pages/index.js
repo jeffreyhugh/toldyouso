@@ -111,7 +111,7 @@ const Index = () => {
                     (Submit button below this advertisement)
                 </div>
                 <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
-                    
+
                 </div>
                 <div className={"mt-4"} />
                 <button type={"submit"} disabled className={"display-none"} />
@@ -125,6 +125,7 @@ const Index = () => {
     return (
         <>
             <Head>
+                <title>told-you.so - a message time capsule</title>
                 <meta name="og:title" content={"told-you.so"} />
                 <meta name="og:description" content={"a time capsule for messages 🔮"} />
                 <meta name="og:type" content={"website"} />

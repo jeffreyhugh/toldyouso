@@ -9,7 +9,6 @@ const Layout = ({ children, isDark, setDark }) => {
     return (
         <>
             <Head>
-                <title>told-you.so - a message time capsule</title>
                 <link rel="icon" href="https://emojipedia-us.s3.dualstack.us-west-1.amazonaws.com/thumbs/120/microsoft/209/crystal-ball_1f52e.png" />
                 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.1.7/css/fork-awesome.min.css"
                     integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossOrigin="anonymous" />

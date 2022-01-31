@@ -82,6 +82,7 @@ const ID = () => {
         return (
             <>
                 <Head>
+                    <title>{`told-you.so - ${id}`}</title>
                     <meta name="og:title" content={"told-you.so"} />
                     <meta name="og:description" content={DateTime.fromISO(data.submittedAt).diffNow('seconds').as('seconds') > 0 ? `view this message in ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮` : `this message was stored ${DateTime.fromISO(data.submittedAt).toLocal().toRelative()} 🔮`} />
                     <meta name="og:type" content={"website"} />

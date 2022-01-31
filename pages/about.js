@@ -5,6 +5,7 @@ const About = () => {
     return (
         <>
             <Head>
+                <title>told-you.so - about</title>
                 <meta name="og:title" content={"told-you.so"} />
                 <meta name="og:description" content={"a time capsule for messages 🔮"} />
                 <meta name="og:type" content={"website"} />
