@@ -26,7 +26,7 @@ const Index = () => {
             const res = await fetch("https://api.queue.bot/toldyouso/v1/store", {
                 method: 'POST',
                 body: JSON.stringify({
-                    email: event.target.email.value,
+                    // email: event.target.email.value,
                     message: event.target.password.value ?
                         aes256.encrypt(event.target.password.value, event.target.message.value) :
                         event.target.message.value,
@@ -49,7 +49,7 @@ const Index = () => {
 
         return (
             <form id={"storeForm"} className={"max-w-lg"} onSubmit={storeMessage}>
-                <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"email"}>Email (r)</label>
+                {/* <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"email"}>Email (r)</label>
                 <div className={'relative'}>
                     <input
                         className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
@@ -69,7 +69,7 @@ const Index = () => {
                 <div className={"w-full pl-2 pr-2 dark:text-white dark:bg-black lowercase select-none"} id={"emailInfo"}>
                     {showEmailInfo ? "We'll send you an email with a link to your message so you don't lose it" : ""}
                 </div>
-                <div className={"mt-4"} />
+                <div className={"mt-4"} /> */}
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"message"}>Message (r)</label>
                 <textarea
                     className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
@@ -100,10 +100,11 @@ const Index = () => {
                 <input className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"} id={"availableAt"} defaultValue={DateTime.now().toLocal().plus({ hours: 0 }).startOf("minute").toISO({ includeOffset: false })} type={"datetime-local"} required />
                 <div className={"mt-4"} />
                 <div className={"w-full pl-2 pr-2 font-bold dark:text-white dark:bg-black lowercase select-none"}>
-                    By storing a message, you affirm that you are at least 18 years of age, have read and agree to the{' '}
+                    By storing a message, you affirm that you are at least 18 years of age and have read and agree to the{' '}
                     <Link href={"/legal"}>
                         <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} >Privacy Policy and ToS</a>
-                    </Link>, and the recipient of the message is either yourself or an individual who consents to receiving an email on your behalf.
+                    </Link>.
+                    {/* , and the recipient of the message is either yourself or an individual who consents to receiving an email on your behalf. */}
                 </div>
                 <div className={"mt-4"} />
                 <div className={"w-full pl-2 pr-2 font-bold text-gray-700 dark:text-gray-500 dark:bg-black lowercase select-none"}>
