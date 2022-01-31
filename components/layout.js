@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import Link from "next/link";
 import Head from "next/head";
 
+import { GA_TRACKING_ID } from '../lib/gtag';
+
 const Layout = ({ children, isDark, setDark }) => {
     return (
         <>
@@ -13,6 +15,20 @@ const Layout = ({ children, isDark, setDark }) => {
                     integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossOrigin="anonymous" />
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7806885462809506"
                     crossOrigin="anonymous" />
+                <script async src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`} />
+                <script dangerouslySetInnerHTML={{
+                    __html: `
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${GA_TRACKING_ID}', {
+                            page_path: window.location.pathname,
+
+                            cookie_flags: 'SameSite=None;Secure',
+                        });
+                    `
+                }}
+                />
             </Head>
             <div id="darkSelector" className={isDark ? "dark" : ""}>
                 <div className={"min-h-screen min-w-screen bg-white dark:bg-black"}>

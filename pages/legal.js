@@ -31,6 +31,8 @@ const Privacy = () => {
                 <div className={"mt-8"} />
                 Ads are served by Google AdSense, and they reserve the right to collect data, store cookies, and more outlined by the <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} href="https://www.google.com/adsense/new/localized-terms">AdSense Privacy Policy</a>.
                 <div className={"mt-8"} />
+                Additional analytics are by Google Analytics, and they reserve the right to collect data, store cookies, and more outlined by the <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} href="https://policies.google.com/technologies/partner-sites">Google Analytics Privacy Policy</a>.
+                <div className={"mt-8"} />
                 For any questions about these terms, please email <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} href="mailto:toldyouso@queue.bot">toldyouso@queue.bot</a>.
             </div>
             <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
