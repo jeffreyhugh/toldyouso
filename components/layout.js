@@ -13,6 +13,7 @@ const Layout = ({ children, isDark, setDark }) => {
                     integrity="sha256-gsmEoJAws/Kd3CjuOQzLie5Q3yshhvmo7YNtBG7aaEY=" crossOrigin="anonymous" />
                 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7806885462809506"
                     crossOrigin="anonymous" />
+                <meta name="a.validate.02" content="DHCeDujhMa72EqRgZE4fGcfrruo4r42VM9K8" />
             </Head>
             <div id="darkSelector" className={isDark ? "dark" : ""}>
                 <div className={"min-h-screen min-w-screen bg-white dark:bg-black"}>
