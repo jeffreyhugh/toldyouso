@@ -89,6 +89,28 @@ const ID = () => {
                     <meta name="og:url" content={`https://told-you.so/p/${id}`} />
                     <meta name="theme-color" content={"#7c3aed"} />
                 </Head>
+                <div className={"flex justify-center"}>
+                    <button className={"w-content px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} disabled={buttonStatus} type={"button"} onClick={() => {
+                        // put current URL in clipboard
+                        navigator.clipboard.writeText(`https://told-you.so/p/${id}`)
+                        setButtonStatus(true)
+                        // wait 2 seconds before setting button status
+                        setTimeout(() => {
+                            setButtonStatus(false)
+                        }, 2000)
+                        fetch(`https://api.queue.bot/stats/v1/store`, {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                tags: [
+                                    "toldyouso-messageCopy",
+                                ]
+                            }),
+                        })
+                    }}>
+                        {buttonStatus ? "👍 Copied" : "🔗 Copy Link"}
+                    </button>
+                </div>
+                <div className={"mt-8"} />
                 {
                     aA.diffNow('seconds').as('seconds') > 0 ?
                         <div className={"w-full dark:text-white text-4xl lowercase select-none text-center"}>
@@ -123,28 +145,6 @@ const ID = () => {
                 <div className={"mt-8"} />
                 <div id={"submittedAt"} className={"w-full dark:text-white text-xl lowercase select-none text-center"}>
                     Submitted {DateTime.fromISO(data.submittedAt).toLocal().toRelative()}
-                </div>
-                <div className={"mt-8"} />
-                <div className={"flex justify-center"}>
-                    <button className={"w-content px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} disabled={buttonStatus} type={"button"} onClick={() => {
-                        // put current URL in clipboard
-                        navigator.clipboard.writeText(`https://told-you.so/p/${id}`)
-                        setButtonStatus(true)
-                        // wait 2 seconds before setting button status
-                        setTimeout(() => {
-                            setButtonStatus(false)
-                        }, 2000)
-                        fetch(`https://api.queue.bot/stats/v1/store`, {
-                            method: 'POST',
-                            body: JSON.stringify({
-                                tags: [
-                                    "toldyouso-messageCopy",
-                                ]
-                            }),
-                        })
-                    }}>
-                        {buttonStatus ? "👍 Copied" : "🔗 Copy Link"}
-                    </button>
                 </div>
                 <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
                     <AdSense.Google
