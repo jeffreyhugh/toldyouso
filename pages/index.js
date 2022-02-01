@@ -80,7 +80,7 @@ const Index = () => {
                     <input
                         className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600 disabled:cursor-not-allowed"}
                         id={"password"} type={"password"} placeholder={"secure-PASSWORD-1"} disabled={buttonStatus} />
-                    <i className={"cursor-pointer fa fa-info-circle"} aria-hidden={true}
+                    <i className={"cursor-pointer fa fa-fw fa-info-circle"} aria-hidden={true}
                         style={{
                             position: 'absolute',
                             height: 16,
@@ -97,13 +97,25 @@ const Index = () => {
                 </div>
                 <div className={"mt-4"} />
                 <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"availableAt"}>Make my message available at (r)</label>
-                <input className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"} id={"availableAt"} defaultValue={DateTime.now().toLocal().plus({ hours: 0 }).startOf("minute").toISO({ includeOffset: false })} type={"datetime-local"} required />
+                <div className={'relative'}>
+                    <input className={"w-full px-3 py-2 focus:outline-none dark:text-white dark:bg-black rounded-lg focus:ring-fuchsia-400 focus:ring-4 focus:border-purple-600"} id={"availableAt"} defaultValue={DateTime.now().toLocal().plus({ hours: 0 }).startOf("minute").toISO({ includeOffset: false })} type={"datetime-local"} required />
+                    <i className={"cursor-pointer fa fa-fw fa-calendar pointer-events-none hidden dark:block"} aria-hidden={true} 
+                        style={{
+                            position: 'absolute',
+                            height: 16,
+                            width: 16,
+                            top: 14,
+                            right: 14,
+                            color: 'gray',
+                            zIndex: 1
+                        }} />
+                </div>
                 <div className={"mt-4"} />
                 <div className={"w-full pl-2 pr-2 font-bold dark:text-white dark:bg-black lowercase select-none"}>
-                    By storing a message, you affirm that you are at least 18 years of age and have read and agree to the{' '}
+                    By storing a message, you affirm that have read and agree to the{' '}
                     <Link href={"/legal"}>
                         <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} >Privacy Policy and ToS</a>
-                    </Link>.
+                    </Link>
                     {/* , and the recipient of the message is either yourself or an individual who consents to receiving an email on your behalf. */}
                 </div>
                 <div className={"mt-4"} />

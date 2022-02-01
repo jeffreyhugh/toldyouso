@@ -36,14 +36,14 @@ const Privacy = () => {
                 <div className={"mt-8"} />
                 For any questions about these terms, please email <a className={"text-transparent bg-clip-text bg-gradient-to-br from-fuchsia-600 to-purple-600 hover:from-fuchsia-800 hover:to-purple-800"} href="mailto:toldyouso@queue.bot">toldyouso@queue.bot</a>.
             </div>
-            <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
+            {/* <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
                 <AdSense.Google
                     client={"ca-pub-7806885462809506"}
                     slot={"1008878077"}
                     style={{ width: 350, height: 200 }}
                     format=''
                 />
-            </div>
+            </div> */}
         </>
     )
 }
