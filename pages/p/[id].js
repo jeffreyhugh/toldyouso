@@ -146,14 +146,14 @@ const ID = () => {
                 <div id={"submittedAt"} className={"w-full dark:text-white text-xl lowercase select-none text-center"}>
                     Submitted {DateTime.fromISO(data.submittedAt).toLocal().toRelative()}
                 </div>
-                <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
+                {/* <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
                     <AdSense.Google
                         client={"ca-pub-7806885462809506"}
                         slot={"2733023289"}
                         style={{ width: 350, height: 200 }}
                         format=''
                     />
-                </div>
+                </div> */}
             </>
         )
     }

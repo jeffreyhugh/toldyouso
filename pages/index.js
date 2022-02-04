@@ -119,13 +119,13 @@ const Index = () => {
                     {/* , and the recipient of the message is either yourself or an individual who consents to receiving an email on your behalf. */}
                 </div>
                 <div className={"mt-4"} />
-                <div className={"w-full pl-2 pr-2 font-bold text-gray-700 dark:text-gray-500 dark:bg-black lowercase select-none"}>
+                {/* <div className={"w-full pl-2 pr-2 font-bold text-gray-700 dark:text-gray-500 dark:bg-black lowercase select-none"}>
                     (Submit button below this advertisement)
                 </div>
                 <div className={"flex md:justify-center overflow-hidden w-full"} style={{ height: 200 }} aria-hidden >
 
                 </div>
-                <div className={"mt-4"} />
+                <div className={"mt-4"} /> */}
                 <button type={"submit"} disabled className={"display-none"} />
                 <button className={"w-full px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} disabled={buttonStatus} type={"submit"} id={"sb"}>
                     {buttonStatus ? <i className={"fa fa-circle-o-notch fa-spin"} aria-hidden={true} /> : "✏️ Store my message"}
