@@ -48,7 +48,7 @@ const Index = () => {
         }
 
         return (
-            <form id={"storeForm"} className={"max-w-lg"} onSubmit={storeMessage}>
+            <form id={"storeForm"} className={"max-w-lg umami--submit--message-create"} onSubmit={storeMessage}>
                 {/* <label className={"w-full dark:text-white text-lg ml-2.5 lowercase select-none"} htmlFor={"email"}>Email (r)</label>
                 <div className={'relative'}>
                     <input

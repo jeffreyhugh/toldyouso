@@ -90,7 +90,7 @@ const ID = () => {
                     <meta name="theme-color" content={"#7c3aed"} />
                 </Head>
                 <div className={"flex justify-center"}>
-                    <button className={"w-content px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed"} disabled={buttonStatus} type={"button"} onClick={() => {
+                    <button className={"w-content px-3 py-2 text-white rounded-lg bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase select-none disabled:cursor-not-allowed umami--click--message-copy"} disabled={buttonStatus} type={"button"} onClick={() => {
                         // put current URL in clipboard
                         navigator.clipboard.writeText(`https://told-you.so/p/${id}`)
                         setButtonStatus(true)
