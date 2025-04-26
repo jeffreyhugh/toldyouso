@@ -9,7 +9,7 @@ export const load = async ({ params }) => {
 		.maybeSingle();
 
 	if (sbError) {
-		return error(500, sbError);
+		return error(404, sbError);
 	} else if (!data) {
 		return error(404);
 	}

@@ -73,6 +73,6 @@ export const actions: Actions = {
 			return fail(500, { error: resp.error });
 		}
 
-		return redirect(307, `/message/${resp.data.id}`);
+		return redirect(307, `/messages/${resp.data.id}`);
 	}
 };

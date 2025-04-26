@@ -1,30 +1,22 @@
 <script lang="ts">
-	import { onMount } from "svelte";
-
-	let theme: string | null = $state(null);
-
-	const setTheme = (newTheme: typeof theme) => {
-		theme = newTheme ?? "dark";
-		document.documentElement.setAttribute("data-theme", theme);
-		localStorage.setItem("theme", theme);
-	};
-
-	onMount(() => {
-		let newTheme = localStorage.getItem("theme");
-		if (!newTheme) {
-			newTheme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
-		}
-		setTheme(newTheme);
-	});
+	import { setMode, setTheme, theme } from "mode-watcher";
 </script>
 
 <div class="mb-8 flex w-full flex-col items-stretch gap-2">
 	<div class="flex justify-end">
 		<button
 			class="btn btn-ghost btn-circle m-2 text-xl"
-			onclick={() => setTheme(theme === "dark" ? "light" : "dark")}
+			onclick={() => {
+				if (theme.current === "dark") {
+					setMode("light");
+					setTheme("light");
+				} else {
+					setMode("dark");
+					setTheme("dark");
+				}
+			}}
 		>
-			{#if theme === "light"}
+			{#if theme.current === "light"}
 				☀️
 			{:else}
 				🌑

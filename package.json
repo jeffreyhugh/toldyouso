@@ -45,10 +45,12 @@
 	},
 	"dependencies": {
 		"@fontsource-variable/quicksand": "^5.2.6",
+		"@supabase/ssr": "^0.6.1",
 		"@supabase/supabase-js": "^2.49.4",
 		"aes256": "^1.1.0",
 		"js-base64": "^3.7.7",
-		"luxon": "^3.6.1"
+		"luxon": "^3.6.1",
+		"mode-watcher": "^1.0.2"
 	},
 	"typings": "/src/lib/aes256.d.ts"
 }

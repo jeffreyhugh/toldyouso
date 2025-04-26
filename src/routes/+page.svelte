@@ -3,6 +3,7 @@
 	import { fail } from "@sveltejs/kit";
 	import type { PageProps } from "./$types";
 	import { encrypt } from "$lib/crypt";
+	import SignInModal from "$lib/SignInModal.svelte";
 
 	const { data }: PageProps = $props();
 	let message = $state("");
@@ -98,7 +99,7 @@
 
 		<div class="mt-4 text-sm font-bold lowercase">
 			By storing a message, you affirm that you have read and agree to the{" "}
-			<a class="link" href="/legal"> privacy policy and tos </a>
+			<a class="link" href="/legal"> privacy policy and tos </a>.
 		</div>
 
 		<button
@@ -112,13 +113,6 @@
 				⌛ Saving...
 			{/if}
 		</button>
-
-		<button type="button" class="btn btn-outline mt-4 w-full font-bold lowercase">
-			{#if data.email}
-				Signed in as {data.email}
-			{:else}
-				🔐 Sign in
-			{/if}
-		</button>
 	</form>
+	<SignInModal email={data.email} />
 </div>

@@ -20,33 +20,33 @@
 				{#if data.created_at && DateTime.fromISO(data.created_at).isValid}
 					<tr>
 						<td class="pr-1 text-right">Submitted</td>
-						<td
-							>{DateTime.fromISO(data.created_at).toRelative()} on {DateTime.fromISO(
+						<td>
+							{DateTime.fromISO(data.created_at).toRelative()} on {DateTime.fromISO(
 								data.created_at
 							).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} <wbr />at {DateTime.fromISO(
 								data.created_at
-							).toLocaleString(DateTime.TIME_SIMPLE)}</td
-						>
+							).toLocaleString(DateTime.TIME_SIMPLE)}
+						</td>
 					</tr>
 				{/if}
 
 				{#if data.available_at && DateTime.fromISO(data.available_at).isValid}
 					<tr>
 						<td class="pr-1 text-right">Available</td>
-						<td
-							>{DateTime.fromISO(data.available_at).toRelative()} on {DateTime.fromISO(
+						<td>
+							{DateTime.fromISO(data.available_at).toRelative()} on {DateTime.fromISO(
 								data.available_at
 							).toLocaleString(DateTime.DATE_MED_WITH_WEEKDAY)} <wbr />at {DateTime.fromISO(
 								data.available_at
-							).toLocaleString(DateTime.TIME_SIMPLE)}</td
-						>
+							).toLocaleString(DateTime.TIME_SIMPLE)}
+						</td>
 					</tr>
 				{/if}
 
 				<tr>
 					<td class="pr-1 text-right">SHA256</td>
 					<td>
-						<div class="bg-base-300 rounded-box w-min px-1 py-0.5">
+						<div class="bg-base-200 rounded-box w-min px-1 py-0.5">
 							<code class="leading-none select-all">
 								{data.sha256?.substring(0, 32)}<wbr />{data.sha256?.substring(32)}
 							</code>
