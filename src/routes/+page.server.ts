@@ -1,24 +1,14 @@
 import { DateTime } from "luxon";
-import type { Actions, PageServerLoad } from "./$types";
+import type { Actions } from "./$types";
 import { fail, redirect } from "@sveltejs/kit";
 import { encrypt } from "$lib/crypt";
-import { supabase } from "$lib/supabase";
 import { supabaseServiceRole } from "$lib/server/supabaseServiceRole";
-
-export const load: PageServerLoad = async () => {
-	const { data } = await supabase.auth.getUser();
-
-	if (!data.user) {
-		await supabase.auth.signInAnonymously();
-	}
-
-	return {
-		email: data.user?.email
-	};
-};
+import { signin, signout } from "$lib/authActions";
 
 export const actions: Actions = {
-	createMessage: async ({ request }) => {
+	signin,
+	signout,
+	createMessage: async ({ request, locals: { supabase } }) => {
 		const data = await request.formData();
 
 		let message = data.get("message");

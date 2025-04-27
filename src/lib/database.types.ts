@@ -61,7 +61,7 @@ export type Database = {
 					encrypted: boolean;
 					id: string;
 					legacy_slug: string | null;
-					owned_by: string;
+					owned_by: string | null;
 				};
 				Insert: {
 					available_at: string;
@@ -70,7 +70,7 @@ export type Database = {
 					encrypted?: boolean;
 					id?: string;
 					legacy_slug?: string | null;
-					owned_by: string;
+					owned_by?: string | null;
 				};
 				Update: {
 					available_at?: string;
@@ -79,7 +79,7 @@ export type Database = {
 					encrypted?: boolean;
 					id?: string;
 					legacy_slug?: string | null;
-					owned_by?: string;
+					owned_by?: string | null;
 				};
 				Relationships: [];
 			};

@@ -1,20 +1,37 @@
-import { supabaseServiceRole } from "$lib/server/supabaseServiceRole.js";
-import { supabase } from "$lib/supabase.js";
 import { redirect } from "@sveltejs/kit";
 
-export async function GET({ url }) {
-	const anonID = url.searchParams.get("anonID");
+import type { RequestHandler } from "./$types";
+import { supabaseServiceRole } from "$lib/server/supabaseServiceRole";
 
+export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
 	const { data } = await supabase.auth.getUser();
+	const anonID = data.user?.id;
 
-	const userID = data.user?.id;
+	const code = url.searchParams.get("code");
 
-	if (anonID && userID) {
-		await supabaseServiceRole
-			.from("messages")
-			.update({ owned_by: data.user?.id })
-			.eq("owned_by", anonID);
+	if (!code) {
+		redirect(307, "/error?message=No%20code");
+	}
+	const { data: newUserData, error: newUserError } =
+		await supabase.auth.exchangeCodeForSession(code);
+
+	if (newUserError) {
+		console.error(newUserError);
 	}
 
-	return redirect(307, "/");
-}
+	const newUserID = newUserData.user?.id;
+
+	if (anonID && newUserID) {
+		// row updates
+		const { error } = await supabaseServiceRole
+			.from("messages")
+			.update({ owned_by: newUserID })
+			.eq("owned_by", anonID);
+
+		if (error) {
+			redirect(307, "/error");
+		}
+	}
+
+	redirect(307, `/`);
+};

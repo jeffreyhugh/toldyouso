@@ -1,7 +1,6 @@
-import { supabase } from "$lib/supabase";
 import { error } from "@sveltejs/kit";
 
-export const load = async ({ params }) => {
+export const load = async ({ params, locals: { supabase } }) => {
 	const { data, error: sbError } = await supabase
 		.from("userview")
 		.select("*")

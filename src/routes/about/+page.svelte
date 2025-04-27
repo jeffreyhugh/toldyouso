@@ -1,4 +1,8 @@
-<div class="mx-auto flex w-4xl max-w-11/12 flex-col items-stretch gap-4">
+<script>
+	import MaxWidthArticle from "$lib/MaxWidthArticle.svelte";
+</script>
+
+<MaxWidthArticle>
 	<p>
 		told-you.so started as a project a few years ago to learn the basics of{" "}
 		<a class="link" href="https://tailwindcss.com" target="_blank"> TailwindCSS </a>{" "}
@@ -24,8 +28,8 @@
 		</a>{" "}
 		feature means everyone gets an account when they visit the site, which is used to aggregate messages
 		to a dashboard. This is a much-needed improvement over the old system of having to copy the link
-		and remember where it was saved. Of course, users can attach an email and password to the anonymous
-		session to log in anytime, anywhere.
+		and remember where it was saved. Of course, users can attach an email to the anonymous session to
+		log in anytime, anywhere.
 	</p>
 	<p>
 		Supabase has baked-in support for Postgres'{" "}
@@ -39,8 +43,8 @@
 		(RLS). Users connect directly to the database (well, to the pooler through a reverse proxy or two),
 		and all transactions must be filtered through these policies before reading or writing data. What's
 		even cooler is that told-you.so uses a combination of RLS policies and Postgres views to prevent
-		a user from reading the message's content before it's supposed to be released, meaning, unlike told-you.so
-		v1, no API is required.
+		a user from reading the message's content before it's supposed to be released, so no extra server-side
+		logic has to be implemented.
 	</p>
 	<p>
 		I also added the message's SHA256 as a way to prove the contents of the message haven't changed.
@@ -65,8 +69,7 @@
 	<p>
 		I've also moved to{" "}
 		<a href="https://daisyui.com" class="link" target="_blank"> daisyUI </a>{" "}
-		instead of vanilla Tailwind. It's nice to focus on making the site work instead of making the button
+		instead of vanilla Tailwind. It's nice to focus on making the site work instead of making the buttons
 		look perfect.
 	</p>
-</div>
-<div class="h-8"></div>
+</MaxWidthArticle>

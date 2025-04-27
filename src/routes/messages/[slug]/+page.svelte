@@ -2,13 +2,14 @@
 	import { DateTime } from "luxon";
 	import CountdownTimer from "./CountdownTimer.svelte";
 	import MessageContent from "./MessageContent.svelte";
+	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
 
 	const { data } = $props();
 
 	const availableAt = DateTime.fromISO(data.available_at || "");
 </script>
 
-<div class="mx-auto mb-8 flex w-11/12 max-w-lg flex-col gap-4 text-lg">
+<MaxWidthForm>
 	{#if availableAt.diffNow().as("seconds") >= 0}
 		<CountdownTimer {availableAt} />
 	{:else}
@@ -56,4 +57,4 @@
 			</tbody>
 		</table>
 	</div>
-</div>
+</MaxWidthForm>

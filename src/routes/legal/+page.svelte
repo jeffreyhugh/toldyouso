@@ -1,4 +1,8 @@
-<div class="mx-auto flex w-4xl max-w-11/12 flex-col items-stretch gap-4">
+<script>
+	import MaxWidthArticle from "$lib/MaxWidthArticle.svelte";
+</script>
+
+<MaxWidthArticle>
 	<p>
 		By using told-you.so, you affirm that you are at least 18 years of age. You may not use this
 		service if you are under 18 years of age.
@@ -23,5 +27,4 @@
 		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>
 		.
 	</p>
-</div>
-<div class="h-8"></div>
+</MaxWidthArticle>

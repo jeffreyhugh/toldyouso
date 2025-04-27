@@ -4,13 +4,14 @@
 	import type { PageProps } from "./$types";
 	import { encrypt } from "$lib/crypt";
 	import SignInModal from "$lib/SignInModal.svelte";
+	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
 
 	const { data }: PageProps = $props();
 	let message = $state("");
 	let submitting = $state(false);
 </script>
 
-<div class="mx-auto mb-8 flex w-11/12 max-w-lg flex-col gap-4 text-lg">
+<MaxWidthForm>
 	<form
 		method="POST"
 		action="?/createMessage"
@@ -99,7 +100,7 @@
 
 		<div class="mt-4 text-sm font-bold lowercase">
 			By storing a message, you affirm that you have read and agree to the{" "}
-			<a class="link" href="/legal"> privacy policy and tos </a>.
+			<a class="link" href="/legal"> privacy policy and tos </a>
 		</div>
 
 		<button
@@ -114,5 +115,5 @@
 			{/if}
 		</button>
 	</form>
-	<SignInModal email={data.email} />
-</div>
+	<SignInModal email={data.user?.email} />
+</MaxWidthForm>
