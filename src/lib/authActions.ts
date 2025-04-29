@@ -15,7 +15,7 @@ export const signin: Action = async ({ url, request, locals: { supabase } }) => 
 	const { error } = await supabase.auth.signInWithOtp({
 		email,
 		options: {
-			emailRedirectTo: "http://" + url.host + "/api/migrate",
+			emailRedirectTo: url.protocol + "//" + url.host + "/api/migrate",
 			shouldCreateUser: true
 		}
 	});

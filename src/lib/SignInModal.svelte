@@ -61,9 +61,13 @@
 							disabled={submitting || success}
 							type="submit"
 							class="btn btn-primary bg-vibrant mt-2 w-full font-bold lowercase"
+							data-umami-event="sign in"
 						>
 							📨 Send me a link
 						</button>
+						<text class="text-xs lowercase">
+							Used for authentication only -- no mailing lists, no marketing, no reselling
+						</text>
 					{/if}
 				</form>
 				{#if success}
@@ -97,6 +101,7 @@
 						disabled={submitting}
 						type="submit"
 						class="btn btn-primary bg-vibrant mt-2 w-full font-bold lowercase"
+						data-umami-event="sign out"
 					>
 						👋 Sign out
 					</button>

@@ -10,7 +10,7 @@
 	let delta = $state(availableAt.diffNow());
 	let deltaObj = $derived(delta.rescale().toObject());
 	onMount(() => {
-		const interval = setInterval(() => (delta = availableAt.diffNow()));
+		const interval = setInterval(() => (delta = availableAt.diffNow()), 500);
 		return () => clearInterval(interval);
 	});
 
@@ -63,6 +63,8 @@
 				type="button"
 				onclick={copyLink}
 				class="btn btn-primary bg-vibrant btn-wide mt-8 font-bold lowercase"
+				data-umami-event="copy link"
+				data-umami-event-from="message"
 			>
 				{#if !copied}
 					🔗 Copy message link

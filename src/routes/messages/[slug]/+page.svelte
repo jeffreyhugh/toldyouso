@@ -3,11 +3,42 @@
 	import CountdownTimer from "./CountdownTimer.svelte";
 	import MessageContent from "./MessageContent.svelte";
 	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
+	import { onMount } from "svelte";
 
 	const { data } = $props();
 
 	const availableAt = DateTime.fromISO(data.available_at || "");
+
+	const transformForTitle = (availableAt: DateTime) =>
+		availableAt.diffNow().as("milliseconds") < 0
+			? "available now"
+			: availableAt
+					.diffNow()
+					.rescale()
+					.set({ milliseconds: 0 })
+					.toFormat("y M d h m s")
+					.split(" ")
+					.map((s, i) => ({ num: Number(s), unit: ["y", "mo", "d", "h", "m", "s"][i] }))
+					.filter((item) => item.num)
+					.map(
+						(item) =>
+							`${item.num.toString().padStart(item.unit === "h" || item.unit === "m" || item.unit === "s" ? 2 : 1, "0")}${item.unit}`
+					)
+					.join(" ");
+
+	let titleAvailableAt = $state(transformForTitle(availableAt));
+	onMount(() => {
+		const interval = setInterval(() => {
+			titleAvailableAt = transformForTitle(availableAt);
+		}, 1000);
+
+		return () => clearInterval(interval);
+	});
 </script>
+
+<svelte:head>
+	<title>told-you.so · {titleAvailableAt}</title>
+</svelte:head>
 
 <MaxWidthForm>
 	{#if availableAt.diffNow().as("seconds") >= 0}

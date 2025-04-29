@@ -2,6 +2,10 @@
 	import MaxWidthArticle from "$lib/MaxWidthArticle.svelte";
 </script>
 
+<svelte:head>
+	<title>told-you.so · about</title>
+</svelte:head>
+
 <MaxWidthArticle>
 	<p>
 		told-you.so started as a project a few years ago to learn the basics of{" "}

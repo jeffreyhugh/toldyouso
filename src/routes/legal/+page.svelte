@@ -2,6 +2,10 @@
 	import MaxWidthArticle from "$lib/MaxWidthArticle.svelte";
 </script>
 
+<svelte:head>
+	<title>told-you.so · legal</title>
+</svelte:head>
+
 <MaxWidthArticle>
 	<p>
 		By using told-you.so, you affirm that you are at least 18 years of age. You may not use this

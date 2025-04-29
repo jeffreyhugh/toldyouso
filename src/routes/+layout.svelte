@@ -18,6 +18,22 @@
 	});
 </script>
 
+<svelte:head>
+	<title>told-you.so</title>
+	<meta
+		name="description"
+		content="A message time capsule 🔮. Write a prediction, save it for the future, and tell them so!"
+	/>
+
+	<script
+		src="/trends"
+		defer
+		data-exclude-search="true"
+		data-exclude-hash="true"
+		data-website-id="821e5fc6-a962-4674-9797-9e3ac207e55e"
+	></script>
+</svelte:head>
+
 <ModeWatcher defaultMode="dark" defaultTheme="dark" />
 <div class="min-h-dvh">
 	<Header />

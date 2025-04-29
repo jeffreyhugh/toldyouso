@@ -8,8 +8,13 @@
 
 	const { data }: PageProps = $props();
 	let message = $state("");
+	let password = $state("");
 	let submitting = $state(false);
 </script>
+
+<svelte:head>
+	<title>told-you.so · store a message</title>
+</svelte:head>
 
 <MaxWidthForm>
 	<form
@@ -65,7 +70,13 @@
 			<label
 				class="input w-full focus-within:border-purple-600 focus-within:ring-4 focus-within:ring-fuchsia-600 focus-within:outline-none"
 			>
-				<input name="password" class="grow" placeholder="secure-PASSWORD-1" type="password" />
+				<input
+					bind:value={password}
+					name="password"
+					class="grow"
+					placeholder="secure-PASSWORD-1"
+					type="password"
+				/>
 				<div class="dropdown dropdown-end dropdown-hover">
 					<div
 						tabIndex={0}
@@ -107,6 +118,8 @@
 			type="submit"
 			disabled={submitting}
 			class="btn btn-primary bg-vibrant mt-4 w-full font-bold lowercase"
+			data-umami-event="create message"
+			data-umami-event-encrypted={password.length > 0}
 		>
 			{#if !submitting}
 				✏️ Store my message
