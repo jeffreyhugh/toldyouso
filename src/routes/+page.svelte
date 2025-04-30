@@ -5,6 +5,7 @@
 	import { encrypt } from "$lib/crypt";
 	import SignInModal from "$lib/SignInModal.svelte";
 	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
+	import { DateTime } from "luxon";
 
 	const { data }: PageProps = $props();
 	let message = $state("");
@@ -103,6 +104,9 @@
 				name="datetime"
 				class="input w-full focus-within:border-purple-600 focus-within:ring-4 focus-within:ring-fuchsia-600 focus-within:outline-none"
 				type="datetime-local"
+				defaultValue={DateTime.now()
+					.set({ millisecond: 0, second: 0 })
+					.toISO({ includeOffset: false })}
 				required
 			/>
 		</fieldset>
