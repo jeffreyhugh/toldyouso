@@ -75,7 +75,7 @@
 					bind:value={password}
 					name="password"
 					class="grow"
-					placeholder="secure-PASSWORD-1"
+					placeholder="optional-PASSWORD-1"
 					type="password"
 				/>
 				<div class="dropdown dropdown-end dropdown-hover">

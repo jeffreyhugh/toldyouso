@@ -85,6 +85,13 @@
 						</div>
 					</td>
 				</tr>
+
+				{#if data.encrypted}
+					<tr>
+						<td class="pr-1">Encrypted</td>
+						<td>🔒</td>
+					</tr>
+				{/if}
 			</tbody>
 		</table>
 	</div>
