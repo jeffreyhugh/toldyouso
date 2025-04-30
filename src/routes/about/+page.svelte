@@ -32,8 +32,8 @@
 		</a>{" "}
 		feature means everyone gets an account when they visit the site, which is used to aggregate messages
 		to a dashboard. This is a much-needed improvement over the old system of having to copy the link
-		and remember where it was saved. Of course, users can attach an email to the anonymous session to
-		log in anytime, anywhere.
+		and remember where it was saved. Users can attach an email to the anonymous session to access their
+		messages from another computer at a later date.
 	</p>
 	<p>
 		Supabase has baked-in support for Postgres'{" "}
@@ -48,7 +48,7 @@
 		and all transactions must be filtered through these policies before reading or writing data. What's
 		even cooler is that told-you.so uses a combination of RLS policies and Postgres views to prevent
 		a user from reading the message's content before it's supposed to be released, so no extra server-side
-		logic has to be implemented.
+		logic had to be implemented.
 	</p>
 	<p>
 		I also added the message's SHA256 as a way to prove the contents of the message haven't changed.
@@ -75,5 +75,16 @@
 		<a href="https://daisyui.com" class="link" target="_blank"> daisyUI </a>{" "}
 		instead of vanilla Tailwind. It's nice to focus on making the site work instead of making the buttons
 		look perfect.
+	</p>
+	<p>
+		<span class="font-bold">A note on v1 <code>/p</code> URLs:</span> they still work, but not the
+		same way they used to. Unencrypted messages will be redirected to the equivalent
+		<code>/messages</code>
+		URL with the message's new UUID. They will be indistinguishable from v2 messages. Encrypted messages
+		will stay on the
+		<code>/p</code> URL, but
+		<span class="font-bold">your password will be sent to the server to decrypt the message.</span> Why?
+		These messages were encrypted with a Node.js module that I somehow got working on the browser in
+		v1, but I couldn't figure out how to polyfill for v2.
 	</p>
 </MaxWidthArticle>

@@ -28,7 +28,6 @@
 	</p>
 	<p>
 		For any questions about the site or these terms, please email{" "}
-		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>
-		.
+		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>.
 	</p>
 </MaxWidthArticle>
