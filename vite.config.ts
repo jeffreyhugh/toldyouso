@@ -3,15 +3,15 @@ import { sveltekit } from "@sveltejs/kit/vite";
 import { defineConfig } from "vite";
 
 export default defineConfig({
-	plugins: [tailwindcss(), sveltekit()],
-	server: {
-		proxy: {
-			"/trends": {
-				target: "https://trends.jh.ms/",
-				changeOrigin: true,
-				rewrite: (path) => path.replace(/^\/trends/, "script.js")
-			},
-			"/api/send": "https://trends.jh.ms/"
-		}
-	}
+	plugins: [tailwindcss(), sveltekit()]
+	// server: {
+	// 	proxy: {
+	// 		"/trends": {
+	// 			target: "https://trends.jh.ms/",
+	// 			changeOrigin: true,
+	// 			rewrite: (path) => path.replace(/^\/trends/, "script.js")
+	// 		},
+	// 		"/api/send": "https://trends.jh.ms/"
+	// 	}
+	// }
 });
