@@ -6,6 +6,8 @@
 	import SignInModal from "$lib/SignInModal.svelte";
 	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
 	import { DateTime } from "luxon";
+	import AdBlockSmall from "$lib/AdBlockSmall.svelte";
+	import AdBeforeSubmit from "$lib/AdBeforeSubmit.svelte";
 
 	const { data }: PageProps = $props();
 	let message = $state("");
@@ -133,4 +135,8 @@
 		</button>
 	</form>
 	<SignInModal email={data.user?.email} />
+
+	<AdBlockSmall>
+		<AdBeforeSubmit />
+	</AdBlockSmall>
 </MaxWidthForm>

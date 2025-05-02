@@ -4,6 +4,8 @@
 	import MessageContent from "./MessageContent.svelte";
 	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
 	import { onMount } from "svelte";
+	import AdBlockSmall from "$lib/AdBlockSmall.svelte";
+	import AdOnMessageV2 from "$lib/AdOnMessageV2.svelte";
 
 	const { data } = $props();
 
@@ -95,4 +97,8 @@
 			</tbody>
 		</table>
 	</div>
+
+	<AdBlockSmall>
+		<AdOnMessageV2 />
+	</AdBlockSmall>
 </MaxWidthForm>

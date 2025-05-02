@@ -5,6 +5,9 @@
 	import "@fontsource-variable/quicksand";
 	import { onMount } from "svelte";
 	import { invalidate } from "$app/navigation";
+	import AdBox from "$lib/AdBlockColumn.svelte";
+	import AdLeftColumn from "$lib/AdLeftColumn.svelte";
+	import AdRightColumn from "$lib/AdRightColumn.svelte";
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
@@ -35,7 +38,7 @@
 </svelte:head>
 
 <ModeWatcher defaultMode="dark" defaultTheme="dark" />
-<div class="min-h-dvh">
+<div class="min-h-dvh w-full">
 	<Header />
 	{@render children()}
 </div>

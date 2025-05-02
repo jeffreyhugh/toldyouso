@@ -4,6 +4,8 @@
 	import { onMount } from "svelte";
 	import CountdownTimer from "./CountdownTimer.svelte";
 	import MessageContent from "./MessageContent.svelte";
+	import AdBlockSmall from "$lib/AdBlockSmall.svelte";
+	import AdOnMessageLegacy from "$lib/AdOnMessageLegacy.svelte";
 
 	const { data } = $props();
 
@@ -95,4 +97,8 @@
 			</tbody>
 		</table>
 	</div>
+
+	<AdBlockSmall>
+		<AdOnMessageLegacy />
+	</AdBlockSmall>
 </MaxWidthForm>
