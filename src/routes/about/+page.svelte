@@ -11,7 +11,7 @@
 		told-you.so started as a project a few years ago to learn the basics of{" "}
 		<a class="link" href="https://tailwindcss.com" target="_blank"> TailwindCSS </a>{" "}
 		and Next.js/Vercel serverless functions. Since its original startup in 2021, a total of over 300,000
-		messagse have been saved in the database, largely thanks to{" "}
+		messages have been saved in the database, largely thanks to{" "}
 		<a class="link" href="https://boredbutton.com" target="_blank"> BoredButton.com </a>
 		. I've also learned a lot, so I decided to rewrite the project from the ground up.
 	</p>
