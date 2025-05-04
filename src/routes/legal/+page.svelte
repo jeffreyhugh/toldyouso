@@ -51,7 +51,7 @@
 		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>.
 	</p>
 	<p>
-		&copy; told-you.so 2021 - {DateTime.now().year} &middot; Licensed under the
+		told-you.so &copy; Jeffrey Hugh 2021 - {DateTime.now().year} &middot; Licensed under the
 		<a
 			class="link"
 			href="https://github.com/jeffreyhugh/toldyouso?tab=MIT-1-ov-file#readme"
