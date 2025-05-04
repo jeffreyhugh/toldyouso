@@ -40,6 +40,8 @@
 		<div class="hidden md:block">&middot;</div>
 		<a href="/legal" class="lowercase italic">Legal</a>
 		<div class="hidden md:block">&middot;</div>
-		<a href="https://github.com/jeffreyhugh/toldyouso" class="lowercase italic">GitHub</a>
+		<a href="https://github.com/jeffreyhugh/toldyouso" target="_blank" class="lowercase italic"
+			>GitHub</a
+		>
 	</div>
 </div>
