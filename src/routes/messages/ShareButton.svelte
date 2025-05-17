@@ -10,8 +10,8 @@
 
 <button
 	class={[
-		"btn btn-ghost btn-sm lowercase",
-		!(navigator && navigator.canShare && navigator.canShare()) && "hidden"
+		'btn btn-ghost btn-sm lowercase',
+		!(navigator && navigator.canShare && navigator.canShare()) && 'hidden'
 	]}
 	type="button"
 	onclick={share}

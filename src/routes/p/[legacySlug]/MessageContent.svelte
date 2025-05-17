@@ -1,8 +1,8 @@
 <script lang="ts">
-	import Confetti from "svelte-confetti";
+	import Confetti from 'svelte-confetti';
 
 	const {
-		message = "",
+		message = '',
 		encrypted = false
 	}: {
 		message: string | null;
@@ -10,18 +10,17 @@
 	} = $props();
 
 	let decryptedMessage = $state(message);
-	let key = $state("");
+	let key = $state('');
 	let err = $state(false);
 	let decrypted = $state(!encrypted);
 
 	const tryKey = async () => {
 		try {
 			const apiURL = new URL(
-				window.location.protocol + "//" + window.location.host + "/api/decrypt"
+				window.location.protocol + '//' + window.location.host + '/api/decrypt'
 			);
-			apiURL.searchParams.set("data", message || "");
-			apiURL.searchParams.set("key", key);
-			const res = await fetch(apiURL);
+			apiURL.searchParams.set('data', message || '');
+			apiURL.searchParams.set('key', key);
 			decryptedMessage = await fetch(apiURL).then((res) => res.text());
 			err = false;
 			decrypted = true;
@@ -33,15 +32,15 @@
 	};
 </script>
 
-<div class={["bg-base-300 rounded-box w-full px-3 py-1.5", encrypted && !decrypted && "break-all"]}>
+<div class={['bg-base-300 rounded-box w-full px-3 py-1.5', encrypted && !decrypted && 'break-all']}>
 	{#if decrypted}
 		<div class="hidden w-full justify-center motion-safe:flex">
 			<Confetti
 				x={[-0.75, 0.75]}
 				colorArray={[
-					"oklch(59.1% 0.293 322.896)",
-					"oklch(59.1% 0.293 322.896)",
-					"oklch(55.8% 0.288 302.321)"
+					'oklch(59.1% 0.293 322.896)',
+					'oklch(59.1% 0.293 322.896)',
+					'oklch(55.8% 0.288 302.321)'
 				]}
 			/>
 		</div>
@@ -74,7 +73,7 @@
 				🔑 Decrypt
 			</button>
 			{#if err}
-				<div class="invisible mt-px hidden text-base md:block">{"."}</div>
+				<div class="invisible mt-px hidden text-base md:block">.</div>
 			{/if}
 		</div>
 	</form>

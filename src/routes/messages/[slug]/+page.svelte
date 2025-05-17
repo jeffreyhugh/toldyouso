@@ -1,32 +1,34 @@
 <script lang="ts">
-	import { DateTime } from "luxon";
-	import CountdownTimer from "./CountdownTimer.svelte";
-	import MessageContent from "./MessageContent.svelte";
-	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
-	import { onMount } from "svelte";
-	import AdBlockSmall from "$lib/AdBlockSmall.svelte";
-	import AdOnMessageV2 from "$lib/AdOnMessageV2.svelte";
+	import { DateTime } from 'luxon';
+	import { onMount } from 'svelte';
+
+	import AdBlockSmall from '$lib/AdBlockSmall.svelte';
+	import AdOnMessageV2 from '$lib/AdOnMessageV2.svelte';
+	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
+
+	import CountdownTimer from './CountdownTimer.svelte';
+	import MessageContent from './MessageContent.svelte';
 
 	const { data } = $props();
 
-	const availableAt = DateTime.fromISO(data.available_at || "");
+	const availableAt = DateTime.fromISO(data.available_at || '');
 
 	const transformForTitle = (availableAt: DateTime) =>
-		availableAt.diffNow().as("milliseconds") < 0
-			? "available now"
+		availableAt.diffNow().as('milliseconds') < 0
+			? 'available now'
 			: availableAt
 					.diffNow()
 					.rescale()
 					.set({ milliseconds: 0 })
-					.toFormat("y M d h m s")
-					.split(" ")
-					.map((s, i) => ({ num: Number(s), unit: ["y", "mo", "d", "h", "m", "s"][i] }))
+					.toFormat('y M d h m s')
+					.split(' ')
+					.map((s, i) => ({ num: Number(s), unit: ['y', 'mo', 'd', 'h', 'm', 's'][i] }))
 					.filter((item) => item.num)
 					.map(
 						(item) =>
-							`${item.num.toString().padStart(item.unit === "h" || item.unit === "m" || item.unit === "s" ? 2 : 1, "0")}${item.unit}`
+							`${item.num.toString().padStart(item.unit === 'h' || item.unit === 'm' || item.unit === 's' ? 2 : 1, '0')}${item.unit}`
 					)
-					.join(" ");
+					.join(' ');
 
 	let titleAvailableAt = $state(transformForTitle(availableAt));
 	onMount(() => {
@@ -43,7 +45,7 @@
 </svelte:head>
 
 <MaxWidthForm>
-	{#if availableAt.diffNow().as("seconds") >= 0}
+	{#if availableAt.diffNow().as('seconds') >= 0}
 		<CountdownTimer {availableAt} />
 	{:else}
 		<MessageContent message={data.content} encrypted={data.encrypted} />

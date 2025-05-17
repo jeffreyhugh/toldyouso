@@ -1,20 +1,20 @@
 <script lang="ts">
-	import { ModeWatcher } from "mode-watcher";
-	import "../app.css";
-	import Header from "./Header.svelte";
-	import "@fontsource-variable/quicksand";
-	import { onMount } from "svelte";
-	import { invalidate } from "$app/navigation";
-	import AdBox from "$lib/AdBlockColumn.svelte";
-	import AdLeftColumn from "$lib/AdLeftColumn.svelte";
-	import AdRightColumn from "$lib/AdRightColumn.svelte";
+	import '../app.css';
+	import '@fontsource-variable/quicksand';
+
+	import { ModeWatcher } from 'mode-watcher';
+	import { onMount } from 'svelte';
+
+	import { invalidate } from '$app/navigation';
+
+	import Header from './Header.svelte';
 
 	let { data, children } = $props();
 	let { session, supabase } = $derived(data);
 	onMount(() => {
 		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
 			if (newSession?.expires_at !== session?.expires_at) {
-				invalidate("supabase:auth");
+				invalidate('supabase:auth');
 			}
 		});
 		return () => data.subscription.unsubscribe();

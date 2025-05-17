@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { setMode, setTheme, theme } from "mode-watcher";
+	import { setMode, setTheme, theme } from 'mode-watcher';
 </script>
 
 <div class="mb-8 flex w-full flex-col items-stretch gap-2">
@@ -7,16 +7,16 @@
 		<button
 			class="btn btn-ghost btn-circle m-2 text-xl"
 			onclick={() => {
-				if (theme.current === "dark") {
-					setMode("light");
-					setTheme("light");
+				if (theme.current === 'dark') {
+					setMode('light');
+					setTheme('light');
 				} else {
-					setMode("dark");
-					setTheme("dark");
+					setMode('dark');
+					setTheme('dark');
 				}
 			}}
 		>
-			{#if theme.current === "light"}
+			{#if theme.current === 'light'}
 				☀️
 			{:else}
 				🌑

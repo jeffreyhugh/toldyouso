@@ -1,6 +1,7 @@
 <script>
-	import MaxWidthArticle from "$lib/MaxWidthArticle.svelte";
-	import { DateTime } from "luxon";
+	import { DateTime } from 'luxon';
+
+	import MaxWidthArticle from '$lib/MaxWidthArticle.svelte';
 </script>
 
 <svelte:head>
@@ -21,7 +22,7 @@
 	</p>
 	<p>
 		For each message, the author of this site stores a unique message ID, submission time, IP
-		address(es), the message itself, and analytical statistics.{" "}
+		address(es), the message itself, and analytical statistics.
 		<span class="font-bold">
 			If the message is unencrypted, it is stored in plaintext in the database.
 		</span> The author of this site highly recommends encrypting your message client-side by setting
@@ -38,8 +39,8 @@
 	<p>
 		By using told-you.so, you give the author of this site permission to use collected data however
 		he'd like in accordance with these terms. The author of this site commits to cooperating with
-		law enforcement should the need arise. Law enforcement may email requests for data to{" "}
-		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>{" "}
+		law enforcement should the need arise. Law enforcement may email requests for data to
+		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>
 		from an official business email.
 	</p>
 	<p>
@@ -47,7 +48,7 @@
 		you accept cookies, Google AdSense uses cookies to show you personalized ads.
 	</p>
 	<p>
-		For any questions about the site or these terms, please email{" "}
+		For any questions about the site or these terms, please email
 		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>.
 	</p>
 	<p>

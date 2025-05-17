@@ -1,9 +1,10 @@
 <script lang="ts">
-	import { decrypt } from "$lib/crypt";
-	import Confetti from "svelte-confetti";
+	import Confetti from 'svelte-confetti';
+
+	import { decrypt } from '$lib/crypt';
 
 	const {
-		message = "",
+		message = '',
 		encrypted = false
 	}: {
 		message: string | null;
@@ -11,13 +12,13 @@
 	} = $props();
 
 	let decryptedMessage = $state(message);
-	let key = $state("");
+	let key = $state('');
 	let invalidKey = $state(false);
 	let decrypted = $state(!encrypted);
 
 	const tryKey = async () => {
 		try {
-			decryptedMessage = await decrypt(message || "", key);
+			decryptedMessage = await decrypt(message || '', key);
 			invalidKey = false;
 			decrypted = true;
 		} catch {
@@ -27,15 +28,15 @@
 	};
 </script>
 
-<div class={["bg-base-300 rounded-box w-full px-3 py-1.5", encrypted && !decrypted && "break-all"]}>
+<div class={['bg-base-300 rounded-box w-full px-3 py-1.5', encrypted && !decrypted && 'break-all']}>
 	{#if decrypted}
 		<div class="hidden w-full justify-center motion-safe:flex">
 			<Confetti
 				x={[-0.75, 0.75]}
 				colorArray={[
-					"oklch(59.1% 0.293 322.896)",
-					"oklch(59.1% 0.293 322.896)",
-					"oklch(55.8% 0.288 302.321)"
+					'oklch(59.1% 0.293 322.896)',
+					'oklch(59.1% 0.293 322.896)',
+					'oklch(55.8% 0.288 302.321)'
 				]}
 			/>
 		</div>
@@ -68,7 +69,7 @@
 				🔑 Decrypt
 			</button>
 			{#if invalidKey}
-				<div class="invisible mt-px hidden text-base md:block">{"."}</div>
+				<div class="invisible mt-px hidden text-base md:block">.</div>
 			{/if}
 		</div>
 	</form>

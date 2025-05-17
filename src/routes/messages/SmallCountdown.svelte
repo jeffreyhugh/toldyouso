@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { DateTime } from "luxon";
-	import { onMount } from "svelte";
+	import type { DateTime } from 'luxon';
+	import { onMount } from 'svelte';
 
 	const { availableAt }: { availableAt: DateTime } = $props();
 
@@ -37,13 +37,13 @@
 		<span>{str(deltaObj.days)}d </span>
 	{/if}
 	{#if shouldShow(deltaObj.hours, deltaObj.days, deltaObj.months, deltaObj.years)}
-		<span>{str(deltaObj.hours).padStart(2, "0")}h </span>
+		<span>{str(deltaObj.hours).padStart(2, '0')}h </span>
 	{/if}
 	{#if shouldShow(deltaObj.minutes, deltaObj.hours, deltaObj.days, deltaObj.months, deltaObj.years)}
-		<span>{str(deltaObj.minutes).padStart(2, "0")}m </span>
+		<span>{str(deltaObj.minutes).padStart(2, '0')}m </span>
 	{/if}
 	{#if shouldShow(deltaObj.seconds, deltaObj.minutes, deltaObj.hours, deltaObj.days, deltaObj.months, deltaObj.years)}
-		<span>{str(deltaObj.seconds).padStart(2, "0")}s </span>
+		<span>{str(deltaObj.seconds).padStart(2, '0')}s </span>
 	{:else}
 		<span>{availableAt.toRelative()}</span>
 	{/if}

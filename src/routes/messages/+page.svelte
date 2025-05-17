@@ -1,10 +1,12 @@
 <script lang="ts">
-	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
-	import SignInModal from "$lib/SignInModal.svelte";
-	import { DateTime } from "luxon";
-	import ShareButton from "./ShareButton.svelte";
-	import CopyButton from "./CopyButton.svelte";
-	import SmallCountdown from "./SmallCountdown.svelte";
+	import { DateTime } from 'luxon';
+
+	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
+	import SignInModal from '$lib/SignInModal.svelte';
+
+	import CopyButton from './CopyButton.svelte';
+	import ShareButton from './ShareButton.svelte';
+	import SmallCountdown from './SmallCountdown.svelte';
 
 	type Row_t = {
 		available_at: DateTime<true>;
@@ -25,16 +27,16 @@
 	};
 
 	const [available, upcoming] = $derived(
-		(
-			data.rows.map((row: any) => ({
+		// prettier-ignore
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		(data.rows.map((row: any) => ({
 				...row,
-				created_at: DateTime.fromISO(row.created_at || "") as DateTime<true>,
-				available_at: DateTime.fromISO(row.available_at || "") as DateTime<true>
-			})) as Row_t[]
-		).reduce(
+				created_at: DateTime.fromISO(row.created_at || '') as DateTime<true>,
+				available_at: DateTime.fromISO(row.available_at || '') as DateTime<true>
+			})) as Row_t[]).reduce(
 			(prev, row) => {
 				const ret = [[...prev[IDX.AVAILABLE]], [...prev[IDX.UPCOMING]]];
-				if (row.available_at.diffNow().as("milliseconds") < 0) {
+				if (row.available_at.diffNow().as('milliseconds') < 0) {
 					ret[IDX.AVAILABLE].push(row);
 				} else {
 					ret[IDX.UPCOMING].push(row);
@@ -64,12 +66,12 @@
 		<SignInModal email={data.user?.email} />
 
 		<div class="divider my-2 lowercase">Upcoming</div>
-		{#each upcoming as row}
+		{#each upcoming as row (row.id)}
 			{@render messageCard(row)}
 		{/each}
 
 		<div class="divider mt-6 mb-2 lowercase">Available</div>
-		{#each available.toReversed() as row}
+		{#each available.toReversed() as row (row.id)}
 			{@render messageCard(row)}
 		{/each}
 	{/if}
@@ -94,14 +96,14 @@
 				{/if}
 			</div>
 			<div class="flex justify-end gap-2">
-				<ShareButton id={row.id || ""} />
-				<CopyButton id={row.id || ""} />
+				<ShareButton id={row.id || ''} />
+				<CopyButton id={row.id || ''} />
 				<a
 					class={[
-						"btn btn-sm font-bold lowercase",
-						row.available_at.diffNow().as("milliseconds") < 0
-							? "btn-primary bg-vibrant"
-							: "btn-ghost"
+						'btn btn-sm font-bold lowercase',
+						row.available_at.diffNow().as('milliseconds') < 0
+							? 'btn-primary bg-vibrant'
+							: 'btn-ghost'
 					]}
 					href="/messages/{row.id}"
 				>

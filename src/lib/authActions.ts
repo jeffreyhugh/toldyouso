@@ -1,13 +1,13 @@
-import { fail, type Action } from "@sveltejs/kit";
+import { type Action, fail } from '@sveltejs/kit';
 
 export const signin: Action = async ({ url, request, locals: { supabase } }) => {
 	const data = await request.formData();
 
-	const email = data.get("email");
+	const email = data.get('email');
 
 	if (!email || email instanceof File) {
 		fail(400, {
-			error: "email is required"
+			error: 'email is required'
 		});
 		return;
 	}
@@ -15,7 +15,7 @@ export const signin: Action = async ({ url, request, locals: { supabase } }) => 
 	const { error } = await supabase.auth.signInWithOtp({
 		email,
 		options: {
-			emailRedirectTo: url.protocol + "//" + url.host + "/api/migrate",
+			emailRedirectTo: url.protocol + '//' + url.host + '/api/migrate',
 			shouldCreateUser: true
 		}
 	});

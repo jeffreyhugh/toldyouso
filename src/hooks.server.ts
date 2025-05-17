@@ -1,8 +1,8 @@
-import { createServerClient } from "@supabase/ssr";
-import { type Handle, redirect } from "@sveltejs/kit";
-import { sequence } from "@sveltejs/kit/hooks";
+import { createServerClient } from '@supabase/ssr';
+import { type Handle, redirect } from '@sveltejs/kit';
+import { sequence } from '@sveltejs/kit/hooks';
 
-import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from "$env/static/public";
+import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
 
 const supabase: Handle = async ({ event, resolve }) => {
 	/**
@@ -20,7 +20,7 @@ const supabase: Handle = async ({ event, resolve }) => {
 			 */
 			setAll: (cookiesToSet) => {
 				cookiesToSet.forEach(({ name, value, options }) => {
-					event.cookies.set(name, value, { ...options, path: "/" });
+					event.cookies.set(name, value, { ...options, path: '/' });
 				});
 			}
 		}
@@ -59,7 +59,7 @@ const supabase: Handle = async ({ event, resolve }) => {
 			 * Supabase libraries use the `content-range` and `x-supabase-api-version`
 			 * headers, so we need to tell SvelteKit to pass it through.
 			 */
-			return name === "content-range" || name === "x-supabase-api-version";
+			return name === 'content-range' || name === 'x-supabase-api-version';
 		}
 	});
 };
@@ -69,52 +69,52 @@ const authGuard: Handle = async ({ event, resolve }) => {
 	event.locals.session = session;
 	event.locals.user = user;
 
-	if (!event.locals.session && event.url.pathname.startsWith("/private")) {
-		redirect(303, "/auth");
+	if (!event.locals.session && event.url.pathname.startsWith('/private')) {
+		redirect(303, '/auth');
 	}
 
-	if (event.locals.session && event.url.pathname === "/auth") {
-		redirect(303, "/private");
+	if (event.locals.session && event.url.pathname === '/auth') {
+		redirect(303, '/private');
 	}
 
 	return resolve(event);
 };
 
 const trends: Handle = async ({ event, resolve }) => {
-	if (event.url.pathname === "/trends") {
-		const targetURL = "https://trends.jh.ms/script.js";
+	if (event.url.pathname === '/trends') {
+		const targetURL = 'https://trends.jh.ms/script.js';
 
 		const response = await fetch(targetURL, {
 			method: event.request.method,
 			headers: {
 				...Object.fromEntries(event.request.headers)
 			},
-			body: event.request.method === "POST" ? await event.request.text() : null
+			body: event.request.method === 'POST' ? await event.request.text() : null
 		});
 
 		const responseBody = await response.text();
 		return new Response(responseBody, {
 			status: response.status,
 			headers: {
-				"Content-Type": response.headers.get("Content-Type") || "application/javascript"
+				'Content-Type': response.headers.get('Content-Type') || 'application/javascript'
 			}
 		});
-	} else if (event.url.pathname === "/api/send") {
-		const targetURL = "https://trends.jh.ms/api/send";
+	} else if (event.url.pathname === '/api/send') {
+		const targetURL = 'https://trends.jh.ms/api/send';
 
 		const response = await fetch(targetURL, {
 			method: event.request.method,
 			headers: {
 				...Object.fromEntries(event.request.headers)
 			},
-			body: event.request.method === "POST" ? await event.request.text() : null
+			body: event.request.method === 'POST' ? await event.request.text() : null
 		});
 
 		const responseBody = await response.text();
 		return new Response(responseBody, {
 			status: response.status,
 			headers: {
-				"Content-Type": response.headers.get("Content-Type") || "application/javascript"
+				'Content-Type': response.headers.get('Content-Type') || 'application/javascript'
 			}
 		});
 	}

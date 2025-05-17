@@ -1,7 +1,7 @@
 <!-- c/o https://github.com/Mitcheljager/svelte-confetti/blob/a0a27505c7b2c4b854fbcb2a6e067d75b96c294e/src/routes/ToggleConfetti.svelte -->
 
 <script>
-	import { tick } from "svelte";
+	import { tick } from 'svelte';
 
 	export let toggleOnce = false;
 	export let relative = true;

@@ -1,8 +1,9 @@
 <script lang="ts">
-	import ToggleConfetti from "$lib/ToggleConfetti.svelte";
-	import type { DateTime } from "luxon";
-	import { onMount } from "svelte";
-	import Confetti from "svelte-confetti";
+	import type { DateTime } from 'luxon';
+	import { onMount } from 'svelte';
+	import Confetti from 'svelte-confetti';
+
+	import ToggleConfetti from '$lib/ToggleConfetti.svelte';
 
 	const { availableAt }: { availableAt: DateTime } = $props();
 	let copied = $state(false);
@@ -34,7 +35,7 @@
 </script>
 
 <div class="text-center text-2xl lowercase select-none">
-	{#if delta.as("seconds") >= 0}
+	{#if delta.as('seconds') >= 0}
 		Message available in
 		<div class="text-vibrant text-4xl font-bold">
 			{#if shouldShow(deltaObj.years)}
@@ -47,13 +48,13 @@
 				<span>{str(deltaObj.days)}d </span>
 			{/if}
 			{#if shouldShow(deltaObj.hours, deltaObj.days, deltaObj.months, deltaObj.years)}
-				<span>{str(deltaObj.hours).padStart(2, "0")}h </span>
+				<span>{str(deltaObj.hours).padStart(2, '0')}h </span>
 			{/if}
 			{#if shouldShow(deltaObj.minutes, deltaObj.hours, deltaObj.days, deltaObj.months, deltaObj.years)}
-				<span>{str(deltaObj.minutes).padStart(2, "0")}m </span>
+				<span>{str(deltaObj.minutes).padStart(2, '0')}m </span>
 			{/if}
 			{#if shouldShow(deltaObj.seconds, deltaObj.minutes, deltaObj.hours, deltaObj.days, deltaObj.months, deltaObj.years)}
-				<span>{str(deltaObj.seconds).padStart(2, "0")}s </span>
+				<span>{str(deltaObj.seconds).padStart(2, '0')}s </span>
 			{:else}
 				<span>00s</span>
 			{/if}
@@ -76,9 +77,9 @@
 				x={[-0.75, 0.75]}
 				slot="confetti"
 				colorArray={[
-					"oklch(59.1% 0.293 322.896)",
-					"oklch(59.1% 0.293 322.896)",
-					"oklch(55.8% 0.288 302.321)"
+					'oklch(59.1% 0.293 322.896)',
+					'oklch(59.1% 0.293 322.896)',
+					'oklch(55.8% 0.288 302.321)'
 				]}
 			/>
 		</ToggleConfetti>
@@ -91,9 +92,9 @@
 				y={[0, 0.1]}
 				infinite
 				colorArray={[
-					"oklch(59.1% 0.293 322.896)",
-					"oklch(59.1% 0.293 322.896)",
-					"oklch(55.8% 0.288 302.321)"
+					'oklch(59.1% 0.293 322.896)',
+					'oklch(59.1% 0.293 322.896)',
+					'oklch(55.8% 0.288 302.321)'
 				]}
 				delay={[500, 2000]}
 				duration={5000}

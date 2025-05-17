@@ -1,4 +1,4 @@
-import { Base64 } from "js-base64";
+import { Base64 } from 'js-base64';
 
 export const encrypt = async (message: string, key: string) => {
 	const iv = new Uint8Array(16);
@@ -8,7 +8,7 @@ export const encrypt = async (message: string, key: string) => {
 
 	const cryptoKey = await makeCryptoKey(key);
 	const cipherBuffer = await crypto.subtle.encrypt(
-		{ name: "AES-GCM", iv } as AesGcmParams,
+		{ name: 'AES-GCM', iv } as AesGcmParams,
 		cryptoKey,
 		messageBuffer
 	);
@@ -25,12 +25,12 @@ export const decrypt = async (ciphertext: string, key: string) => {
 	const cryptoKey = await makeCryptoKey(key);
 
 	const decryptedBuffer = await crypto.subtle.decrypt(
-		{ name: "AES-GCM", iv } as AesGcmParams,
+		{ name: 'AES-GCM', iv } as AesGcmParams,
 		cryptoKey,
 		inputBuffer.slice(16)
 	);
 
-	return new TextDecoder("utf8").decode(decryptedBuffer);
+	return new TextDecoder('utf8').decode(decryptedBuffer);
 };
 
 const concatBuffers = (b1: Uint8Array<ArrayBuffer>, b2: Uint8Array<ArrayBuffer>) => {
@@ -42,10 +42,10 @@ const concatBuffers = (b1: Uint8Array<ArrayBuffer>, b2: Uint8Array<ArrayBuffer>)
 
 const makeCryptoKey = async (key: string) => {
 	const keyBuffer = new TextEncoder().encode(key);
-	const keyHash = await crypto.subtle.digest("SHA-256", keyBuffer);
+	const keyHash = await crypto.subtle.digest('SHA-256', keyBuffer);
 
-	return await crypto.subtle.importKey("raw", keyHash, { name: "AES-GCM" }, true, [
-		"encrypt",
-		"decrypt"
+	return await crypto.subtle.importKey('raw', keyHash, { name: 'AES-GCM' }, true, [
+		'encrypt',
+		'decrypt'
 	]);
 };

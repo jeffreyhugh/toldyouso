@@ -1,10 +1,10 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @plugin "daisyui";
 @plugin "daisyui/theme" {
-	name: "light";
+	name: 'light';
 	default: false;
 	prefersdark: false;
-	color-scheme: "light";
+	color-scheme: 'light';
 	--color-base-100: oklch(100% 0 0);
 	--color-base-200: oklch(95% 0 0);
 	--color-base-300: oklch(90% 0 0);
@@ -36,10 +36,10 @@
 }
 
 @plugin "daisyui/theme" {
-	name: "dark";
+	name: 'dark';
 	default: true;
 	prefersdark: false;
-	color-scheme: "dark";
+	color-scheme: 'dark';
 	--color-base-100: oklch(0% 0 0);
 	--color-base-200: oklch(20% 0 0);
 	--color-base-300: oklch(30% 0 0);
@@ -80,7 +80,7 @@
 }
 
 body {
-	font-family: "Quicksand Variable", sans-serif;
+	font-family: 'Quicksand Variable', sans-serif;
 }
 
 .link {

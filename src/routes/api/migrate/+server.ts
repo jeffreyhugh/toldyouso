@@ -1,16 +1,17 @@
-import { redirect } from "@sveltejs/kit";
+import { redirect } from '@sveltejs/kit';
 
-import type { RequestHandler } from "./$types";
-import { supabaseServiceRole } from "$lib/server/supabaseServiceRole";
+import { supabaseServiceRole } from '$lib/server/supabaseServiceRole';
+
+import type { RequestHandler } from './$types';
 
 export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
 	const { data } = await supabase.auth.getUser();
 	const anonID = data.user?.id;
 
-	const code = url.searchParams.get("code");
+	const code = url.searchParams.get('code');
 
 	if (!code) {
-		redirect(307, "/error?message=No%20code");
+		redirect(307, '/error?message=No%20code');
 	}
 	const { data: newUserData, error: newUserError } =
 		await supabase.auth.exchangeCodeForSession(code);
@@ -24,12 +25,12 @@ export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
 	if (anonID && newUserID) {
 		// row updates
 		const { error } = await supabaseServiceRole
-			.from("messages")
+			.from('messages')
 			.update({ owned_by: newUserID })
-			.eq("owned_by", anonID);
+			.eq('owned_by', anonID);
 
 		if (error) {
-			redirect(307, "/error");
+			redirect(307, '/error');
 		}
 	}
 

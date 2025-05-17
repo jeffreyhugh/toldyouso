@@ -1,17 +1,19 @@
 <script lang="ts">
-	import { enhance } from "$app/forms";
-	import { fail } from "@sveltejs/kit";
-	import type { PageProps } from "./$types";
-	import { encrypt } from "$lib/crypt";
-	import SignInModal from "$lib/SignInModal.svelte";
-	import MaxWidthForm from "$lib/MaxWidthForm.svelte";
-	import { DateTime } from "luxon";
-	import AdBlockSmall from "$lib/AdBlockSmall.svelte";
-	import AdBeforeSubmit from "$lib/AdBeforeSubmit.svelte";
+	import { fail } from '@sveltejs/kit';
+	import { DateTime } from 'luxon';
+
+	import { enhance } from '$app/forms';
+	import AdBeforeSubmit from '$lib/AdBeforeSubmit.svelte';
+	import AdBlockSmall from '$lib/AdBlockSmall.svelte';
+	import { encrypt } from '$lib/crypt';
+	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
+	import SignInModal from '$lib/SignInModal.svelte';
+
+	import type { PageProps } from './$types';
 
 	const { data }: PageProps = $props();
-	let message = $state("");
-	let password = $state("");
+	let message = $state('');
+	let password = $state('');
 	let submitting = $state(false);
 </script>
 
@@ -25,22 +27,22 @@
 		action="?/createMessage"
 		use:enhance={async ({ formData }) => {
 			submitting = true;
-			const message = formData.get("message");
+			const message = formData.get('message');
 			if (!message) {
 				submitting = false;
 				fail(400, {
-					message: "this field is required"
+					message: 'this field is required'
 				});
 				return;
 			}
 
-			const password = formData.get("password");
+			const password = formData.get('password');
 			if (password && !(password instanceof File) && !(message instanceof File)) {
 				const cyphertext = await encrypt(message.toString(), password);
-				formData.set("message", cyphertext);
-				formData.set("encrypted", "true");
+				formData.set('message', cyphertext);
+				formData.set('encrypted', 'true');
 			}
-			formData.delete("password");
+			formData.delete('password');
 
 			return async ({ update }) => {
 				submitting = false;
@@ -61,7 +63,7 @@
 				rows={5}
 				bind:value={message}
 			></textarea>
-			<p class={["label text-sm lowercase", message.length >= 2048 ? "text-error" : ""]}>
+			<p class={['label text-sm lowercase', message.length >= 2048 ? 'text-error' : '']}>
 				{message.length}/2048 characters
 			</p>
 		</fieldset>
@@ -116,7 +118,7 @@
 		<input name="timezone" type="hidden" value={Intl.DateTimeFormat().resolvedOptions().timeZone} />
 
 		<div class="mt-4 text-sm font-bold lowercase">
-			By storing a message, you affirm that you have read and agree to the{" "}
+			By storing a message, you affirm that you have read and agree to the
 			<a class="link" href="/legal"> privacy policy and tos </a>
 		</div>
 

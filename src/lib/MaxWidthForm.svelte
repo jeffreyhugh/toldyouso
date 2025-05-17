@@ -1,7 +1,7 @@
 <script lang="ts">
-	import AdBoxColumn from "./AdBlockColumn.svelte";
-	import AdLeftColumn from "./AdLeftColumn.svelte";
-	import AdRightColumn from "./AdRightColumn.svelte";
+	import AdBoxColumn from './AdBlockColumn.svelte';
+	import AdLeftColumn from './AdLeftColumn.svelte';
+	import AdRightColumn from './AdRightColumn.svelte';
 
 	const { children } = $props();
 </script>

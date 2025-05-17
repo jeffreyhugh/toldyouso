@@ -1,10 +1,10 @@
-import { error } from "@sveltejs/kit";
+import { error } from '@sveltejs/kit';
 
 export const load = async ({ params, locals: { supabase } }) => {
 	const { data, error: sbError } = await supabase
-		.from("userview")
-		.select("*")
-		.eq("id", params.slug)
+		.from('userview')
+		.select('*')
+		.eq('id', params.slug)
 		.maybeSingle();
 
 	if (sbError) {

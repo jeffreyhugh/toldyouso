@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { enhance } from "$app/forms";
-	import Confetti from "svelte-confetti";
-	import { confettiArray } from "./confettiArray";
+	import Confetti from 'svelte-confetti';
+
+	import { enhance } from '$app/forms';
+
+	import { confettiArray } from './confettiArray';
 
 	const { email }: { email: string | undefined } = $props();
 
