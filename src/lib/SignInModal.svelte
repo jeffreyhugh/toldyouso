@@ -24,7 +24,7 @@
 		🔐 Sign in
 	{/if}
 </button>
-<dialog bind:this={dialogElement} class="modal">
+<dialog bind:this={dialogElement} class="modal modal-bottom sm:modal-middle">
 	<div class="modal-box overflow-hidden">
 		{#if !email}
 			<h2 class="text-xl font-bold lowercase">Sign In</h2>
@@ -67,9 +67,9 @@
 						>
 							📨 Send me a link
 						</button>
-						<text class="text-xs lowercase">
+						<p class="mt-2 text-xs lowercase">
 							Used for authentication only -- no mailing lists, no marketing, no reselling
-						</text>
+						</p>
 					{/if}
 				</form>
 				{#if success}

@@ -29,6 +29,9 @@ importers:
       mode-watcher:
         specifier: ^1.0.2
         version: 1.0.2(svelte@5.28.2)
+      outdent:
+        specifier: ^0.8.0
+        version: 0.8.0
     devDependencies:
       '@eslint/compat':
         specifier: ^1.2.5
@@ -1494,6 +1497,9 @@ packages:
 
   os-browserify@0.3.0:
     resolution: {integrity: sha512-gjcpUc3clBf9+210TRaDWbf+rZZZEshZ+DlXMRCeAjp0xhTrnQsKHypIy1J3d5hKdUzj69t708EHtU8P6bUn0A==}
+
+  outdent@0.8.0:
+    resolution: {integrity: sha512-KiOAIsdpUTcAXuykya5fnVVT+/5uS0Q1mrkRHcF89tpieSmY33O/tmc54CqwA+bfhbtEfZUNLHaPUiB9X3jt1A==}
 
   p-limit@3.1.0:
     resolution: {integrity: sha512-TYOanM3wGwNGsZN2cVTYPArw454xnXj5qmWF1bEoAc4+cU/ol7GVh7odevjp1FNHduHc3KZMcFduxU5Xc6uJRQ==}
@@ -3396,6 +3402,8 @@ snapshots:
       word-wrap: 1.2.5
 
   os-browserify@0.3.0: {}
+
+  outdent@0.8.0: {}
 
   p-limit@3.1.0:
     dependencies:
