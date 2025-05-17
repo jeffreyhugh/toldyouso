@@ -37,7 +37,7 @@
 			(prev, row) => {
 				const ret = [[...prev[IDX.AVAILABLE]], [...prev[IDX.UPCOMING]]];
 				if (row.available_at.diffNow().as('milliseconds') < 0) {
-					ret[IDX.AVAILABLE].push(row);
+					ret[IDX.AVAILABLE].unshift(row);
 				} else {
 					ret[IDX.UPCOMING].push(row);
 				}
@@ -71,7 +71,7 @@
 		{/each}
 
 		<div class="divider mt-6 mb-2 lowercase">Available</div>
-		{#each available.toReversed() as row (row.id)}
+		{#each available as row (row.id)}
 			{@render messageCard(row)}
 		{/each}
 	{/if}
