@@ -34,6 +34,7 @@
 		type="button"
 		onclick={share}
 		data-umami-event="share"
+		data-umami-event-from="list"
 	>
 		↗️ Share
 	</button>

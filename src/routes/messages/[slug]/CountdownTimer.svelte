@@ -5,8 +5,10 @@
 
 	import ToggleConfetti from '$lib/ToggleConfetti.svelte';
 
-	const { availableAt }: { availableAt: DateTime } = $props();
+	const { id, availableAt }: { id: string; availableAt: DateTime } = $props();
 	let copied = $state(false);
+	let mounted = $state(false);
+	onMount(() => (mounted = true));
 
 	let delta = $state(availableAt.diffNow());
 	let deltaObj = $derived(delta.rescale().toObject());
@@ -31,6 +33,18 @@
 		await navigator.clipboard.writeText(window.location.href);
 
 		return () => clearTimeout(timeout);
+	};
+
+	const share = () => {
+		if (
+			navigator &&
+			navigator.canShare &&
+			navigator.canShare({
+				url: `https://told-you.so/messages/${id}`
+			})
+		) {
+			navigator.share({ url: `https://told-you.so/messages/${id}` });
+		}
 	};
 </script>
 
@@ -83,6 +97,26 @@
 				]}
 			/>
 		</ToggleConfetti>
+		{#if mounted}
+			<button
+				type="button"
+				onclick={share}
+				class={[
+					'btn btn-outline btn-wide mt-2 font-bold lowercase',
+					!(
+						navigator &&
+						navigator.canShare &&
+						navigator.canShare({
+							url: `https://told-you.so/messages/${id}`
+						})
+					) && 'hidden'
+				]}
+				data-umami-event="share"
+				data-umami-event-from="message"
+			>
+				↗️ Share
+			</button>
+		{/if}
 	{:else}
 		<div
 			class="pointer-events-none fixed -top-12 left-0 hidden h-dvh w-dvw justify-center overflow-hidden motion-safe:flex"
