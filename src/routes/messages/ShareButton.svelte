@@ -1,21 +1,40 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	const { id }: { id: string } = $props();
 
+	let mounted = $state(false);
+	onMount(() => (mounted = true));
+
 	const share = () => {
-		if (navigator && navigator.canShare && navigator.canShare()) {
+		if (
+			navigator &&
+			navigator.canShare &&
+			navigator.canShare({
+				url: `https://told-you.so/messages/${id}`
+			})
+		) {
 			navigator.share({ url: `https://told-you.so/messages/${id}` });
 		}
 	};
 </script>
 
-<button
-	class={[
-		'btn btn-ghost btn-sm lowercase',
-		!(navigator && navigator.canShare && navigator.canShare()) && 'hidden'
-	]}
-	type="button"
-	onclick={share}
-	data-umami-event="share"
->
-	↗️ Share
-</button>
+{#if mounted}
+	<button
+		class={[
+			'btn btn-ghost btn-sm lowercase',
+			!(
+				navigator &&
+				navigator.canShare &&
+				navigator.canShare({
+					url: `https://told-you.so/messages/${id}`
+				})
+			) && 'hidden'
+		]}
+		type="button"
+		onclick={share}
+		data-umami-event="share"
+	>
+		↗️ Share
+	</button>
+{/if}
