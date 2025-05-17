@@ -46,7 +46,7 @@
 
 <MaxWidthForm>
 	{#if availableAt.diffNow().as('seconds') >= 0}
-		<CountdownTimer {availableAt} />
+		<CountdownTimer id={data.id || ''} {availableAt} />
 	{:else}
 		<MessageContent message={data.content} encrypted={data.encrypted} />
 	{/if}
