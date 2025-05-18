@@ -1,11 +1,10 @@
+import type { Load } from '@sveltejs/kit';
 import { DateTime } from 'luxon';
 
 import type SvxComponent_t from '$lib/SvxComponent';
 
-import type { PageServerLoad } from './$types';
-
-export const load: PageServerLoad = async () => {
-	const modules = import.meta.glob('./content/*.svx');
+export const load: Load = async () => {
+	const modules = import.meta.glob('/src/lib/content/*.svx');
 
 	const blogPromises = Object.entries(modules).map(([path, resolver]) =>
 		resolver().then((post) => ({

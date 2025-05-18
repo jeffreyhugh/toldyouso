@@ -3,18 +3,18 @@ import { error, type Load } from '@sveltejs/kit';
 import type SvxComponent_t from '$lib/SvxComponent';
 
 export const load: Load = async ({ params }) => {
-	try {
-		const post = (await import(
-			/* @vite-ignore */
-			`../content/${params.slug}.svx`
-		)) as SvxComponent_t;
+	const modules = import.meta.glob('/src/lib/content/*.svx');
 
-		return {
-			PostContent: post.default,
-			meta: { ...post.metadata, slug: params.slug }
-		};
-	} catch (err) {
-		console.error(err);
+	const contentModule = modules[`/src/lib/content/${params.slug}.svx`];
+
+	if (!contentModule) {
 		error(404);
 	}
+
+	const { default: component, metadata } = (await contentModule().then()) as SvxComponent_t;
+
+	return {
+		PostContent: component,
+		meta: { ...metadata, slug: params.slug }
+	};
 };
