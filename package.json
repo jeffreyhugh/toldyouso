@@ -21,6 +21,7 @@
 		"@sveltejs/adapter-node": "^5.2.12",
 		"@sveltejs/kit": "^2.16.0",
 		"@sveltejs/vite-plugin-svelte": "^5.0.0",
+		"@tailwindcss/typography": "^0.5.16",
 		"@tailwindcss/vite": "^4.0.0",
 		"@types/luxon": "^3.6.2",
 		"daisyui": "^5.0.27",
@@ -30,6 +31,7 @@
 		"eslint-plugin-svelte": "^3.0.0",
 		"eslint-plugin-unused-imports": "^4.1.4",
 		"globals": "^16.0.0",
+		"mdsvex": "^0.12.3",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.3",
 		"prettier-plugin-tailwindcss": "^0.6.11",
@@ -44,6 +46,7 @@
 	},
 	"pnpm": {
 		"onlyBuiltDependencies": [
+			"@tailwindcss/oxide",
 			"esbuild"
 		]
 	},
@@ -55,7 +58,11 @@
 		"js-base64": "^3.7.7",
 		"luxon": "^3.6.1",
 		"mode-watcher": "^1.0.2",
-		"outdent": "^0.8.0"
+		"outdent": "^0.8.0",
+		"rehype-autolink-headings": "^7.1.0",
+		"rehype-slug": "^6.0.0",
+		"remark-gfm": "^4.0.1",
+		"unist-util-visit": "^5.0.0"
 	},
 	"typings": "/src/lib/aes256.d.ts"
 }

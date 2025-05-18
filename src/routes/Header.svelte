@@ -36,7 +36,7 @@
 		<div class="hidden md:block">&middot;</div>
 		<a href="/messages" class="lowercase italic">My Messages</a>
 		<div class="hidden md:block">&middot;</div>
-		<a href="/about" class="lowercase italic">About</a>
+		<a href="/blog/about" class="lowercase italic">About</a>
 		<div class="hidden md:block">&middot;</div>
 		<a href="/legal" class="lowercase italic">Legal</a>
 		<div class="hidden md:block">&middot;</div>

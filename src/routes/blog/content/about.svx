@@ -1,0 +1,87 @@
+---
+title: About told-you.so
+description: Everything you need to know about told-you.so, including changes in the new v2.
+author: Jeffrey Hugh
+date: 4/25/2025
+---
+
+<p class="lead">
+  told-you.so v1 came out a few years ago as a side project to practice web development.
+  I've learned a lot since v1 in 2021, and with consistent traffic, I decided to rewrite this project from the ground up.
+  Here's everything to know about the new told-you.so v2.
+</p>
+
+## History
+
+told-you.so started as a project a few years ago to learn the basics of [TailwindCSS](https://tailwindcss.com) and Next.js/Vercel serverless functions.
+The serverless functions never made it into the final build because I couldn't figure out how to reuse the database connections.
+I ended up just writing a custom backend in Go which hooked up to a local PostgreSQL server.
+I was able to get the project deployed in about a week because I didn't have to spend time trying to learn serverless function/database interactions (quite honestly, I still don't know how to connect a serverless function to a standalone DB).
+
+Since the original startup in 2021, a total of over 300,000 messages have been saved in the database, largely thanks to [BoredButton.com](https://boredbutton.com).
+
+## What's new
+
+### Learning a new skill
+
+Easily the biggest change is that the site now runs on [Svelte](https://svelte.dev).
+I got so fed up with the limitations imposed by React Server Components that I decided to try learning Svelte.
+So far, Svelte is awesome.
+Coming from React hooks made learning runes pretty easy (made easier once I got past the "re-render the entire component on state change" mental model).
+This migration is fitting -- told-you.so is a side project for learning, where v1 was Tailwind and v2 is Svelte.
+
+### About the backend
+
+As far as the backend goes, [Supabase](https://supabase.com) has completely replaced the custom Go API.
+Supabase's [anonymous sign-in](https://supabase.com/docs/guides/auth/auth-anonymous) feature means everyone gets an account when they visit the site, which is used to aggregate messages to a dashboard.
+This is a much-needed improvement over the old system of having to copy the link and remember where it was saved.
+Users can attach an email to the anonymous session to access their messages from another computer at a later date.
+
+Supabase has baked-in support for PostgreSQL's [row-level security](https://www.postgresql.org/docs/current/ddl-rowsecurity.html) (RLS).
+Users connect directly to the database (well, to the pooler through a reverse proxy or two), and all transactions must be filtered through these policies before reading or writing data.
+What's even cooler is that told-you.so uses a combination of RLS policies and PostgreSQL views to prevent a user from reading the message's content before it's supposed to be released, so no extra server-side logic had to be implemented.
+
+### Fewer `className`s
+
+Or, to be more precise, fewer `class`es.
+Svelte doesn't use the `className` keyword like React.
+
+I've moved to [daisyUI](https://daisyUI.com) instead of vanilla Tailwind.
+It's nice to focus on making the website work instead of making the buttons look perfect.
+
+### Message Integrity
+
+I added the message's SHA256 as a way to prove the contents of the message haven't changed.
+The message itself won't be released before the release date, but the SHA256 will be visible from the message page.
+If the message page were to be added to an internet archive, the hash will serve as proof that the message wasn't edited on the backend.
+
+If your message is encrypted, the SHA256 will be taken of the stored ciphertext instead of the plaintext.
+Why? 
+When selecting a message from the database, you're actually selecting from a view, where one of those columns is the checksum.
+The checksum is calculated at query time instead of being stored alongside the data, and since the database doesn't have the plaintext of an encrypted message, it can only hash the ciphertext.
+
+As always, encryption is done client-side with AES-256.
+The ciphertext is sent and stored on the server, and the server never stores (or knows) the password.
+
+## Migration from v1
+
+### Legacy support
+
+All v1 messages made it into the v2 database.
+v1 messages were accessed with a slug, but their ID in the DB was of type `SERIAL`.
+The Go API used the [speps/go-hashids](https://github.com/speps/go-hashids) to turn these numeric IDs into a short string.
+It worked well in v1, but in v2, I was no longer using the numeric IDs (in favor of `UUID`s).
+
+Each row ended up having an optional `legacy_slug` column of type `TEXT`.
+If the v1 `/p` URL is accessed, a lookup is done by legacy slug.
+If the message exists and it's unencrypted, the user receives a permanent redirect to the new `/messages` page.
+However, if the message is encrypted, the user will stay on the `/p` URL, which has to call an endpoint on the server to decrypt the message.
+Why?
+I used a Node.js module that magically worked on the browser for v1 despite needing the Node.js `Crypto` API.
+I couldn't figure out how to polyfill/transpile/whatever it needed to work for v2, so I scrapped it.
+v2 uses the `WebCrypto` API.
+
+## Conclusion
+
+That's about all the changes in the v2 rewrite of told-you.so.
+I'm working on recounting how I migrated from v1 to v2 with zero downtime -- stay tuned.

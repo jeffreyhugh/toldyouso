@@ -1,18 +1,57 @@
 import adapter from '@sveltejs/adapter-node';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
+import { mdsvex } from 'mdsvex';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
+import rehypeSlug from 'rehype-slug';
+import remarkGfm from 'remark-gfm';
+import { visit } from 'unist-util-visit';
 
-/** @type {import('@sveltejs/kit').Config} */
 const config = {
-	// Consult https://svelte.dev/docs/kit/integrations
-	// for more information about preprocessors
-	preprocess: vitePreprocess(),
-
-	kit: {
-		// adapter-auto only supports some environments, see https://svelte.dev/docs/kit/adapter-auto for a list.
-		// If your environment is not supported, or you settled on a specific environment, switch out the adapter.
-		// See https://svelte.dev/docs/kit/adapters for more information about adapters.
-		adapter: adapter()
-	}
+	preprocess: [
+		vitePreprocess(),
+		mdsvex({
+			remarkPlugins: [remarkGfm],
+			rehypePlugins: [
+				// https://lukenguyen.me/blog/open-new-tab-link-mdx-astro/
+				() => {
+					return (tree) => {
+						visit(tree, 'element', (node) => {
+							if (
+								node.tagName === 'a' &&
+								node.properties?.href &&
+								node.properties.href.toString().startsWith('http')
+							) {
+								node.properties['target'] = '_blank';
+							}
+						});
+					};
+				},
+				rehypeSlug,
+				[
+					rehypeAutolinkHeadings,
+					{
+						behavior: 'append',
+						content: {
+							type: 'element',
+							tagName: 'span',
+							properties: {
+								className: 'link-icon text-base',
+								style: 'text-decoration-line:none;'
+							},
+							children: [
+								{
+									type: 'text',
+									value: '#'
+								}
+							]
+						}
+					}
+				]
+			]
+		})
+	],
+	kit: { adapter: adapter() },
+	extensions: ['.svelte', '.svx']
 };
 
 export default config;
