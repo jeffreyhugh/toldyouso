@@ -28,7 +28,7 @@ Easily the biggest change is that the site now runs on [Svelte](https://svelte.d
 I got so fed up with the limitations imposed by React Server Components that I decided to try learning Svelte.
 So far, Svelte is awesome.
 Coming from React hooks made learning runes pretty easy (and it was significantly easier once I got past the "re-render the entire component on state change" mental model).
-This migration is fitting -- told-you.so is a side project for learning, where v1 was Tailwind and v2 is Svelte.
+This migration is fitting; told-you.so is a side project for learning, where v1 was Tailwind and v2 is Svelte.
 
 ### About the backend
 
