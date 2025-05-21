@@ -150,9 +150,9 @@
 		</fieldset>
 
 		<fieldset class="fieldset" disabled={submitting}>
-			<legend class="fieldset-legend text-sm lowercase"
-				>Stuck? Choose a prompt to get started</legend
-			>
+			<legend class="fieldset-legend text-sm lowercase">
+				Stuck? Choose a prompt to get started
+			</legend>
 			<div class="flex w-full flex-wrap gap-2">
 				{#each Object.keys(suggestions) as title (title)}
 					{@render suggestion(title, suggestions[title].content, suggestions[title].event)}
@@ -173,6 +173,7 @@
 					class="grow"
 					placeholder="optional-PASSWORD-1"
 					type="password"
+					autocomplete="new-password"
 				/>
 				<div class="dropdown dropdown-end dropdown-hover">
 					<div
