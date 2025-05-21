@@ -33,10 +33,10 @@
 )}
 	<a
 		href={`/blog/${metadata.slug}`}
-		class="bg-base-200 hover:bg-base-300 rounded-box flex flex-col gap-1 p-4"
+		class="bg-base-200 hover:bg-base-300 rounded-box flex w-full flex-col gap-1 p-4"
 	>
 		{#if metadata.title}
-			<div class="flex items-center gap-2 text-2xl font-bold lowercase">
+			<div class="flex items-center gap-3 text-2xl font-bold lowercase">
 				{#if metadata.author === 'Jeffrey Hugh'}
 					<span title="featured" class="bg-vibrant aspect-square size-4 rounded-md"></span>
 				{/if}

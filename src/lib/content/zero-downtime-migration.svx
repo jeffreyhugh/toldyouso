@@ -1,0 +1,199 @@
+---
+title: How I migrated to told-you.so v2 with zero downtime
+description: told-you.so v1 ran its frontend on Vercel and its backend on a VPS from OVH. Here's how I migrated everything to my own cloud, protected by Cloudflare, with zero downtime.
+author: Jeffrey Hugh
+date: 5/20/2025
+---
+
+<p class="lead">
+  told-you.so v1 ran its frontend on Vercel and its backend on a VPS from OVH. 
+  v2 needed to run on my personal cloud, proxied through Cloudflare. 
+  Here's the preparation and steps I took to migrate with zero downtime and zero data loss.
+</p>
+
+## v1 vs v2
+
+### v1's Architecture
+
+told-you.so v1 ran a PostgreSQL database on bare metal with an API managed by `systemd`.
+Certificates were manually renewed every 3 months (or when I happened to notice told-you.so went down), and users connected directly to the VPS.
+Tbe frontend was hosted on Vercel, so I basically never had to worry about it going down.
+Overall, this was fine for a small side project.
+
+I was inspired to move because I was paying around $12/mo for the VPS.
+I used to use this VPS for several projects, but just about the only thing running on it at the time of migration was told-you.so.
+Paying $12/mo to host a side project wasn't sustainable.
+
+### v2's Architecture
+
+told-you.so v2 would end up being hosted entirely on my own server, with "security through obscurity" (i.e., proxy) by Cloudflare.
+I used [Coolify](https://coolify.io) to manage other deployments on my network, so I wanted to get everything integrated under one roof.
+
+v2 uses self-hosted [Supabase](https://supabase.com) as the backend and a [Nixpacks](https://coolify.io/docs/builds/packs/nixpacks) build for the frontend.
+Both are proxied through Cloudflare, which caches about 80% of content.
+I have another post coming up about the statistics of running a small side project in production like this one -- stay tuned.
+
+## Migration Plan
+
+### Steps
+
+Here's a list of everything I'd have to do to get told-you.so moved over.
+The order of these steps has not yet been determined.
+
+- Transfer told-you.so's nameservers to Cloudflare
+- Set up told-you.so's DNS records
+- Deploy v2 to my server
+- Migrate user data
+
+### Game Plan
+
+Ultimately, my plan was to move everyone over to v2 at once, have users start writing to the new DB, and then take a few extra minutes to migrate the old database after I verified the new deployment was good.
+As such, I ordered these steps in this way:
+
+1. Deploy v2 to my server
+1. Set up told-you.so's DNS records (this can be done before nameservers are assigned)
+1. Transfer told-you.so's nameservers to Cloudflare
+1. Migrate user data (leisurely)
+
+## Execution
+
+### Deploy v2
+
+This was fairly straightforward.
+I had already been deploying and testing on my server, so one final `git push` meant the latest version was good to go.
+I put [the first message into the v2 production database](/messages/362b80c5-44c3-4990-8541-760a6aac28f7).
+
+### Set up DNS Records
+
+Cloudflare does a really good job of auto-importing DNS records.
+My `MX` and `TXT` records all got pulled over without issue.
+Since v2 was hosted on my server, I needed to change the `CNAME`s for the root and the API to my IP instead of the VPS's IP.
+I turned off proxying at first, and set a short TTL in case I needed to revert back to v1.
+
+### Transfer Nameservers
+
+Namecheap, my registrar, makes it easy to set different nameservers.
+I just copied the Cloudflare-provided nameservers and pressed save.
+Easy peasy.
+
+### The Unexpected
+
+Of course, something went wrong.
+I kept getting trapped in a redirect loop whenever I'd visit the new site proxied through Cloudflare.
+By default, when Cloudflare proxies a site, it requests the origin's port `80` (insecure) because Cloudflare boasts automatic SSL that users don't need to manage.
+However, Coolify *was* managing SSL for me.
+Here's what was happening:
+
+1. User requests `told-you.so:443`
+1. Cloudflare asks origin for `told-you.so:80`
+1. Coolify, expecting users to use SSL, returns a redirect to `told-you.so:443`
+1. Cloudflare diligently forwards the redirect, instructing the user to request `told-you.so:443`
+1. Rinse and repeat
+
+There's a setting in SSL/TLS > Overview to manage how Cloudflare should ask the origin server for content.
+Once I set it to "Full" (the default was "Flexible"), the redirect loop was solved.
+
+### Data Migration
+
+As I touched on in [the v2 changelog](/blog/about), v1 used a `SERIAL` column as its ID, where v2 uses a `UUID`.
+(aside: I actually learned just the other night that there's a PostgreSQL extension for hash IDs that probably would've allowed me to keep the same ID scheme, but I prefer `UUID`s anyway.)
+I added a `legacy_slug` column to the `messages` table which contains this hash ID, so I could do static lookups for the migrated data.
+
+To start, I got the number of messages in the v1 database.
+
+```sql
+SELECT COUNT(*) FROM messages;
+```
+
+```text
+ count  
+--------
+ 346320
+(1 row)
+```
+
+Now, I needed to generate legacy slugs for all numbers up to `346320`, using the same parameters as the original API.
+
+```go
+package main
+  
+import (
+  "fmt"
+  "github.com/speps/go-hashids"
+)
+
+const SALT = "secret"
+
+func enc(num int) string {
+  hd := hashids.NewData()
+  hd.Salt = SALT
+  hd.MinLength = 6
+  h, _ := hashids.NewWithData(hd)
+  location, _ := h.EncodeInt64([]int64{int64(num)})
+  return fmt.Sprintf("%d,%s", num, location)
+}
+
+func main() {
+  for i := 0; i <= 346320; i++ {
+    fmt.Println(enc(i))
+  }
+}
+```
+
+```sh
+$ go run main.go > ids.csv
+```
+
+Now, those IDs were loaded into a new table alongside the v1 data.
+
+```sql
+CREATE TABLE legacy (
+  id int PRIMARY KEY,
+  slug text
+);
+```
+
+```sql
+\\COPY legacy(id,slug) FROM './ids.csv' DELIMITER ',' CSV
+```
+
+Finally, `JOIN` the tables, change the column names to align with v2, and save the result to a `.csv`.
+
+```sql
+\\COPY (
+  SELECT 
+    gen_random_uuid() AS id,
+    legacy.slug AS legacy_slug,
+    null AS owned_by,
+    messages.submitted_at AS created_at,
+    messages.available_at AS available_at,
+    messages.encrypted AS encrypted,
+    messages.message AS content
+  FROM 
+    messages
+    LEFT OUTER JOIN legacy
+      ON messages.id = legacy.id
+)
+TO 
+  ./data.csv
+WITH
+  CSV DELIMITER ','
+  HEADER
+```
+
+This is 3 year's worth of messages all wrapped into a single `.csv`.
+I couldn't believe how little space the data took up -- blog post upcoming.
+
+### Finishing Touches
+
+After I saw the v2 requests start to pour in and everything looked good, I merged in the v1 data.
+Then, I verified the [first ever message on told-you.so](/messages/8ab11ff1-9901-4050-84e9-cddd485eec67) redirected to its new home, and called the migration done.
+
+## Conclusion
+
+This migration went well.
+I don't know what else to write about it -- it was good?
+I'd do it again?
+Thank goodness everything went according to plan.
+
+**Want to read more?** I'm working on an article explaining how many resources told-you.so used over the past 3 years -- stay tuned!

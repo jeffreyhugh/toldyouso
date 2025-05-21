@@ -20,9 +20,9 @@ I was able to get the project deployed in about a week because I didn't have to 
 
 Since the original startup in 2021, a total of over 300,000 messages have been saved in the database, largely thanks to [BoredButton.com](https://boredbutton.com).
 
-## What's new
+## What's New
 
-### Learning a new skill
+### Learning a New Skill
 
 Easily the biggest change is that the site now runs on [Svelte](https://svelte.dev).
 I got so fed up with the limitations imposed by React Server Components that I decided to try learning Svelte.
@@ -30,7 +30,7 @@ So far, Svelte is awesome.
 Coming from React hooks made learning runes pretty easy (and it was significantly easier once I got past the "re-render the entire component on state change" mental model).
 This migration is fitting; told-you.so is a side project for learning, where v1 was Tailwind and v2 is Svelte.
 
-### About the backend
+### About the Backend
 
 As far as the backend goes, [Supabase](https://supabase.com) has completely replaced the custom Go API.
 Supabase's [anonymous sign-in](https://supabase.com/docs/guides/auth/auth-anonymous) feature means everyone gets an account when they visit the site, which is used to aggregate messages to a dashboard.
@@ -65,7 +65,7 @@ The ciphertext is sent and stored on the server, and the server never stores (or
 
 ## Migration from v1
 
-### Legacy support
+### Legacy Support
 
 All v1 messages made it into the v2 database.
 v1 messages were accessed with a slug, but their ID in the DB was of type `SERIAL`.
@@ -84,4 +84,7 @@ v2 uses the `WebCrypto` API.
 ## Conclusion
 
 That's about all the changes in the v2 rewrite of told-you.so.
-I'm working on recounting how I migrated from v1 to v2 with zero downtime -- stay tuned.
+I'll continue to iterate and improve features when inspiration strikes, but for now, I'm happy with how v2 turned out.
+
+**Want to read more?**
+Check out [how I migrated from v1 to v2 with zero downtime and zero data loss](/blog/zero-downtime-migration).

@@ -17,8 +17,8 @@ export const load: Load = async () => {
 
 	blogEntries.sort(
 		(a, b) =>
-			DateTime.fromFormat(a.date || '', 'M/d/y').toUnixInteger() -
-			DateTime.fromFormat(b.date || '', 'M/d/y').toUnixInteger()
+			DateTime.fromFormat(b.date || '', 'M/d/y').toUnixInteger() -
+			DateTime.fromFormat(a.date || '', 'M/d/y').toUnixInteger()
 	);
 
 	return {

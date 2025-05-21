@@ -5,8 +5,8 @@
 
 	let { data } = $props();
 
-	const { title, description, author, date } = data.meta;
-	const { PostContent } = data;
+	const { title, description, author, date } = $derived(data.meta);
+	const { PostContent } = $derived(data);
 
 	const createdAt = $derived(DateTime.fromFormat(date || '', 'M/d/y'));
 </script>
