@@ -3,7 +3,7 @@
 	const { children } = $props();
 </script>
 
-{#if !PUBLIC_NOADS}
+{#if PUBLIC_NOADS !== 'true'}
 	<div
 		id="ad"
 		class="advertisement sponsor mb-8 hidden max-w-1/4 grow overflow-auto px-12 lg:block"

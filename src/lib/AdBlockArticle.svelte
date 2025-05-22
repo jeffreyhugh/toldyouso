@@ -2,7 +2,7 @@
 	import { PUBLIC_NOADS } from '$env/static/public';
 </script>
 
-{#if !PUBLIC_NOADS}
+{#if PUBLIC_NOADS !== 'true'}
 	<div id="ad" class="advertisement sponsor mx-auto my-2 w-full max-w-2xl" data-ad="true">
 		<div class="text-base-content/80 ml-1 text-xs lowercase">Advertisement</div>
 		<div class="border-base-300 overflow-hidden border">
