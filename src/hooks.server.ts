@@ -36,7 +36,8 @@ const supabase: Handle = async ({ event, resolve }) => {
 			data: { session }
 		} = await event.locals.supabase.auth.getSession();
 		if (!session) {
-			return { session: null, user: null };
+			const { data } = await event.locals.supabase.auth.signInAnonymously();
+			return { session: data.session, user: data.user };
 		}
 
 		const {
@@ -45,7 +46,8 @@ const supabase: Handle = async ({ event, resolve }) => {
 		} = await event.locals.supabase.auth.getUser();
 		if (error) {
 			// JWT validation has failed
-			return { session: null, user: null };
+			const { data } = await event.locals.supabase.auth.signInAnonymously();
+			return { session: data.session, user: data.user };
 		}
 
 		// @ts-expect-error reassigned later
