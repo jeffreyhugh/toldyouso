@@ -46,7 +46,7 @@
 				'prose-h1:lowercase prose-h2:lowercase prose-h3:lowercase prose-h4:lowercase',
 				'prose-a:has-[span]:has-[.link-icon]:no-underline prose-a:has-[span]:has-[.link-icon]:pl-2',
 				'prose-a:has-[span]:has-[.link-icon]:hover:underline',
-				'prose-a:text-transparent prose-a:bg-clip-text prose-a:bg-gradient-to-br prose-a:from-fuchsia-600 prose-a:to-purple-600'
+				'prose-a:text-transparent prose-a:bg-clip-text prose-a:bg-gradient-to-br prose-a:from-fuchsia-600 prose-a:to-purple-600 prose-a:font-[weight:inherit]'
 			]}
 		>
 			<PostContent />

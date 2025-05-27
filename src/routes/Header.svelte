@@ -36,7 +36,14 @@
 		<div class="hidden md:block">&middot;</div>
 		<a href="/messages" class="lowercase italic">My Messages</a>
 		<div class="hidden md:block">&middot;</div>
-		<a href="/blog/about" class="lowercase italic">About</a>
+		<a href="/blog/about" class="indicator lowercase italic">
+			<span class="indicator-item status bg-vibrant translate-x-2 translate-y-1" title="new"></span>
+			<span
+				class="indicator-item status bg-vibrant translate-x-2 translate-y-1 animate-ping"
+				title="new"
+			></span>
+			<span>Blog</span>
+		</a>
 		<div class="hidden md:block">&middot;</div>
 		<a href="/legal" class="lowercase italic">Legal</a>
 		<div class="hidden md:block">&middot;</div>

@@ -1,4 +1,5 @@
 import { error, type Load } from '@sveltejs/kit';
+import { DateTime } from 'luxon';
 
 import type SvxComponent_t from '$lib/SvxComponent';
 
@@ -12,6 +13,11 @@ export const load: Load = async ({ params }) => {
 	}
 
 	const { default: component, metadata } = (await contentModule().then()) as SvxComponent_t;
+
+	const createdAt = DateTime.fromFormat(metadata.date || '', 'M/d/y');
+	if (createdAt.isValid && createdAt.diffNow().as('seconds') > 0) {
+		error(404);
+	}
 
 	return {
 		PostContent: component,

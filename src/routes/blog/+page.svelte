@@ -1,25 +1,30 @@
 <script lang="ts">
 	import { DateTime } from 'luxon';
 
-	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
+	import MaxWidthArticle from '$lib/MaxWidthArticle.svelte';
 
 	import type { PageData } from './$types';
 
 	const { data }: { data: PageData } = $props();
+	let featuredOnly = $state(false);
 </script>
 
 <svelte:head>
 	<title>told-you.so · blog</title>
 </svelte:head>
 
-<MaxWidthForm noAds>
+<MaxWidthArticle>
+	<div class="mb-4 flex w-full items-center gap-2">
+		Featured Articles Only
+		<input type="checkbox" class="toggle" bind:checked={featuredOnly} />
+	</div>
 	{#each data.data.blogEntries as blogEntryMetadata (blogEntryMetadata.slug)}
 		{@render blogEntry(
 			blogEntryMetadata,
 			DateTime.fromFormat(blogEntryMetadata.date || '', 'M/d/y')
 		)}
 	{/each}
-</MaxWidthForm>
+</MaxWidthArticle>
 
 {#snippet blogEntry(
 	metadata: {
@@ -33,7 +38,10 @@
 )}
 	<a
 		href={`/blog/${metadata.slug}`}
-		class="bg-base-200 hover:bg-base-300 rounded-box flex w-full flex-col gap-1 p-4"
+		class={[
+			'bg-base-200 hover:bg-base-300 rounded-box flex w-full flex-col gap-1 p-4',
+			featuredOnly && metadata.author !== 'Jeffrey Hugh' && 'hidden'
+		]}
 	>
 		{#if metadata.title}
 			<div class="flex items-center gap-3 text-2xl font-bold lowercase">

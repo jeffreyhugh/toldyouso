@@ -6,7 +6,7 @@
 {#if PUBLIC_NOADS !== 'true'}
 	<div
 		id="ad"
-		class="advertisement sponsor mb-8 hidden max-w-1/4 grow overflow-auto px-12 lg:block"
+		class="advertisement sponsor mb-8 hidden max-w-1/4 grow overflow-auto px-12 select-none lg:block"
 		data-ad="true"
 	>
 		<div class="text-base-content/80 pl-1 text-xs lowercase">Advertisement</div>

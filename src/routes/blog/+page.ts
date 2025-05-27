@@ -22,7 +22,15 @@ export const load: Load = async () => {
 	);
 
 	return {
-		data: { blogEntries }
+		data: {
+			// blogEntries
+			blogEntries: blogEntries.filter(
+				(b) =>
+					DateTime.fromFormat(b.date || '', 'M/d/y')
+						.diffNow()
+						.as('seconds') <= 0
+			)
+		}
 	};
 };
 
