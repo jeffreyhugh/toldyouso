@@ -5,6 +5,8 @@ author: Jeffrey Hugh
 date: 5/20/2025
 ---
 
+<script> import AdBlockArticle from '$lib/AdBlockArticle.svelte'; </script>
+
 <p class="lead">
   told-you.so v1 ran its frontend on Vercel and its backend on a VPS from OVH. 
   v2 needed to run on my personal cloud, proxied through Cloudflare. 
@@ -32,6 +34,8 @@ I used [Coolify](https://coolify.io) to manage other deployments on my network, 
 v2 uses self-hosted [Supabase](https://supabase.com) as the backend and a [Nixpacks](https://coolify.io/docs/builds/packs/nixpacks) build for the frontend.
 Both are proxied through Cloudflare, which caches about 80% of content.
 I have another post coming up about the statistics of running a small side project in production like this one -- stay tuned.
+
+<AdBlockArticle />
 
 ## Migration Plan
 
@@ -75,6 +79,8 @@ I turned off proxying at first, and set a short TTL in case I needed to revert b
 Namecheap, my registrar, makes it easy to set different nameservers.
 I just copied the Cloudflare-provided nameservers and pressed save.
 Easy peasy.
+
+<AdBlockArticle />
 
 ### The Unexpected
 
@@ -188,6 +194,8 @@ I couldn't believe how little space the data took up -- blog post upcoming.
 
 After I saw the v2 requests start to pour in and everything looked good, I merged in the v1 data.
 Then, I verified the [first ever message on told-you.so](/messages/8ab11ff1-9901-4050-84e9-cddd485eec67) redirected to its new home, and called the migration done.
+
+<AdBlockArticle />
 
 ## Conclusion
 

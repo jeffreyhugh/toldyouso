@@ -15,7 +15,7 @@
 
 <MaxWidthArticle>
 	<div class="mb-4 flex w-full items-center gap-2">
-		Featured Articles Only
+		Featured Articles
 		<input type="checkbox" class="toggle" bind:checked={featuredOnly} />
 	</div>
 	{#each data.data.blogEntries as blogEntryMetadata (blogEntryMetadata.slug)}
