@@ -14,10 +14,10 @@
 </svelte:head>
 
 <MaxWidthArticle>
-	<div class="mb-4 flex w-full items-center gap-2">
+	<!-- <div class="mb-4 flex w-full items-center gap-2">
 		Featured Articles
 		<input type="checkbox" class="toggle" bind:checked={featuredOnly} />
-	</div>
+	</div> -->
 	{#each data.data.blogEntries as blogEntryMetadata (blogEntryMetadata.slug)}
 		{@render blogEntry(
 			blogEntryMetadata,

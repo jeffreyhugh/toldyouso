@@ -1,14 +1,14 @@
 <script lang="ts">
 	import { setMode, setTheme, theme } from 'mode-watcher';
 
-	import { page } from '$app/state';
+	// import { page } from '$app/state';
 
-	let visitedBlog: string | null = $state('true');
-	$effect(() => {
-		if (page.url) {
-			visitedBlog = localStorage.getItem('visitedBlog');
-		}
-	});
+	// let visitedBlog: string | null = $state('true');
+	// $effect(() => {
+	// 	if (page.url) {
+	// 		visitedBlog = localStorage.getItem('visitedBlog');
+	// 	}
+	// });
 </script>
 
 <div class="mb-8 flex w-full flex-col items-stretch gap-2">
@@ -45,22 +45,22 @@
 		<div class="hidden md:block">&middot;</div>
 		<a href="/messages" class="lowercase italic">My Messages</a>
 		<div class="hidden md:block">&middot;</div>
-		<a href="/blog" class="indicator lowercase italic">
-			{#if !page.url.pathname.startsWith('/blog') && visitedBlog === null}
+		<a href="/blog/about" class="indicator lowercase italic">
+			<!-- {#if !page.url.pathname.startsWith('/blog') && visitedBlog === null}
 				<span class="indicator-item status bg-vibrant translate-x-2.5 translate-y-1" title="new"
 				></span>
 				<span
 					class="indicator-item status bg-vibrant translate-x-2.5 translate-y-1 motion-safe:animate-ping"
 					title="new"
 				></span>
-			{/if}
-			<span>Blog</span>
+			{/if} -->
+			<span>About</span>
 		</a>
 		<div class="hidden md:block">&middot;</div>
 		<a href="/legal" class="lowercase italic">Legal</a>
 		<div class="hidden md:block">&middot;</div>
-		<a href="https://github.com/jeffreyhugh/toldyouso" target="_blank" class="lowercase italic"
-			>GitHub</a
-		>
+		<a href="https://github.com/jeffreyhugh/toldyouso" target="_blank" class="lowercase italic">
+			GitHub
+		</a>
 	</div>
 </div>

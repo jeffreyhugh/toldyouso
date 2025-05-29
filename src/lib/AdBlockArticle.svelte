@@ -1,8 +1,7 @@
-<script lang="ts">
-</script>
+<!-- <script lang="ts">
+</script> -->
 
-<!-- {#if PUBLIC_NOADS !== 'true'} -->
-<div id="ad" class="advertisement sponsor mx-auto my-2 w-full max-w-2xl select-none" data-ad="true">
+<!-- <div id="ad" class="advertisement sponsor mx-auto my-2 w-full max-w-2xl select-none" data-ad="true">
 	<div class="text-base-content/80 ml-1 text-xs lowercase">Advertisement</div>
 	<div class="border-base-300 overflow-hidden border">
 		<div>
@@ -11,7 +10,6 @@
 				src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7806885462809506"
 				crossorigin="anonymous"
 			></script>
-			<!-- before submit -->
 			<ins
 				class="adsbygoogle"
 				style="display:block"
@@ -25,5 +23,4 @@
 			</script>
 		</div>
 	</div>
-</div>
-<!-- {/if} -->
+</div> -->

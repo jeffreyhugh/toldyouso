@@ -6,8 +6,8 @@
 	import { onMount } from 'svelte';
 
 	import { invalidate } from '$app/navigation';
-	import { page } from '$app/state';
 
+	// import { page } from '$app/state';
 	import Header from './Header.svelte';
 
 	let { data, children } = $props();
@@ -21,12 +21,12 @@
 		return () => data.subscription.unsubscribe();
 	});
 
-	$effect(() => {
-		console.log(page.url.pathname);
-		if (page.url.pathname.startsWith('/blog')) {
-			localStorage.setItem('visitedBlog', 'true');
-		}
-	});
+	// $effect(() => {
+	// 	console.log(page.url.pathname);
+	// 	if (page.url.pathname.startsWith('/blog')) {
+	// 		localStorage.setItem('visitedBlog', 'true');
+	// 	}
+	// });
 </script>
 
 <svelte:head>
