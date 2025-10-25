@@ -4,7 +4,11 @@
 	import { OnMessageLegacy } from './adSlots';
 
 	onMount(() => {
-		(window.adsbygoogle = window.adsbygoogle || []).push({});
+		try {
+			(window.adsbygoogle = window.adsbygoogle || []).push({});
+		} catch (err: unknown) {
+			console.error(err);
+		}
 	});
 </script>
 
