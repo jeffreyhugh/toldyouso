@@ -24,7 +24,11 @@
 
 	onMount(async () => {
 		const adblock = await detectAdblock();
-		umami.identify({ adblock });
+		umami.identify({
+			adblock,
+			noAdblock: adblock ? undefined : true,
+			yesAdblock: adblock ? true : undefined
+		});
 	});
 
 	// $effect(() => {
