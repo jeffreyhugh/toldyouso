@@ -14,6 +14,7 @@
 
 	const { data }: PageProps = $props();
 	let message = $state('');
+	let enablePassword = $state(false);
 	let password = $state('');
 	let submitting = $state(false);
 
@@ -160,38 +161,45 @@
 			</div>
 		</fieldset>
 
-		<fieldset class="fieldset" disabled={submitting}>
-			<legend class="fieldset-legend text-sm lowercase">
-				Optional password to encrypt message
+		<fieldset class="fieldset flex flex-row items-center justify-between" disabled={submitting}>
+			<legend class="fieldset-legend w-full text-sm lowercase">
+				(Not required) Use a password to encrypt this message
+				<input type="checkbox" bind:checked={enablePassword} class="checkbox" />
 			</legend>
-			<label
-				class="input w-full focus-within:border-purple-600 focus-within:ring-4 focus-within:ring-fuchsia-600 focus-within:outline-none"
-			>
-				<input
-					bind:value={password}
-					name="password"
-					class="grow"
-					placeholder="optional-PASSWORD-1"
-					type="password"
-					autocomplete="new-password"
-				/>
-				<div class="dropdown dropdown-end dropdown-hover">
-					<div
-						tabIndex={0}
-						role="button"
-						class="btn btn-xs btn-circle flex items-center justify-center"
-					>
-						?
-					</div>
-					<div
-						tabIndex={0}
-						class="dropdown-content bg-base-200 rounded-box z-1 mt-2 h-auto w-48 p-2 text-sm text-wrap lowercase shadow-sm"
-					>
-						If you set a password, your message will be encrypted client-side with AES-256
-					</div>
-				</div>
-			</label>
 		</fieldset>
+
+		{#if enablePassword}
+			<fieldset class="fieldset" disabled={submitting}>
+				<legend class="fieldset-legend text-sm lowercase"> Password to encrypt message </legend>
+				<label
+					class="input w-full focus-within:border-purple-600 focus-within:ring-4 focus-within:ring-fuchsia-600 focus-within:outline-none"
+				>
+					<input
+						bind:value={password}
+						name="password"
+						class="grow"
+						placeholder="optional-PASSWORD-1"
+						type="password"
+						autocomplete="new-password"
+					/>
+					<div class="dropdown dropdown-end dropdown-hover">
+						<div
+							tabIndex={0}
+							role="button"
+							class="btn btn-xs btn-circle flex items-center justify-center"
+						>
+							!
+						</div>
+						<div
+							tabIndex={0}
+							class="dropdown-content bg-base-200 rounded-box z-1 mt-2 h-auto w-48 p-2 text-sm text-wrap lowercase shadow-sm"
+						>
+							If you forget the password, you will not be able to read your message in the future!
+						</div>
+					</div>
+				</label>
+			</fieldset>
+		{/if}
 
 		<fieldset class="fieldset" disabled={submitting}>
 			<legend class="fieldset-legend text-sm lowercase">

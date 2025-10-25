@@ -6,6 +6,7 @@
 	import { onMount } from 'svelte';
 
 	import { invalidate } from '$app/navigation';
+	import { detectAdblock } from '$lib/detectAdblock';
 
 	// import { page } from '$app/state';
 	import Header from './Header.svelte';
@@ -19,6 +20,11 @@
 			}
 		});
 		return () => data.subscription.unsubscribe();
+	});
+
+	onMount(async () => {
+		const adblock = await detectAdblock();
+		umami.identify({ adblock });
 	});
 
 	// $effect(() => {
