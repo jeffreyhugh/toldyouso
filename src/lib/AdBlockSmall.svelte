@@ -1,13 +1,22 @@
 <script lang="ts">
 	import { PUBLIC_NOADS } from '$env/static/public';
 	const { children } = $props();
+
+	let clientWidth = $state(0);
 </script>
 
 {#if PUBLIC_NOADS !== 'true'}
-	<div id="ad" class="advertisement sponsor mt-2 w-full select-none lg:hidden" data-ad="true">
+	<div
+		id="ad"
+		class="advertisement sponsor mt-2 w-full select-none lg:hidden"
+		data-ad="true"
+		bind:clientWidth
+	>
 		<div class="text-base-content/80 ml-1 text-xs lowercase">Advertisement</div>
 		<div class="border-base-300 overflow-hidden border">
-			{@render children()}
+			{#if clientWidth}
+				{@render children()}
+			{/if}
 		</div>
 	</div>
 {/if}
