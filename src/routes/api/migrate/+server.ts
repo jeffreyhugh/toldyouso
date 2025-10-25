@@ -30,7 +30,7 @@ export const GET: RequestHandler = async ({ url, locals: { supabase } }) => {
 			.eq('owned_by', anonID);
 
 		if (error) {
-			redirect(307, '/error');
+			redirect(307, `/error?message="Migration%20error`);
 		}
 	}
 
