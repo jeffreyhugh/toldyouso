@@ -3,6 +3,7 @@
 	const { children } = $props();
 
 	let clientWidth = $state(0);
+	let clientHeight = $state(0);
 </script>
 
 {#if PUBLIC_NOADS !== 'true'}
@@ -11,10 +12,11 @@
 		class="advertisement sponsor mt-2 w-full select-none lg:hidden"
 		data-ad="true"
 		bind:clientWidth
+		bind:clientHeight
 	>
 		<div class="text-base-content/80 ml-1 text-xs lowercase">Advertisement</div>
 		<div class="border-base-300 overflow-hidden border">
-			{#if clientWidth}
+			{#if clientWidth >= 120 && clientHeight >= 50}
 				{@render children()}
 			{/if}
 		</div>
