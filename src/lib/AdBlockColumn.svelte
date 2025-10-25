@@ -12,7 +12,10 @@
 		data-ad="true"
 	>
 		<div class="text-base-content/80 pl-1 text-xs lowercase">Advertisement</div>
-		<div class="border-base-300 overflow-hidden border" bind:clientWidth>
+		<div
+			class="border-base-300 flex items-center justify-center overflow-hidden border"
+			bind:clientWidth
+		>
 			{#if clientWidth >= 120}
 				{@render children()}
 			{/if}
