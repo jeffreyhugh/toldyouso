@@ -5,6 +5,7 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import { onMount } from 'svelte';
 
+	import { browser } from '$app/environment';
 	import { invalidate } from '$app/navigation';
 	import { detectAdblock } from '$lib/detectAdblock';
 
@@ -54,11 +55,13 @@
 		data-website-id="821e5fc6-a962-4674-9797-9e3ac207e55e"
 	></script>
 
-	<script
-		async
-		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7806885462809506"
-		crossorigin="anonymous"
-	></script>
+	{#if browser}
+		<script
+			async
+			src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7806885462809506"
+			crossorigin="anonymous"
+		></script>
+	{/if}
 </svelte:head>
 
 <ModeWatcher defaultMode="dark" defaultTheme="dark" />
