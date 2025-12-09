@@ -169,9 +169,23 @@
 			including for analytics and marketing purposes.
 		</div>
 		<div class="mt-2 flex gap-2">
-			<button class="btn btn-primary bg-vibrant lowercase" onclick={acceptAll}>Accept All</button>
-			<button class="btn lowercase" onclick={rejectAll}>Reject All</button>
-			<button class="btn lowercase" onclick={() => consentModal?.showModal()}>Manage</button>
+			<button
+				data-umami-event="consent accept all"
+				class="btn btn-primary bg-vibrant lowercase"
+				onclick={acceptAll}
+			>
+				Accept All
+			</button>
+			<button data-umami-event="consent reject all" class="btn lowercase" onclick={rejectAll}>
+				Reject All
+			</button>
+			<button
+				data-umami-event="consent manage"
+				class="btn lowercase"
+				onclick={() => consentModal?.showModal()}
+			>
+				Manage
+			</button>
 		</div>
 	</div>
 	<dialog bind:this={consentModal} class="modal modal-bottom sm:modal-middle lowercase">
