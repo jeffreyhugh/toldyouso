@@ -54,12 +54,6 @@
 		data-exclude-hash="true"
 		data-website-id="821e5fc6-a962-4674-9797-9e3ac207e55e"
 	></script>
-
-	<script
-		async
-		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7806885462809506"
-		crossorigin="anonymous"
-	></script>
 </svelte:head>
 
 <ModeWatcher defaultMode="dark" defaultTheme="dark" />
