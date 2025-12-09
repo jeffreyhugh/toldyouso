@@ -139,6 +139,11 @@
 			gtag(...event.detail);
 		});
 	</script>
+	<script
+		async
+		src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7806885462809506"
+		crossorigin="anonymous"
+	></script>
 </svelte:head>
 
 {#if unsetConsent}
