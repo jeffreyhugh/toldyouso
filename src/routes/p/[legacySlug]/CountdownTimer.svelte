@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import Confetti from 'svelte-confetti';
 
+	import { gtag } from '$lib/gtag';
 	import ToggleConfetti from '$lib/ToggleConfetti.svelte';
 
 	const { availableAt }: { availableAt: DateTime } = $props();
@@ -62,7 +63,10 @@
 		<ToggleConfetti>
 			<button
 				type="button"
-				onclick={copyLink}
+				onclick={() => {
+					gtag('event', 'copy link', { from: 'message' });
+					copyLink();
+				}}
 				class="btn btn-primary bg-vibrant btn-wide mt-8 font-bold lowercase"
 				data-umami-event="copy link"
 				data-umami-event-from="message"

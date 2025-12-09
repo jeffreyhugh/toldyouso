@@ -7,6 +7,7 @@
 	import AdBeforeSubmit from '$lib/AdBeforeSubmit.svelte';
 	import AdBlockSmall from '$lib/AdBlockSmall.svelte';
 	import { encrypt } from '$lib/crypt';
+	import { gtag } from '$lib/gtag';
 	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
 	import SignInModal from '$lib/SignInModal.svelte';
 
@@ -229,6 +230,7 @@
 			class="btn btn-primary bg-vibrant mt-4 w-full font-bold lowercase"
 			data-umami-event="create message"
 			data-umami-event-encrypted={password.length > 0}
+			onclick={() => gtag('event', 'create message', { encrypted: password.length > 0 })}
 		>
 			{#if !submitting}
 				✏️ Store my message
@@ -251,6 +253,7 @@
 		class="btn btn-outline border-base-300 btn-xs lowercase"
 		type="button"
 		onclick={() => {
+			gtag('event', 'template', { template: event });
 			if (message.length > 0) {
 				const ok = confirm('this will overwrite your existing message -- is that okay?');
 				if (!ok) {

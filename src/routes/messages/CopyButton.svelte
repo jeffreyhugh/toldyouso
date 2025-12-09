@@ -2,6 +2,7 @@
 	import Confetti from 'svelte-confetti';
 
 	import { confettiArray } from '$lib/confettiArray';
+	import { gtag } from '$lib/gtag';
 	import ToggleConfetti from '$lib/ToggleConfetti.svelte';
 
 	const { id }: { id: string } = $props();
@@ -21,7 +22,10 @@
 	<button
 		class="btn btn-ghost btn-sm lowercase"
 		type="button"
-		onclick={copyLink}
+		onclick={() => {
+			gtag('event', 'copy link', { from: 'list' });
+			copyLink();
+		}}
 		data-umami-event="copy link"
 		data-umami-event-from="list"
 	>

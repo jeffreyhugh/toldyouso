@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 
+	import { gtag } from '$lib/gtag';
+
 	const { id }: { id: string } = $props();
 
 	let mounted = $state(false);
@@ -32,7 +34,10 @@
 			) && 'hidden'
 		]}
 		type="button"
-		onclick={share}
+		onclick={() => {
+			gtag('event', 'share', { from: 'list' });
+			share();
+		}}
 		data-umami-event="share"
 		data-umami-event-from="list"
 	>

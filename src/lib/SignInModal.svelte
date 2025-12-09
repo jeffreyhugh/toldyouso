@@ -4,6 +4,7 @@
 	import { enhance } from '$app/forms';
 
 	import { confettiArray } from './confettiArray';
+	import { gtag } from './gtag';
 
 	const { email }: { email: string | undefined } = $props();
 
@@ -64,6 +65,7 @@
 							type="submit"
 							class="btn btn-primary bg-vibrant mt-2 w-full font-bold lowercase"
 							data-umami-event="sign in"
+							onclick={() => gtag('event', 'sign in')}
 						>
 							📨 Send me a link
 						</button>
@@ -104,6 +106,7 @@
 						type="submit"
 						class="btn btn-primary bg-vibrant mt-2 w-full font-bold lowercase"
 						data-umami-event="sign out"
+						onclick={() => gtag('event', 'sign out')}
 					>
 						👋 Sign out
 					</button>

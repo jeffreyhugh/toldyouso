@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import Confetti from 'svelte-confetti';
 
+	import { gtag } from '$lib/gtag';
 	import ToggleConfetti from '$lib/ToggleConfetti.svelte';
 
 	const { id, availableAt }: { id: string; availableAt: DateTime } = $props();
@@ -76,7 +77,10 @@
 		<ToggleConfetti>
 			<button
 				type="button"
-				onclick={copyLink}
+				onclick={() => {
+					gtag('event', 'copy link', { from: 'message' });
+					copyLink();
+				}}
 				class="btn btn-primary bg-vibrant btn-wide mt-8 font-bold lowercase"
 				data-umami-event="copy link"
 				data-umami-event-from="message"
@@ -100,7 +104,10 @@
 		{#if mounted}
 			<button
 				type="button"
-				onclick={share}
+				onclick={() => {
+					gtag('event', 'share', { from: 'message' });
+					share();
+				}}
 				class={[
 					'btn btn-outline btn-wide mt-2 font-bold lowercase',
 					!(
