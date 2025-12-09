@@ -16,7 +16,8 @@
 		analytics_storage: 'denied',
 		functionality_storage: 'granted',
 		personalization_storage: 'denied',
-		security_storage: 'granted'
+		security_storage: 'granted',
+		wait_for_update: 500
 	};
 
 	let consent = $state({
@@ -31,16 +32,10 @@
 	});
 
 	onMount(() => {
-		window.dataLayer = window.dataLayer || [];
+		gtag('consent', 'default', { ...defaultConsent });
 
-		unsetConsent = localStorage.getItem('consentSet') === null;
-
-		gtag('js', new Date());
-		gtag('config', PUBLIC_GTAG_ID);
-
-		if (unsetConsent) {
-			gtag('consent', 'default', { ...defaultConsent });
-		} else {
+		unsetConsent = localStorage.getItem('consent.consentSet') === null;
+		if (!unsetConsent) {
 			consent.ad_storage = localStorage.getItem('consent.ad_storage') ?? defaultConsent.ad_storage;
 			consent.ads_data_redaction = localStorage.getItem('consent.ads_data_redaction') === 'true';
 			consent.ad_user_data =
@@ -118,7 +113,7 @@
 		localStorage.setItem(`consent.${property}`, value);
 		// @ts-expect-error it's fine I promise
 		consent[property] = value;
-		gtag('consent', 'update', { property, value });
+		gtag('consent', 'update', { [property]: value });
 
 		if (property !== 'ad_storage') {
 			return;
@@ -132,6 +127,18 @@
 
 <svelte:head>
 	<script async src={`https://www.googletagmanager.com/gtag/js?id=${PUBLIC_GTAG_ID}`}></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() {
+			dataLayer.push(arguments);
+		}
+		gtag('js', new Date());
+		gtag('config', 'G-DNJSP28HH1');
+
+		window.addEventListener('gtag', (event) => {
+			gtag(...event.detail);
+		});
+	</script>
 </svelte:head>
 
 {#if unsetConsent}

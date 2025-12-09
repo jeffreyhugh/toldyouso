@@ -13,7 +13,9 @@ export const detectAdblock = async () => {
 		}
 
 		const responseText = await response.text();
-		const adBlockDetected = keywordsToCheck.some((keyword) => responseText.includes(keyword));
+		const adBlockDetected = keywordsToCheck.some((keyword) =>
+			(responseText || '').includes(keyword)
+		);
 		if (adBlockDetected) {
 			adBlockEnabled = true;
 		}

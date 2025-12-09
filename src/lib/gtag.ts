@@ -1,3 +1,3 @@
 export const gtag = (...args: unknown[]) => {
-	window.dataLayer.push(args);
+	window.dispatchEvent(new CustomEvent('gtag', { detail: args }));
 };
