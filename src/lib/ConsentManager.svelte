@@ -16,8 +16,7 @@
 		analytics_storage: 'denied',
 		functionality_storage: 'granted',
 		personalization_storage: 'denied',
-		security_storage: 'granted',
-		wait_for_update: 500
+		security_storage: 'granted'
 	};
 
 	let consent = $state({
@@ -132,6 +131,16 @@
 		function gtag() {
 			dataLayer.push(arguments);
 		}
+		gtag('consent', 'default', {
+			ad_storage: 'denied',
+			ads_data_redaction: false,
+			ad_user_data: 'denied',
+			ad_personalization: 'denied',
+			analytics_storage: 'denied',
+			functionality_storage: 'granted',
+			personalization_storage: 'denied',
+			security_storage: 'granted'
+		});
 		gtag('js', new Date());
 		gtag('config', 'G-DNJSP28HH1');
 
