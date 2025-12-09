@@ -7,6 +7,7 @@
 
 	import { browser } from '$app/environment';
 	import { invalidate } from '$app/navigation';
+	import ConsentManager from '$lib/ConsentManager.svelte';
 	import { detectAdblock } from '$lib/detectAdblock';
 
 	// import { page } from '$app/state';
@@ -69,3 +70,4 @@
 	<Header />
 	{@render children()}
 </div>
+<ConsentManager />
