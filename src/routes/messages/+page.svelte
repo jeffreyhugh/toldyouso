@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { DateTime } from 'luxon';
 
+	import { resolve } from '$app/paths';
 	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
 	import SignInModal from '$lib/SignInModal.svelte';
 
@@ -58,7 +59,9 @@
 		<div class="flex w-full flex-col items-center lowercase">
 			<div>😦 No messages to display</div>
 			<div class="mt-4 flex justify-center gap-4">
-				<a href="/" class="btn btn-primary bg-vibrant font-bold lowercase">🔮 Save a message</a>
+				<a href={resolve('/')} class="btn btn-primary bg-vibrant font-bold lowercase">
+					🔮 Save a message
+				</a>
 				<div class="w-auto"><SignInModal email={data.user?.email} /></div>
 			</div>
 		</div>
@@ -105,7 +108,7 @@
 							? 'btn-primary bg-vibrant'
 							: 'btn-ghost'
 					]}
-					href="/messages/{row.id}"
+					href={resolve(`/messages/${row.id}`)}
 				>
 					💨 Go to message
 				</a>

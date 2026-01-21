@@ -4,6 +4,7 @@
 	import outdent from 'outdent';
 
 	import { enhance } from '$app/forms';
+	import { resolve } from '$app/paths';
 	import AdBeforeSubmit from '$lib/AdBeforeSubmit.svelte';
 	import AdBlockSmall from '$lib/AdBlockSmall.svelte';
 	import { encrypt } from '$lib/crypt';
@@ -220,7 +221,7 @@
 
 		<div class="mt-4 text-sm font-bold lowercase">
 			By storing a message, you affirm that you have read and agree to the
-			<a class="link" href="/legal"> privacy policy and tos </a>
+			<a class="link" href={resolve('/legal')}> privacy policy and TOS </a>
 		</div>
 
 		<button

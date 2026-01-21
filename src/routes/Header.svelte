@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { setMode, setTheme, theme } from 'mode-watcher';
 
+	import { resolve } from '$app/paths';
+
 	// import { page } from '$app/state';
 
 	// let visitedBlog: string | null = $state('true');
@@ -35,17 +37,17 @@
 	<div
 		class="text-vibrant p-2 text-center text-6xl leading-tight font-bold text-transparent select-none md:text-8xl md:leading-snug"
 	>
-		<a href="/">told-you.so</a>
+		<a href={resolve('/')}>told-you.so</a>
 	</div>
 	<div class="text-center text-xl lowercase select-none md:text-3xl">A message time capsule 🔮</div>
 	<div
 		class="mt-2 flex flex-col items-center justify-center gap-x-2 text-lg md:flex-row md:text-xl"
 	>
-		<a href="/" class="lowercase italic">Store a Message</a>
+		<a href={resolve('/')} class="lowercase italic">Store a Message</a>
 		<div class="hidden md:block">&middot;</div>
-		<a href="/messages" class="lowercase italic">My Messages</a>
+		<a href={resolve('/messages')} class="lowercase italic">My Messages</a>
 		<div class="hidden md:block">&middot;</div>
-		<a href="/blog/about" class="indicator lowercase italic">
+		<a href={resolve('/blog/about')} class="indicator lowercase italic">
 			<!-- {#if !page.url.pathname.startsWith('/blog') && visitedBlog === null}
 				<span class="indicator-item status bg-vibrant translate-x-2.5 translate-y-1" title="new"
 				></span>
@@ -57,7 +59,7 @@
 			<span>About</span>
 		</a>
 		<div class="hidden md:block">&middot;</div>
-		<a href="/legal" class="lowercase italic">Legal</a>
+		<a href={resolve('/legal')} class="lowercase italic">Legal</a>
 		<div class="hidden md:block">&middot;</div>
 		<a href="https://github.com/jeffreyhugh/toldyouso" target="_blank" class="lowercase italic">
 			GitHub

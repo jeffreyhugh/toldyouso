@@ -25,8 +25,8 @@
 		address(es), the message itself, and analytical statistics.
 		<span class="font-bold">
 			If the message is unencrypted, it is stored in plaintext in the database.
-		</span> The author of this site highly recommends encrypting your message client-side by setting
-		a password.
+		</span> The author of this site highly recommends encrypting your message client-side by setting a
+		password.
 	</p>
 	<p>
 		You may not submit content which is illegal, infringes on copyright, glorifies violence, is
@@ -38,10 +38,7 @@
 	</p>
 	<p>
 		By using told-you.so, you give the author of this site permission to use collected data however
-		he'd like in accordance with these terms. The author of this site commits to cooperating with
-		law enforcement should the need arise. Law enforcement may email requests for data to
-		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>
-		from an official business email.
+		he'd like in accordance with these terms.
 	</p>
 	<p>
 		The author of this site runs ads supplied by Google AdSense. Outside the EU and within the EU if

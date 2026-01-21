@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { DateTime } from 'luxon';
 
+	import { resolve } from '$app/paths';
 	import MaxWidthArticle from '$lib/MaxWidthArticle.svelte';
 
 	let { data } = $props();
@@ -46,7 +47,7 @@
 				'prose-h1:lowercase prose-h2:lowercase prose-h3:lowercase prose-h4:lowercase',
 				'prose-a:has-[span]:has-[.link-icon]:no-underline prose-a:has-[span]:has-[.link-icon]:pl-2',
 				'prose-a:has-[span]:has-[.link-icon]:hover:underline',
-				'prose-a:text-transparent prose-a:bg-clip-text prose-a:bg-gradient-to-br prose-a:from-fuchsia-600 prose-a:to-purple-600 prose-a:font-[weight:inherit]'
+				'prose-a:text-transparent prose-a:bg-clip-text prose-a:bg-linear-to-br prose-a:from-fuchsia-600 prose-a:to-purple-600 prose-a:font-[weight:inherit]'
 			]}
 		>
 			<PostContent />
@@ -54,7 +55,7 @@
 	</article>
 	<div class="divider"></div>
 	<div>
-		<a href="/blog" class="btn bg-vibrant btn-lg text-white lowercase">More Posts</a>
+		<a href={resolve('/blog')} class="btn bg-vibrant btn-lg text-white lowercase">More Posts</a>
 	</div>
 </MaxWidthArticle>
 <div class="h-8"></div>

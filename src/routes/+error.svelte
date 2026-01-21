@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
 	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
 </script>
@@ -9,7 +10,7 @@
 			error {page.status}
 		</h1>
 		<div>
-			Do you think you can <a class="link" href="/">predict the next error</a>?
+			Do you think you can <a class="link" href={resolve('/')}>predict the next error</a>?
 		</div>
 	</div>
 </MaxWidthForm>

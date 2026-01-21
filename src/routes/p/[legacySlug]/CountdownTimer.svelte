@@ -1,4 +1,5 @@
 <script lang="ts">
+	/* eslint-disable svelte/no-navigation-without-resolve */
 	import type { DateTime } from 'luxon';
 	import { onMount } from 'svelte';
 	import Confetti from 'svelte-confetti';
@@ -8,7 +9,7 @@
 	const { availableAt }: { availableAt: DateTime } = $props();
 	let copied = $state(false);
 
-	let delta = $state(availableAt.diffNow());
+	let delta = $derived(availableAt.diffNow());
 	let deltaObj = $derived(delta.rescale().toObject());
 	onMount(() => {
 		const interval = setInterval(() => (delta = availableAt.diffNow()), 500);
@@ -106,7 +107,7 @@
 		<a
 			data-sveltekit-reload
 			href={window.location.href}
-			class="btn btn-wide btn-primary mt-4 bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase"
+			class="btn btn-wide btn-primary mt-4 bg-linear-to-br from-fuchsia-600 to-purple-600 lowercase"
 		>
 			🎉 Refresh
 		</a>

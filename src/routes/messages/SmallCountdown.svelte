@@ -4,7 +4,7 @@
 
 	const { availableAt }: { availableAt: DateTime } = $props();
 
-	let delta = $state(availableAt.diffNow());
+	let delta = $derived(availableAt.diffNow());
 	let deltaObj = $derived(delta.rescale().toObject());
 
 	onMount(() => {

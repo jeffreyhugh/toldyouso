@@ -9,10 +9,10 @@
 		encrypted: boolean | null;
 	} = $props();
 
-	let decryptedMessage = $state(message);
+	let decryptedMessage = $derived(message);
 	let key = $state('');
 	let err = $state(false);
-	let decrypted = $state(!encrypted);
+	let decrypted = $derived(!encrypted);
 
 	const tryKey = async () => {
 		try {
@@ -68,7 +68,7 @@
 		<div class="w-full md:w-auto">
 			<button
 				type="submit"
-				class="btn btn-primary w-full bg-gradient-to-br from-fuchsia-600 to-purple-600 lowercase md:mb-1"
+				class="btn btn-primary w-full bg-linear-to-br from-fuchsia-600 to-purple-600 lowercase md:mb-1"
 			>
 				🔑 Decrypt
 			</button>

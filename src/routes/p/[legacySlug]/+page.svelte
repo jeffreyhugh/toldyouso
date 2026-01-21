@@ -11,7 +11,14 @@
 
 	const { data } = $props();
 
-	const availableAt = DateTime.fromISO(data.available_at || '');
+	const availableAt = $derived.by(() => {
+		const t = DateTime.fromISO(data.available_at || '');
+		if (t.isValid) {
+			return t;
+		} else {
+			return DateTime.now();
+		}
+	});
 
 	const transformForTitle = (availableAt: DateTime) =>
 		availableAt.diffNow().as('milliseconds') < 0
@@ -30,7 +37,7 @@
 					)
 					.join(' ');
 
-	let titleAvailableAt = $state(transformForTitle(availableAt));
+	let titleAvailableAt = $derived(transformForTitle(availableAt));
 	onMount(() => {
 		const interval = setInterval(() => {
 			titleAvailableAt = transformForTitle(availableAt);
