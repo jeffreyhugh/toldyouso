@@ -5,8 +5,6 @@
 
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
-	import AdBeforeSubmit from '$lib/AdBeforeSubmit.svelte';
-	import AdBlockSmall from '$lib/AdBlockSmall.svelte';
 	import { encrypt } from '$lib/crypt';
 	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
 	import SignInModal from '$lib/SignInModal.svelte';
@@ -239,10 +237,6 @@
 		</button>
 	</form>
 	<SignInModal email={data.user?.email} />
-
-	<AdBlockSmall>
-		<AdBeforeSubmit />
-	</AdBlockSmall>
 </MaxWidthForm>
 
 {#snippet suggestion(title: string, content: string, event: string)}

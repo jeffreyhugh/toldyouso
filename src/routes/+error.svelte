@@ -4,7 +4,7 @@
 	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
 </script>
 
-<MaxWidthForm noAds>
+<MaxWidthForm>
 	<div class="flex flex-col items-center gap-2 lowercase">
 		<h1 class="text-2xl font-bold md:text-4xl">
 			error {page.status}

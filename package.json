@@ -4,9 +4,6 @@
 	"version": "2.1.0",
 	"type": "module",
 	"license": "MIT",
-	"engines": {
-		"node": "22"
-	},
 	"scripts": {
 		"dev": "vite dev --host",
 		"build": "vite build",
@@ -49,7 +46,7 @@
 		"vite": "^7.3.1",
 		"vite-plugin-node-polyfills": "^0.25.0"
 	},
-	"pnpm": {
+	"_pnpm": {
 		"onlyBuiltDependencies": [
 			"@tailwindcss/oxide",
 			"esbuild"
