@@ -1,9 +1,9 @@
 import { fail, redirect } from '@sveltejs/kit';
 import { DateTime } from 'luxon';
 
-import { signin, signout } from '$lib/authActions';
-import { encrypt } from '$lib/crypt';
-import { supabaseServiceRole } from '$lib/server/supabaseServiceRole';
+import { signin, signout } from '#lib/authActions.js';
+import { encrypt } from '#lib/crypt.js';
+import { supabaseServiceRole } from '#lib/server/supabaseServiceRole.js';
 
 import type { Actions } from './$types';
 

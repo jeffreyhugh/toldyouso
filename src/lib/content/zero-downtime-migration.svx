@@ -5,11 +5,9 @@ author: Jeffrey Hugh
 date: 5/20/2025
 ---
 
-<script> import AdBlockArticle from '$lib/AdBlockArticle.svelte'; </script>
-
 <p class="lead">
-  told-you.so v1 ran its frontend on Vercel and its backend on a VPS from OVH. 
-  v2 needed to run on my personal cloud, proxied through Cloudflare. 
+  told-you.so v1 ran its frontend on Vercel and its backend on a VPS from OVH.
+  v2 needed to run on my personal cloud, proxied through Cloudflare.
   Here's the preparation and steps I took to migrate with zero downtime and zero data loss.
 </p>
 
@@ -34,8 +32,6 @@ I used [Coolify](https://coolify.io) to manage other deployments on my network, 
 v2 uses self-hosted [Supabase](https://supabase.com) as the backend and a [Nixpacks](https://coolify.io/docs/builds/packs/nixpacks) build for the frontend.
 Both are proxied through Cloudflare, which caches about 80% of content.
 I have another post coming up about the statistics of running a small side project in production like this one -- stay tuned.
-
-<AdBlockArticle />
 
 ## Migration Plan
 
@@ -80,14 +76,12 @@ Namecheap, my registrar, makes it easy to set different nameservers.
 I just copied the Cloudflare-provided nameservers and pressed save.
 Easy peasy.
 
-<AdBlockArticle />
-
 ### The Unexpected
 
 Of course, something went wrong.
 I kept getting trapped in a redirect loop whenever I'd visit the new site proxied through Cloudflare.
 By default, when Cloudflare proxies a site, it requests the origin's port `80` (insecure) because Cloudflare boasts automatic SSL that users don't need to manage.
-However, Coolify *was* managing SSL for me.
+However, Coolify _was_ managing SSL for me.
 Here's what was happening:
 
 1. User requests `told-you.so:443`
@@ -112,7 +106,7 @@ SELECT COUNT(*) FROM messages;
 ```
 
 ```text
- count  
+ count
 --------
  346320
 (1 row)
@@ -122,7 +116,7 @@ Now, I needed to generate legacy slugs for all numbers up to `346320`, using the
 
 ```go
 package main
-  
+
 import (
   "fmt"
   "github.com/speps/go-hashids"
@@ -167,7 +161,7 @@ Finally, `JOIN` the tables, change the column names to align with v2, and save t
 
 ```sql
 \\COPY (
-  SELECT 
+  SELECT
     gen_random_uuid() AS id,
     legacy.slug AS legacy_slug,
     null AS owned_by,
@@ -175,12 +169,12 @@ Finally, `JOIN` the tables, change the column names to align with v2, and save t
     messages.available_at AS available_at,
     messages.encrypted AS encrypted,
     messages.message AS content
-  FROM 
+  FROM
     messages
     LEFT OUTER JOIN legacy
       ON messages.id = legacy.id
 )
-TO 
+TO
   ./data.csv
 WITH
   CSV DELIMITER ','
@@ -194,8 +188,6 @@ I couldn't believe how little space the data took up -- blog post upcoming.
 
 After I saw the v2 requests start to pour in and everything looked good, I merged in the v1 data.
 Then, I verified the [first ever message on told-you.so](/messages/8ab11ff1-9901-4050-84e9-cddd485eec67) redirected to its new home, and called the migration done.
-
-<AdBlockArticle />
 
 ## Conclusion
 

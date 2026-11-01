@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Confetti from 'svelte-confetti';
 
-	import { decrypt } from '$lib/crypt';
+	import { decrypt } from '#lib/crypt.js';
 
 	const {
 		message = '',

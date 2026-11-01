@@ -1,6 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 
-import { supabaseServiceRole } from '$lib/server/supabaseServiceRole';
+import { supabaseServiceRole } from '#lib/server/supabaseServiceRole.js';
 
 import type { RequestHandler } from './$types';
 

@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { DateTime } from 'luxon';
 
+	import MaxWidthForm from '#lib/MaxWidthForm.svelte';
+	import SignInModal from '#lib/SignInModal.svelte';
 	import { resolve } from '$app/paths';
-	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
-	import SignInModal from '$lib/SignInModal.svelte';
 
 	import CopyButton from './CopyButton.svelte';
 	import ShareButton from './ShareButton.svelte';
@@ -108,10 +108,8 @@
 							? 'btn-primary bg-vibrant'
 							: 'btn-ghost'
 					]}
-					href={resolve(`/messages/${row.id}`)}
+					href={resolve(`messages/${row.id}`)}>💨 Go to message</a
 				>
-					💨 Go to message
-				</a>
 			</div>
 		</div>
 	</div>

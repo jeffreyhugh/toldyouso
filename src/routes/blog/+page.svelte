@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { DateTime } from 'luxon';
 
+	import MaxWidthArticle from '#lib/MaxWidthArticle.svelte';
 	import { resolve } from '$app/paths';
-	import MaxWidthArticle from '$lib/MaxWidthArticle.svelte';
 
 	import type { PageData } from './$types';
 
@@ -38,7 +38,7 @@
 	createdAt: DateTime
 )}
 	<a
-		href={resolve(`/blog/${metadata.slug}`)}
+		href={resolve(`blog/${metadata.slug}`)}
 		class={[
 			'bg-base-200 hover:bg-base-300 rounded-box flex w-full flex-col gap-1 p-4',
 			featuredOnly && metadata.author !== 'Jeffrey Hugh' && 'hidden'
@@ -59,7 +59,7 @@
 					{metadata.author}
 				{/if}
 				{#if metadata.author && createdAt.isValid}
-					&middot;
+					·
 				{/if}
 				{#if createdAt.isValid}
 					{createdAt.toLocaleString(DateTime.DATE_FULL)}

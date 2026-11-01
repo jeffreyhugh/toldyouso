@@ -5,7 +5,7 @@ author: N.D. Anne
 date: 5/26/2025
 ---
 
-<script> import AdBlockArticle from "$lib/AdBlockArticle.svelte" </script>
+<script> import AdBlockArticle from "#lib/AdBlockArticle.svelte" </script>
 
 <p class="lead">
 	There is a special thrill in making predictions about big events.People love it when they call

@@ -1,6 +1,6 @@
 <script lang="ts">
+	import MaxWidthForm from '#lib/MaxWidthForm.svelte';
 	import { page } from '$app/state';
-	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
 
 	const message = page.url.searchParams.get('message');
 </script>

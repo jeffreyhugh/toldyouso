@@ -1,7 +1,7 @@
 <script lang="ts">
+	import MaxWidthForm from '#lib/MaxWidthForm.svelte';
 	import { resolve } from '$app/paths';
 	import { page } from '$app/state';
-	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
 </script>
 
 <MaxWidthForm>

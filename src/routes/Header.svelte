@@ -39,15 +39,20 @@
 	>
 		<a href={resolve('/')}>told-you.so</a>
 	</div>
+
 	<div class="text-center text-xl lowercase select-none md:text-3xl">A message time capsule 🔮</div>
+
 	<div
 		class="mt-2 flex flex-col items-center justify-center gap-x-2 text-lg md:flex-row md:text-xl"
 	>
 		<a href={resolve('/')} class="lowercase italic">Store a Message</a>
-		<div class="hidden md:block">&middot;</div>
-		<a href={resolve('/messages')} class="lowercase italic">My Messages</a>
-		<div class="hidden md:block">&middot;</div>
-		<a href={resolve('/blog/about')} class="indicator lowercase italic">
+		<div class="hidden md:block">·</div>
+
+		<a href={resolve('messages')} class="lowercase italic">My Messages</a>
+
+		<div class="hidden md:block">·</div>
+
+		<a href={resolve('blog/about')} class="indicator lowercase italic">
 			<!-- {#if !page.url.pathname.startsWith('/blog') && visitedBlog === null}
 				<span class="indicator-item status bg-vibrant translate-x-2.5 translate-y-1" title="new"
 				></span>
@@ -58,11 +63,13 @@
 			{/if} -->
 			<span>About</span>
 		</a>
-		<div class="hidden md:block">&middot;</div>
-		<a href={resolve('/legal')} class="lowercase italic">Legal</a>
-		<div class="hidden md:block">&middot;</div>
-		<a href="https://github.com/jeffreyhugh/toldyouso" target="_blank" class="lowercase italic">
-			GitHub
-		</a>
+
+		<div class="hidden md:block">·</div>
+		<a href={resolve('legal')} class="lowercase italic">Legal</a>
+		<div class="hidden md:block">·</div>
+
+		<a href="https://github.com/jeffreyhugh/toldyouso" target="_blank" class="lowercase italic"
+			>GitHub</a
+		>
 	</div>
 </div>

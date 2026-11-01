@@ -5,7 +5,7 @@ author: N.D. Anne
 date: 5/24/2025
 ---
 
-<script> import AdBlockArticle from "$lib/AdBlockArticle.svelte" </script>
+<script> import AdBlockArticle from "#lib/AdBlockArticle.svelte" </script>
 
 <p class="lead">
 	Fears can feel like mountains in our minds. They look huge and scary today. But what if you could

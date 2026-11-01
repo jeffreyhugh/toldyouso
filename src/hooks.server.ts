@@ -1,9 +1,9 @@
 import { createServerClient } from '@supabase/ssr';
-import { type Handle, redirect } from '@sveltejs/kit';
-import { sequence } from '@sveltejs/kit/hooks';
+import { redirect } from '@sveltejs/kit';
+import { type Handle, sequence } from '@sveltejs/kit/hooks';
 
-import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$env/static/public';
-import type { Database } from '$lib/database.types';
+import type { Database } from '#lib/database.types.js';
+import { PUBLIC_SUPABASE_ANON_KEY, PUBLIC_SUPABASE_URL } from '$app/env/public';
 
 const supabase: Handle = async ({ event, resolve }) => {
 	/**

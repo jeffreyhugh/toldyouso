@@ -5,7 +5,7 @@ author: N.D. Anne
 date: 5/14/2025
 ---
 
-<script> import AdBlockArticle from "$lib/AdBlockArticle.svelte" </script>
+<script> import AdBlockArticle from "#lib/AdBlockArticle.svelte" </script>
 
 <p class="lead">
 	Imagine receiving a letter from yourself, written years ago. It feels magical. However, many

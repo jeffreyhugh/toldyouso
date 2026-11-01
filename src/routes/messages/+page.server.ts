@@ -1,6 +1,6 @@
 import { error } from '@sveltejs/kit';
 
-import { signin, signout } from '$lib/authActions.js';
+import { signin, signout } from '#lib/authActions.js';
 
 import type { Actions } from './$types.js';
 

@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import Confetti from 'svelte-confetti';
 
-	import ToggleConfetti from '$lib/ToggleConfetti.svelte';
+	import ToggleConfetti from '#lib/ToggleConfetti.svelte';
 
 	const { id, availableAt }: { id: string; availableAt: DateTime } = $props();
 	let copied = $state(false);

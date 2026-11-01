@@ -1,7 +1,7 @@
 <script>
 	import { DateTime } from 'luxon';
 
-	import MaxWidthArticle from '$lib/MaxWidthArticle.svelte';
+	import MaxWidthArticle from '#lib/MaxWidthArticle.svelte';
 </script>
 
 <svelte:head>

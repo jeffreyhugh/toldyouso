@@ -1,0 +1,145 @@
+---
+title: Removing Ads from told-you.so
+description: told-you.so is now ad-free. Here's how much I made and why I got rid of ads.
+author: Jeffrey Hugh
+date: 10/31/2026
+---
+
+<p class="lead">
+	In May 2025, told-you.so was approved by AdSense to show ads.
+	I very intentionally only allowed unobtrusive banner ads and turned off auto-optimization in order to keep a great user experience.
+	As of late October 2026, told-you.so no longer displays any ads.
+</p>
+
+## Application
+
+I originally applied for ads 3 or 4 years ago when I started getting some good traffic.
+The application was denied, and I decided it wasn't worth pursuing at that time.
+
+After the rewrite in early 2025, I applied for ads again.
+This time, I was denied for "low-value content," which seems to be Google's blanket denial reason.
+Frustratingly, there's no objective standard for "high-value content," and there's no way to get in touch with a human.
+
+Google AdSense is designed for content-heavy websites with lots of internal links to other content (think blogs).
+The content means readers will stay on a page longer, and the links can guide readers to stay on the website longer.
+In fact, this is why every recipe online forces you to read through their grandmother's memoir to figure out what to add to your shopping cart.
+Advertisers really like extra words and links on a page, and if the website owner can force a user to look at a banner ad for a few seconds longer, that's a few extra cents in the publisher's pocket.
+Win-win.
+
+told-you.so is undoubtedly content-heavy, but Google doesn't like that the content is user-generated, not publisher-generated.
+But this shouldn't be a problem, since I see countless websites with basically no content serving AdSense ads, right?
+
+These content-less sites are typically grandfathered in from old policies.
+As far as I can tell, once your site is approved to show ads, all Google cares about is your `ads.txt`.
+So how are we going to convince Google that I have enough content to keep users coming back?
+
+## Introducing the Blog
+
+The OG users here may remember that the "about" page used to be located at `/about`, not `/blog/about`.
+Back in the day, it used to be a different route with its own `+page.svelte`.
+Unfortunately, with AdSense repeatedly denying me for "low-value content," I now needed a home for content (`/blog`), and moving the "about" page made the most sense.
+
+After throwing something together with [MDsveX](https://github.com/pngwn/MDsveX), I was ready to start writing.
+Although I'm okay at it, I've never enjoyed writing.
+Nevertheless, I gave content creation an honest shot, and it honestly sucked.
+It was hard for me to find motivation because I didn't know how much AdSense was going to pay, and the thought of "what if you spend 10 hours on content and only get paid pennies" kept coming to mind.
+
+## Bring in the Experts
+
+All I had to do was get some content for approval, right?
+Besides, people come here to store messages, not read some the blog.
+In early 2025, AI writing was still very identifiable, so I went to Fiverr.
+It turns out there's a slew of "experts" who can get you approved for AdSense, so I reached out to a few.
+
+One seller was offering guaranteed AdSense approval for 100 bucks or so.
+I sent him a message, and he explained that AdSense approves the domain name, so his plan was to point the domain name at a blog serving niche content about whatever, get approval, then move it back.
+That was unacceptable, since it meant nobody would be able to store or read their messages for about a week.
+Plus, that could jeopardize the reputation of my domain name, especially if someone asked a scraper to take an archive while the domain pointed at the Fiverr seller's blog.
+
+I ended up finding a seller who promised 30 articles for around 30 bucks.
+I asked him to come up with the usual SEO articles about why users should use my website, and although he promised no AI would be used, about half the articles read like they were copied straight from a model without any edits.
+But at this point, content's content, so I approved the deliverable and published it to told-you.so.
+
+Unsurprisingly, I was denied again. I quickly removed the slop content (but you can find the old `.svx` files in the source code on GitHub).
+
+## Finally Approved
+
+I decided to just keep spamming applications in hope that one would slip through and be approved.
+I had the content, I had the users, and I knew it would be mutually beneficial.
+To my surprise, I was approved.
+I still remember reading the email for the first time while waiting for my buddy to try on a suit for a wedding he was part of.
+
+That day, told-you.so started showing ads.
+
+## Earnings
+
+At the time, I was consistently getting around 2,000 users per day.
+It would drop off a little bit during the weekends, but traffic was fairly consistent.
+I wrote my own script to detect if an ad blocker was in use, and compared my self-hosted analytics to what Google was claiming.
+For the record, I usually see ~20% of users using adblock.
+
+For those who haven't used Google AdSense, there's basically 5 numbers worth knowing.
+
+1. Page Views (PV) are the number of times a user visited a new page
+1. Page Revenue Per Milli (PRPM) is the amount you get paid for 1,000 page views
+1. Impressions (I) are the number of ads seen by users (this is always higher than page views, because users usually see 1+ ads on a page)
+1. Impression Revenue Per Milli (IRPM) is the amount you get paid for 1,000 impressions
+1. Active View Viewable (AVV) is the percent of users that Google thinks are human (you only get paid for human visitors)
+
+Your daily earnings are roughly determined by the formula `((PV/1000)*PRPM + (I/1000)*IRPM) * AVV`.
+
+For example, on June 6th, 2025:
+
+1. PV = 85
+1. PRPM = $4.60
+1. I = 1601
+1. IRPM = $0.24
+1. AVV = 53.91%
+1. Earnings = $0.39
+
+Yep, that's right.
+I earned a whole $0.39 for an entire day's worth of traffic.
+I'm pretty sure I'm losing money on electricity.
+
+I also run first-party analytics.
+According to Umami:
+
+1. Visitors = 1600
+1. Visits = 1740
+1. Views = 2130
+
+I want to draw your attention to Google's numbers again.
+According to Google's tracking script, only 85 pages were loaded during the whole day, but users somehow saw 1601 ads.
+That means, on average, every single user that day saw 200 ads.
+(This wasn't an isolated occurance. Every single day, users apparently consumed hundreds of ads each.)
+What??
+
+The standard response at the time was that single-page applications' (SPA) client-side navigation caused issues with page views.
+I tried all sorts of trickery to modify the `window.adsbygoogle` array on page load, and none of it seemed to work.
+Of course, it was still impossible to get in touch with a human from Google.
+
+Google requires $100 worth of earnings before they'll cash you out.
+By the time I lost interest in trying to correct the page views, I had accumulated $20 or so.
+I'll be damned if I give Google a free $20, so I resolved to hit the $100, pull all my money, and turn off ads.
+
+**TL;DR: I made $100 in 17 months.**
+
+Around September 15th, 2026, it looks like Google made a change, because my page views went from 89 to 110 to 404 to 849, which is closer to what Umami was showing.
+My PRPM had already been dropping, but it went from $1.56 to $0.39 to $0.21 during that time.
+My earnings stayed basically consistent.
+
+## The Numbers
+
+Across the whole time that ads were up (May 30th, 2025 to October 24th, 2026):
+
+- Average Earnings: $0.20/day
+- Impressions: 628,843 (average 1209/day)
+- Peak PRPM (kind of useless because page views were inaccurate): $10.39 on October 29th, 2025 ("40" page views)
+- Peak IRPM: $0.48 on May 30th, 2025
+- Average IRPM: $0.17
+- Highest earning day: $0.72 on October 24th, 2025
+
+## Why I Removed Ads
+
+Ultimately, told-you.so is a fun hobby project that was never about the money.
+It's crazy to see that it's already been running for over 5 years (started in 2021), and I'd rather see it flourish for another 5 years than try to squeeze out an extra $5 per month.

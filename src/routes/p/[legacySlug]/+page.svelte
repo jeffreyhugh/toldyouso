@@ -2,9 +2,7 @@
 	import { DateTime } from 'luxon';
 	import { onMount } from 'svelte';
 
-	import AdBlockSmall from '$lib/AdBlockSmall.svelte';
-	import AdOnMessageLegacy from '$lib/AdOnMessageLegacy.svelte';
-	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
+	import MaxWidthForm from '#lib/MaxWidthForm.svelte';
 
 	import CountdownTimer from './CountdownTimer.svelte';
 	import MessageContent from './MessageContent.svelte';
@@ -106,8 +104,4 @@
 			</tbody>
 		</table>
 	</div>
-
-	<AdBlockSmall>
-		<AdOnMessageLegacy />
-	</AdBlockSmall>
 </MaxWidthForm>

@@ -1,4 +1,4 @@
-import * as sitemap from 'super-sitemap';
+import * as sitemap from 'super-sitemap/sveltekit';
 
 export const GET = async () => {
 	const blogs = import.meta.glob('/src/lib/content/*.svx');
@@ -10,7 +10,7 @@ export const GET = async () => {
 		paramValues: {
 			'/blog/[slug]': slugs
 		},
-		excludeRoutePatterns: ['^/messages/.*', '^/p/.*']
+		excludeRoutePatterns: [/^\/messages\/.*/, /^\/p\/.*/]
 	});
 };
 

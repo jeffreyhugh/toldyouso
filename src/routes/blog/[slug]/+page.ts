@@ -1,7 +1,7 @@
 import { error, type Load } from '@sveltejs/kit';
 import { DateTime } from 'luxon';
 
-import type SvxComponent_t from '$lib/SvxComponent';
+import type SvxComponent_t from '#lib/SvxComponent.js';
 
 export const load: Load = async ({ params }) => {
 	const modules = import.meta.glob('/src/lib/content/*.svx');

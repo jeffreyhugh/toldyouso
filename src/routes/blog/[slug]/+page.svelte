@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { DateTime } from 'luxon';
 
+	import MaxWidthArticle from '#lib/MaxWidthArticle.svelte';
 	import { resolve } from '$app/paths';
-	import MaxWidthArticle from '$lib/MaxWidthArticle.svelte';
 
 	let { data } = $props();
 
@@ -33,7 +33,7 @@
 					by {author}
 				{/if}
 				{#if author && createdAt.isValid}
-					<span class="mx-1">&middot;</span>
+					<span class="mx-1">·</span>
 				{/if}
 				{#if createdAt.isValid}
 					<span class="lowercase">{createdAt.toLocaleString(DateTime.DATE_FULL)}</span>
@@ -55,7 +55,7 @@
 	</article>
 	<div class="divider"></div>
 	<div>
-		<a href={resolve('/blog')} class="btn bg-vibrant btn-lg text-white lowercase">More Posts</a>
+		<a href={resolve('blog')} class="btn bg-vibrant btn-lg text-white lowercase">More Posts</a>
 	</div>
 </MaxWidthArticle>
 <div class="h-8"></div>

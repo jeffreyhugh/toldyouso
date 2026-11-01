@@ -5,7 +5,7 @@ author: N.D. Anne
 date: 5/22/2025
 ---
 
-<script> import AdBlockArticle from "$lib/AdBlockArticle.svelte" </script>
+<script> import AdBlockArticle from "#lib/AdBlockArticle.svelte" </script>
 
 <p class="lead">
 	What would you tell yourself five years ago? Imagine standing at a major crossroads in life. How

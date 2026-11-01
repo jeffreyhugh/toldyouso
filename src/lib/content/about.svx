@@ -56,7 +56,7 @@ The message itself won't be released before the release date, but the SHA256 wil
 If the message page were to be added to an internet archive, the hash will serve as proof that the message wasn't edited on the backend.
 
 If your message is encrypted, the SHA256 will be taken of the stored ciphertext instead of the plaintext.
-Why? 
+Why?
 When selecting a message from the database, you're actually selecting from a view, where one of those columns is the checksum.
 The checksum is calculated at query time instead of being stored alongside the data, and since the database doesn't have the plaintext of an encrypted message, it can only hash the ciphertext.
 

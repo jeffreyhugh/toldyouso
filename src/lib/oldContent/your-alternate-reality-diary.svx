@@ -5,7 +5,7 @@ author: N.D. Anne
 date: 5/28/2025
 ---
 
-<script> import AdBlockArticle from "$lib/AdBlockArticle.svelte" </script>
+<script> import AdBlockArticle from "#lib/AdBlockArticle.svelte" </script>
 
 <p class="lead">
 	Have you ever thought about the wisdom your future self might share with you? Or perhaps what

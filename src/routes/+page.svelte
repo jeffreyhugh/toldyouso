@@ -3,11 +3,11 @@
 	import { DateTime } from 'luxon';
 	import outdent from 'outdent';
 
+	import { encrypt } from '#lib/crypt.js';
+	import MaxWidthForm from '#lib/MaxWidthForm.svelte';
+	import SignInModal from '#lib/SignInModal.svelte';
 	import { enhance } from '$app/forms';
 	import { resolve } from '$app/paths';
-	import { encrypt } from '$lib/crypt';
-	import MaxWidthForm from '$lib/MaxWidthForm.svelte';
-	import SignInModal from '$lib/SignInModal.svelte';
 
 	import type { PageProps } from './$types';
 
@@ -142,8 +142,7 @@
 				required
 				maxLength={2048}
 				rows={5}
-				bind:value={message}
-			></textarea>
+				bind:value={message}></textarea>
 			<p class={['label text-sm lowercase', message.length >= 2048 ? 'text-error' : '']}>
 				{message.length}/2048 characters
 			</p>
@@ -219,7 +218,7 @@
 
 		<div class="mt-4 text-sm font-bold lowercase">
 			By storing a message, you affirm that you have read and agree to the
-			<a class="link" href={resolve('/legal')}> privacy policy and TOS </a>
+			<a class="link" href={resolve('legal')}>privacy policy and TOS</a>
 		</div>
 
 		<button

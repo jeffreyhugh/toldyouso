@@ -5,7 +5,7 @@ author: N.D. Anne
 date: 5/12/2025
 ---
 
-<script> import AdBlockArticle from "$lib/AdBlockArticle.svelte" </script>
+<script> import AdBlockArticle from "#lib/AdBlockArticle.svelte" </script>
 
 <p class="lead">
   Do you remember when you genuinely thought avocado toast would destroy your financial future?

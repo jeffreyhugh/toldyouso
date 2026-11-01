@@ -5,8 +5,8 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import { onMount } from 'svelte';
 
+	import { detectAdblock } from '#lib/detectAdblock.js';
 	import { invalidate } from '$app/navigation';
-	import { detectAdblock } from '$lib/detectAdblock';
 
 	// import { page } from '$app/state';
 	import Header from './Header.svelte';

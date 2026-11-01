@@ -1,11 +1,11 @@
 ---
-title: "Craft Your Future: Why You Should Revisit and Realign Your Career Vision Statement"
+title: 'Craft Your Future: Why You Should Revisit and Realign Your Career Vision Statement'
 description: "Imagine you're setting off on a long journey. You have a map—but the roads keep changing. Your career is like that journey, and your career vision statement is the map. It shows where you want to go. But here's the truth: it's not meant to be fixed forever."
 author: N.D. Anne
 date: 5/16/2025
 ---
 
-<script> import AdBlockArticle from "$lib/AdBlockArticle.svelte" </script>
+<script> import AdBlockArticle from "#lib/AdBlockArticle.svelte" </script>
 
 <p class="lead">
   Imagine you're setting off on a long journey.
