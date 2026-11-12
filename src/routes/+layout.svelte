@@ -37,6 +37,11 @@
 	// 		localStorage.setItem('visitedBlog', 'true');
 	// 	}
 	// });
+
+	let pausedModal: HTMLDialogElement;
+	onMount(() => {
+		pausedModal.showModal();
+	});
 </script>
 
 <svelte:head>
@@ -60,3 +65,17 @@
 	<Header />
 	{@render children()}
 </div>
+
+<dialog bind:this={pausedModal} class="modal">
+	<div class="modal-box bg-vibrant shadow-xl">
+		<h3 class="md:text-rxl text-3xl leading-tight font-bold md:leading-snug">
+			Update: November 11th, 2026
+		</h3>
+		<p class="mt-2">
+			Due to the recent Node.js and PostgreSQL vulnerabilities, I am temporarily shutting down
+			told-you.so until I can secure my infrastructure.
+		</p>
+		<p class="mt-2">I expect normal operation by Sunday (November 15th) at the latest.</p>
+	</div>
+	<div class="modal-backdrop bg-black/50"></div>
+</dialog>
