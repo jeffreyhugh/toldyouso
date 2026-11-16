@@ -6,21 +6,20 @@
 	import { onMount } from 'svelte';
 
 	import { detectAdblock } from '#lib/detectAdblock.js';
-	import { invalidate } from '$app/navigation';
 
 	// import { page } from '$app/state';
 	import Header from './Header.svelte';
 
-	let { data, children } = $props();
-	let { session, supabase } = $derived(data);
-	onMount(() => {
-		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
-			if (newSession?.expires_at !== session?.expires_at) {
-				invalidate('supabase:auth');
-			}
-		});
-		return () => data.subscription.unsubscribe();
-	});
+	let { children } = $props();
+	// let { session, supabase } = $derived(data);
+	// onMount(() => {
+	// 	const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
+	// 		if (newSession?.expires_at !== session?.expires_at) {
+	// 			invalidate('supabase:auth');
+	// 		}
+	// 	});
+	// 	return () => data.subscription.unsubscribe();
+	// });
 
 	onMount(async () => {
 		const adblock = await detectAdblock();
@@ -68,14 +67,20 @@
 
 <dialog bind:this={pausedModal} class="modal">
 	<div class="modal-box bg-vibrant shadow-xl">
-		<h3 class="md:text-rxl text-3xl leading-tight font-bold md:leading-snug">
-			Update: November 11th, 2026
-		</h3>
+		<h3 class="text-3xl leading-tight font-bold md:leading-snug">Update: November 15th, 2026</h3>
 		<p class="mt-2">
-			Due to the recent Node.js and PostgreSQL vulnerabilities, I am temporarily shutting down
-			told-you.so until I can secure my infrastructure.
+			I&apos;m still working on hardening told-you.so. Hopefully, the new site will be up by
+			Wednesday (November 17th) evening.
 		</p>
-		<p class="mt-2">I expect normal operation by Sunday (November 15th) at the latest.</p>
+		<div class="divider"></div>
+		<div class="opacity-60 hover:opacity-100">
+			<h3 class="text-3xl leading-tight font-bold md:leading-snug">Update: November 11th, 2026</h3>
+			<p class="mt-2">
+				Due to the recent Node.js and PostgreSQL vulnerabilities, I am temporarily shutting down
+				told-you.so until I can secure my infrastructure.
+			</p>
+			<p class="mt-2">I expect normal operation by Sunday (November 15th) at the latest.</p>
+		</div>
 	</div>
 	<div class="modal-backdrop bg-black/50"></div>
 </dialog>
