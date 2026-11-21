@@ -1,9 +1,10 @@
 import { fileURLToPath } from 'node:url';
 
-import { includeIgnoreFile } from '@eslint/compat';
 import js from '@eslint/js';
 import { loadConfig } from '@sveltejs/load-config';
+import { defineConfig, globalIgnores, includeIgnoreFile } from 'eslint/config';
 import prettier from 'eslint-config-prettier';
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended';
 import simpleImportSort from 'eslint-plugin-simple-import-sort';
 import svelte from 'eslint-plugin-svelte';
 import unusedImports from 'eslint-plugin-unused-imports';
@@ -12,10 +13,11 @@ import ts from 'typescript-eslint';
 
 const svelteConfig = (await loadConfig('./', { traverse: false }))?.config;
 
-const gitignorePath = fileURLToPath(new URL('./.gitignore', import.meta.url));
+const gitignorePath = fileURLToPath(new URL('.gitignore', import.meta.url));
 
-export default ts.config(
-	includeIgnoreFile(gitignorePath),
+export default defineConfig(
+	includeIgnoreFile(gitignorePath, { gitignoreResolution: true }),
+	globalIgnores(['./src/lib/pb-types.ts']),
 	js.configs.recommended,
 	...ts.configs.recommended,
 	...svelte.configs.recommended,
@@ -26,14 +28,16 @@ export default ts.config(
 			'simple-import-sort': simpleImportSort,
 			'unused-imports': unusedImports
 		},
-		languageOptions: {
-			globals: { ...globals.browser, ...globals.node }
-		},
+		languageOptions: { globals: { ...globals.browser, ...globals.node } },
 		rules: {
+			// typescript-eslint strongly recommend that you do not use the no-undef lint rule on TypeScript projects.
+			// see: https://typescript-eslint.io/troubleshooting/faqs/eslint/#i-get-errors-from-the-no-undef-rule-about-global-variables-not-being-defined-even-though-there-are-no-typescript-errors
 			'no-undef': 'off',
+			'no-console': 'warn',
 			'simple-import-sort/imports': 'error',
 			'simple-import-sort/exports': 'error',
 			'no-unused-vars': 'off',
+			'no-useless-assignment': 'off',
 			'@typescript-eslint/no-unused-vars': 'off',
 			'unused-imports/no-unused-imports': 'error',
 			'unused-imports/no-unused-vars': [
@@ -44,9 +48,17 @@ export default ts.config(
 					args: 'after-used',
 					argsIgnorePattern: '^_'
 				}
+			],
+			'svelte/no-navigation-without-resolve': 'off',
+			'no-restricted-imports': [
+				'error',
+				{
+					patterns: ['*.js', '../../*']
+				}
 			]
 		}
 	},
+	eslintPluginPrettierRecommended,
 	{
 		files: ['**/*.svelte', '**/*.svelte.ts', '**/*.svelte.js', '**/*.ts'],
 		languageOptions: {

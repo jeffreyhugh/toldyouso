@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Confetti from 'svelte-confetti';
 
-	import { confettiArray } from '#lib/confettiArray.js';
+	import { confettiArray } from '#lib/confettiArray.ts';
 	import ToggleConfetti from '#lib/ToggleConfetti.svelte';
 
 	const { id }: { id: string } = $props();

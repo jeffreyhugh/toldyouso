@@ -10,7 +10,7 @@
 			error {page.status}
 		</h1>
 		<div>
-			Do you think you can <a class="link" href={resolve('/')}>predict the next error</a>?
+			Do you think you can <a class="link" href={resolve('/')}>predict the next error?</a>
 		</div>
 	</div>
 </MaxWidthForm>

@@ -33,13 +33,6 @@ export const decrypt = async (ciphertext: string, key: string) => {
 	return new TextDecoder('utf8').decode(decryptedBuffer);
 };
 
-const concatBuffers = (b1: Uint8Array<ArrayBuffer>, b2: Uint8Array<ArrayBuffer>) => {
-	const tmp = new Uint8Array(b1.byteLength + b2.byteLength);
-	tmp.set(new Uint8Array(b1), 0);
-	tmp.set(new Uint8Array(b2), b1.byteLength);
-	return tmp;
-};
-
 const makeCryptoKey = async (key: string) => {
 	const keyBuffer = new TextEncoder().encode(key);
 	const keyHash = await crypto.subtle.digest('SHA-256', keyBuffer);
@@ -48,4 +41,33 @@ const makeCryptoKey = async (key: string) => {
 		'encrypt',
 		'decrypt'
 	]);
+};
+
+export const decryptV1 = async (ciphertext: string, key: string) => {
+	const inputBuffer = Base64.toUint8Array(ciphertext);
+	const counter = inputBuffer.slice(0, 16);
+
+	const cryptoKey = await makeCryptoKeyV1(key);
+
+	const decryptedBuffer = await crypto.subtle.decrypt(
+		{ name: 'AES-CTR', counter, length: 128 } as AesCtrParams,
+		cryptoKey,
+		inputBuffer.slice(16)
+	);
+
+	return new TextDecoder('utf8').decode(decryptedBuffer);
+};
+
+const makeCryptoKeyV1 = async (key: string) => {
+	const keyBuffer = new TextEncoder().encode(key);
+	const keyHash = await crypto.subtle.digest('SHA-256', keyBuffer);
+
+	return await crypto.subtle.importKey('raw', keyHash, { name: 'AES-CTR' }, true, ['decrypt']);
+};
+
+const concatBuffers = (b1: Uint8Array<ArrayBuffer>, b2: Uint8Array<ArrayBuffer>) => {
+	const tmp = new Uint8Array(b1.byteLength + b2.byteLength);
+	tmp.set(new Uint8Array(b1), 0);
+	tmp.set(new Uint8Array(b2), b1.byteLength);
+	return tmp;
 };

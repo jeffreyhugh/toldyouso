@@ -68,8 +68,8 @@
 		<a href={resolve('legal')} class="lowercase italic">Legal</a>
 		<div class="hidden md:block">·</div>
 
-		<a href="https://github.com/jeffreyhugh/toldyouso" target="_blank" class="lowercase italic"
-			>GitHub</a
-		>
+		<a href="https://github.com/jeffreyhugh/toldyouso" target="_blank" class="lowercase italic">
+			GitHub
+		</a>
 	</div>
 </div>

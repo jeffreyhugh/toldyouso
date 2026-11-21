@@ -25,8 +25,8 @@
 		address(es), the message itself, and analytical statistics.
 		<span class="font-bold">
 			If the message is unencrypted, it is stored in plaintext in the database.
-		</span> The author of this site highly recommends encrypting your message client-side by setting a
-		password.
+		</span>
+		The author of this site highly recommends encrypting your message client-side by setting a password.
 	</p>
 	<p>
 		You may not submit content which is illegal, infringes on copyright, glorifies violence, is
@@ -46,7 +46,7 @@
 	</p>
 	<p>
 		For any questions about the site or these terms, please email
-		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms</a>.
+		<a href="mailto:toldyouso@jh.ms" class="link">toldyouso@jh.ms.</a>
 	</p>
 	<p>
 		told-you.so &copy; Jeffrey Hugh 2021 - {DateTime.now().year} &middot; Licensed under the
@@ -55,7 +55,7 @@
 			href="https://github.com/jeffreyhugh/toldyouso?tab=MIT-1-ov-file#readme"
 			target="_blank"
 		>
-			MIT license
-		</a>.
+			MIT license.
+		</a>
 	</p>
 </MaxWidthArticle>

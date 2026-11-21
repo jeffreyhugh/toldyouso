@@ -1,14 +1,16 @@
 <script lang="ts">
 	import Confetti from 'svelte-confetti';
 
-	import { decrypt } from '#lib/crypt.js';
+	import { decrypt, decryptV1 } from '#lib/crypt.ts';
 
 	const {
 		message = '',
-		encrypted = false
+		encrypted = false,
+		isV1 = false
 	}: {
 		message: string | null;
 		encrypted: boolean | null;
+		isV1?: boolean;
 	} = $props();
 
 	let decryptedMessage = $derived(message);
@@ -17,6 +19,10 @@
 	let decrypted = $derived(!encrypted);
 
 	const tryKey = async () => {
+		if (isV1) {
+			decryptedMessage = await decryptV1(message || '', key);
+			return;
+		}
 		try {
 			decryptedMessage = await decrypt(message || '', key);
 			invalidKey = false;
@@ -49,7 +55,7 @@
 		onsubmit={tryKey}
 	>
 		<fieldset class="fieldset grow">
-			<legend class="fieldset-legend text-sm lowercase"> Message password </legend>
+			<legend class="fieldset-legend text-sm lowercase">Message password</legend>
 			<input
 				bind:value={key}
 				type="password"

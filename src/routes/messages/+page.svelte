@@ -9,19 +9,6 @@
 	import ShareButton from './ShareButton.svelte';
 	import SmallCountdown from './SmallCountdown.svelte';
 
-	type Row_t = {
-		available_at: DateTime<true>;
-		content: string | null;
-		created_at: DateTime<true>;
-		encrypted: boolean | null;
-		id: string | null;
-		legacy_slug: string | null;
-		owned_by: string | null;
-		sha256: string | null;
-	};
-
-	const { data } = $props();
-
 	const IDX = {
 		AVAILABLE: 0,
 		UPCOMING: 1
@@ -108,8 +95,10 @@
 							? 'btn-primary bg-vibrant'
 							: 'btn-ghost'
 					]}
-					href={resolve(`messages/${row.id}`)}>💨 Go to message</a
+					href={resolve(`messages/${row.id}`)}
 				>
+					💨 Go to message
+				</a>
 			</div>
 		</div>
 	</div>

@@ -1,0 +1,6 @@
+---
+title: Moving to PocketBase
+description: told-you.so migrated to PocketBase in respones to the recent Node.js and PostgreSQL vulnerabilities.
+author: Jeffrey Hugh
+date: 11/20/2026
+---

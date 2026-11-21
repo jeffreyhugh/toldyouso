@@ -1,101 +1,19 @@
 <script lang="ts">
-	import { fail } from '@sveltejs/kit';
 	import { DateTime } from 'luxon';
-	import outdent from 'outdent';
 
-	import { encrypt } from '#lib/crypt.js';
+	import { encrypt } from '#lib/crypt.ts';
 	import MaxWidthForm from '#lib/MaxWidthForm.svelte';
+	import { pb, pbAuth } from '#lib/pb.svelte.ts';
+	import type { MessagesRecord } from '#lib/pb.types.ts';
 	import SignInModal from '#lib/SignInModal.svelte';
-	import { enhance } from '$app/forms';
+	import { suggestions } from '#lib/suggestedMessages.ts';
+	import { goto } from '$app/navigation';
 	import { resolve } from '$app/paths';
 
-	import type { PageProps } from './$types';
-
-	const { data }: PageProps = $props();
 	let message = $state('');
-	let enablePassword = $state(false);
 	let password = $state('');
+	let enablePassword = $state(false);
 	let submitting = $state(false);
-
-	const suggestions: Record<string, { event: string; content: string }> = {
-		'🧑📸 Life Snapshot': {
-			event: 'life-snapshot',
-			content: outdent`
-				Dear Future Me,
-
-				I hope everything is going well in the future! It is currently ${DateTime.now().toLocaleString(DateTime.DATE_MED)}, and right now, I'm <...>
-
-				Here's three things I'm super proud of:
-				1. <...(something academic/professional)>
-				2. <...(something extracirricular)>
-				3. <...(something interpersonal)>
-
-				And here's one thing I hope to accomplish in the next five years:
-				1. <...>
-
-				Keep up the good work!
-
-				Best,
-				Past You
-			`
-		},
-		'🤫❤️ Future Romantic Interest': {
-			event: 'romantic-interest',
-			content: outdent`
-				Heyyy,
-
-				It's ${DateTime.now().toLocaleString(DateTime.DATE_MED)}, and:
-				- We're currently <...(besties, strangers, talking, dating)>
-				- My embarassing secret: <...>
-				- I hope when you read this, we're <...(still friends, together)>
-
-				Xoxo,
-				<...>
-
-				P.S. Do we still talk? If not, why?
-			`
-		},
-		'💃🎤 Pop Culture ': {
-			event: 'pop-culture',
-			content: outdent`
-				Right now (${DateTime.now().toLocaleString(DateTime.DATE_MED)}), everyone's obsessed with:
-				- Movie: <...(title, studio, actor)>
-				- Viral Trend: <...(TikTok dance, meme)>
-				- Music: <...(song, artist)>
-
-				My predictions for when this is read:
-				1. <...> flopped hard
-				2. <...> became a classic
-				3. We still don't have flying cars, do we?
-			`
-		},
-		'😬😅 Embarassing Dare': {
-			event: 'embarassing-dare',
-			content: outdent`
-				Future Brave Me,
-
-				You MUST do this within 24 hour of reading:
-				<...(try food you don't like, ask someone out, dance in public)>
-
-				Rules:
-				1. No backing out!
-				2. Evidence required (screenshot/video)
-				3. Send the evidence to your best friend
-
-				No regrets,
-				Chaotic Past You
-			`
-		},
-		'🙏💯 Gratitude Moment': {
-			event: 'gratitude-moment',
-			content: outdent`
-			Here are three things I'm grateful for:
-			1. <...>
-			2. <...>
-			3. <...>
-			`
-		}
-	};
 </script>
 
 <svelte:head>
@@ -104,36 +22,44 @@
 
 <MaxWidthForm>
 	<form
-		method="POST"
-		action="?/createMessage"
-		use:enhance={async ({ formData }) => {
+		onsubmit={async (e) => {
+			e.preventDefault();
+
+			const formData = new FormData(e.currentTarget);
+
+			const fdget = (key: string) => formData.get(key)?.toString() ?? '';
+
+			const message = fdget('message');
+			const password = fdget('password');
+			const dt = fdget('datetime');
+			const tz = fdget('timezone');
+
+			const availableAt = DateTime.fromISO(dt, { zone: tz });
+
 			submitting = true;
-			const message = formData.get('message');
-			if (!message) {
-				submitting = false;
-				fail(400, {
-					message: 'this field is required'
-				});
-				return;
-			}
+			const content = password !== '' ? await encrypt(message, password) : message;
 
-			const password = formData.get('password');
-			if (password && !(password instanceof File) && !(message instanceof File)) {
-				const cyphertext = await encrypt(message.toString(), password);
-				formData.set('message', cyphertext);
-				formData.set('encrypted', 'true');
-			}
-			formData.delete('password');
+			try {
+				const rec = await pb.collection('messages').create({
+					available: availableAt.toSQL(),
+					content,
+					encrypted: password !== '',
+					owned_by: pbAuth.rec?.id ?? ''
+				} as MessagesRecord);
 
-			return async ({ update }) => {
+				goto(`/messages/${rec.id}`);
+			} catch (err) {
+				// eslint-disable-next-line no-console
+				console.error(err);
+			} finally {
 				submitting = false;
-				update();
-			};
+			}
 		}}
 	>
 		<fieldset class="fieldset" disabled={submitting}>
 			<legend class="fieldset-legend text-sm lowercase">
-				Message<span class="text-primary font-bold">*</span>
+				Message
+				<span class="text-primary font-bold">*</span>
 			</legend>
 			<textarea
 				name="message"
@@ -168,12 +94,11 @@
 
 		{#if enablePassword}
 			<fieldset class="fieldset" disabled={submitting}>
-				<legend class="fieldset-legend text-sm lowercase"> Password to encrypt message </legend>
+				<legend class="fieldset-legend text-sm lowercase">Password to encrypt message</legend>
 				<label
 					class="input w-full focus-within:border-purple-600 focus-within:ring-4 focus-within:ring-fuchsia-600 focus-within:outline-none"
 				>
 					<input
-						bind:value={password}
 						name="password"
 						class="grow"
 						placeholder="optional-PASSWORD-1"
@@ -201,7 +126,8 @@
 
 		<fieldset class="fieldset" disabled={submitting}>
 			<legend class="fieldset-legend text-sm lowercase">
-				Make my message available at<span class="text-primary font-bold">*</span>
+				Make my message available at
+				<span class="text-primary font-bold">*</span>
 			</legend>
 			<input
 				name="datetime"
@@ -221,6 +147,13 @@
 			<a class="link" href={resolve('legal')}>privacy policy and TOS</a>
 		</div>
 
+		{#if pbAuth.email == ''}
+			<div class="text-warning mt-4 text-sm font-bold lowercase">
+				⚠️ You may store this message as a guest, but you will not be able to associate it with your
+				account in the future
+			</div>
+		{/if}
+
 		<button
 			type="submit"
 			disabled={submitting}
@@ -235,7 +168,7 @@
 			{/if}
 		</button>
 	</form>
-	<SignInModal email={data.user?.email} />
+	<SignInModal email={pbAuth.email} />
 </MaxWidthForm>
 
 {#snippet suggestion(title: string, content: string, event: string)}

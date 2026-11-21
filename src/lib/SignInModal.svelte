@@ -1,9 +1,11 @@
 <script lang="ts">
 	import Confetti from 'svelte-confetti';
 
-	import { enhance } from '$app/forms';
+	import { dev } from '$app/env';
+	import { DEV_EMAIL, DEV_PASSWORD } from '$app/env/public';
 
 	import { confettiArray } from './confettiArray';
+	import { pb } from './pb.svelte';
 
 	const { email }: { email: string | undefined } = $props();
 
@@ -31,19 +33,25 @@
 			<div class="text-sm lowercase">Don't have an account? Enter your email to create one.</div>
 			<div class="mt-2">
 				<form
-					method="post"
-					action="?/signin"
-					use:enhance={async () => {
-						success = false;
-						submitting = true;
+					onsubmit={async (e) => {
+						e.preventDefault();
 
-						return async ({ update, result }) => {
-							if (result.status === 200) {
-								success = true;
-							}
+						const formData = new FormData(e.currentTarget);
+						const email = formData.get('email')?.toString() ?? '';
+						if (!email) {
+							return;
+						}
+
+						submitting = true;
+						try {
+							await pb.collection('users').requestOTP(email);
+							success = true;
+						} catch (err) {
+							// eslint-disable-next-line no-console
+							console.error(err);
+						} finally {
 							submitting = false;
-							update();
-						};
+						}
 					}}
 				>
 					<fieldset class="fieldset" disabled={submitting}>
@@ -70,6 +78,22 @@
 						<p class="mt-2 text-xs lowercase">
 							Used for authentication only -- no mailing lists, no marketing, no reselling
 						</p>
+						{#if dev}
+							<button
+								class="btn mt-2 w-full font-bold lowercase"
+								onclick={async () => {
+									try {
+										await pb.collection('users').authWithPassword(DEV_EMAIL, DEV_PASSWORD);
+										dialogElement?.close();
+									} catch (err) {
+										// eslint-disable-next-line no-console
+										console.error(err);
+									}
+								}}
+							>
+								dev auth
+							</button>
+						{/if}
 					{/if}
 				</form>
 				{#if success}
@@ -88,15 +112,10 @@
 			<div class="text-sm lowercase">as {email}</div>
 			<div class="mt-2">
 				<form
-					method="post"
-					action="?/signout"
-					use:enhance={async () => {
-						submitting = true;
+					onsubmit={(e) => {
+						e.preventDefault();
 
-						return async ({ update }) => {
-							submitting = false;
-							update();
-						};
+						pb.authStore.clear();
 					}}
 				>
 					<button
